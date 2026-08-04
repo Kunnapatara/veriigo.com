@@ -1,0 +1,6 @@
+{
+  "name": "VERIIGO - Government Job Intelligence Platform",
+  "description": "Government Job Intelligence SaaS platform technical architecture and engineering workspace.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

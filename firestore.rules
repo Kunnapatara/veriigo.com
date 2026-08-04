@@ -1,0 +1,156 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isDocOwner() {
+      return isAuthenticated() && (
+        (resource == null && request.resource.data.userId == request.auth.uid) ||
+        (resource != null && resource.data.userId == request.auth.uid)
+      );
+    }
+
+    function isWorkerOrScheduler() {
+      return isAuthenticated() && (
+        request.auth.token.role == 'WORKER' ||
+        request.auth.token.role == 'SCHEDULER' ||
+        request.auth.token.role == 'ADMIN'
+      );
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && (
+        request.auth.token.role == 'ADMIN' ||
+        request.auth.token.email == 'kunnapatara@gmail.com'
+      );
+    }
+
+    // Default Deny All Unmatched
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // 1. Users Collection
+    match /users/{userId} {
+      allow read: if isOwner(userId) || isAdmin();
+      allow write: if isOwner(userId) || isAdmin();
+    }
+
+    // 2. Saved Jobs Collection
+    match /saved_jobs/{savedId} {
+      allow read, write: if isDocOwner() || isAdmin();
+    }
+
+    // 3. Government Agencies & Source Registry (Public Read, Admin/Worker Write)
+    match /government_agencies/{agencyId} {
+      allow read: if true;
+      allow write: if isWorkerOrScheduler() || isAdmin();
+    }
+
+    match /sources/{sourceId} {
+      allow read: if true;
+      allow write: if isWorkerOrScheduler() || isAdmin();
+    }
+
+    match /source_registry/{sourceId} {
+      allow read, write: if true;
+    }
+
+    match /expected_sources/{expectedId} {
+      allow read, write: if true;
+    }
+
+    match /discovery_queue/{discoveryId} {
+      allow read, write: if true;
+    }
+
+    // 4. Job Announcements, Search Index & Normalized Jobs (Public Read, Worker Write)
+    match /jobs/{jobId} {
+      allow read: if true;
+      allow write: if isWorkerOrScheduler() || isAdmin();
+    }
+
+    match /job_search_index/{jobId} {
+      allow read: if true;
+      allow write: if isWorkerOrScheduler() || isAdmin();
+    }
+
+    match /job_announcements/{announcementId} {
+      allow read: if true;
+      allow write: if isWorkerOrScheduler() || isAdmin();
+    }
+
+    // 5. Internal System Pipelines & Execution Artifacts (Worker/Scheduler/Admin Only)
+    match /documents/{documentId} {
+      allow read: if isAuthenticated();
+      allow write: if isWorkerOrScheduler() || isAdmin();
+    }
+
+    match /document_evidence/{evidenceId} {
+      allow read: if isAuthenticated();
+      allow write: if isWorkerOrScheduler() || isAdmin();
+    }
+
+    match /crawl_tasks/{taskId} {
+      allow read, write: if isWorkerOrScheduler() || isAdmin();
+    }
+
+    match /extraction_tasks/{taskId} {
+      allow read, write: if isWorkerOrScheduler() || isAdmin();
+    }
+
+    match /processed_events/{eventId} {
+      allow read: if true;
+      allow write: if isWorkerOrScheduler() || isAdmin();
+    }
+
+    match /crawl_dlq/{dlqId} {
+      allow read, write: if isWorkerOrScheduler() || isAdmin();
+    }
+
+    match /extraction_dlq/{dlqId} {
+      allow read, write: if isWorkerOrScheduler() || isAdmin();
+    }
+
+    match /normalization_dlq/{dlqId} {
+      allow read, write: if isWorkerOrScheduler() || isAdmin();
+    }
+
+    match /index_dlq/{dlqId} {
+      allow read, write: if isWorkerOrScheduler() || isAdmin();
+    }
+
+    // 6. Observability, Logs & Analytics
+    match /crawler_execution_logs/{logId} {
+      allow read: if true;
+      allow write: if isWorkerOrScheduler() || isAdmin();
+    }
+
+    match /scheduler_execution_logs/{schedLogId} {
+      allow read: if isAdmin();
+      allow write: if isWorkerOrScheduler() || isAdmin();
+    }
+
+    match /operational_reports/{reportId} {
+      allow read: if isAuthenticated();
+      allow write: if isWorkerOrScheduler() || isAdmin();
+    }
+
+    match /search_analytics/{analyticsId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    match /health_check/{checkId} {
+      allow read: if true;
+      allow write: if isWorkerOrScheduler() || isAdmin();
+    }
+  }
+}

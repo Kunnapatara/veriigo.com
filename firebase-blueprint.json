@@ -1,0 +1,446 @@
+{
+  "entities": {
+    "users": {
+      "title": "Users",
+      "description": "Registered VERIIGO platform users and profile metadata",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "displayName": { "type": "string" },
+        "role": { "type": "string", "enum": ["USER", "AGENCY", "ADMIN"] },
+        "photoURL": { "type": "string" },
+        "phoneNumber": { "type": "string" },
+        "ocscExamPassed": { "type": "boolean" },
+        "ocscLevel": { "type": "string", "enum": ["LEVEL_1", "LEVEL_2", "LEVEL_3", "LEVEL_4"] },
+        "educationLevel": { "type": "string" },
+        "fieldOfStudy": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "role", "ocscExamPassed", "createdAt"]
+    },
+    "saved_jobs": {
+      "title": "Saved Jobs",
+      "description": "Bookmarks and saved government position announcements by candidates",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "jobAnnouncementId": { "type": "string" },
+        "jobTitle": { "type": "string" },
+        "agencyName": { "type": "string" },
+        "ministry": { "type": "string" },
+        "deadline": { "type": "string", "format": "date-time" },
+        "notes": { "type": "string" },
+        "savedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "userId", "jobAnnouncementId", "jobTitle", "agencyName", "savedAt"]
+    },
+    "government_agencies": {
+      "title": "Government Agencies",
+      "description": "Thai Ministries, Departments, and Autonomous Public Agencies directory",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "code": { "type": "string" },
+        "nameThai": { "type": "string" },
+        "nameEnglish": { "type": "string" },
+        "ministry": { "type": "string" },
+        "websiteUrl": { "type": "string" },
+        "logoUrl": { "type": "string" },
+        "address": { "type": "string" },
+        "contactEmail": { "type": "string" },
+        "contactPhone": { "type": "string" },
+        "activeJobsCount": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "code", "nameThai", "ministry", "websiteUrl", "createdAt"]
+    },
+    "recruitment_sources": {
+      "title": "Recruitment Sources",
+      "description": "Official sources, agency job portals, and RSS/crawled targets",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "agencyId": { "type": "string" },
+        "baseUrl": { "type": "string" },
+        "scrapeTargetUrl": { "type": "string" },
+        "sourceType": { "type": "string", "enum": ["GOVT_PORTAL", "AGENCY_WEBSITE", "RSS_FEED", "PDF_ANNOUNCEMENT"] },
+        "crawlFrequency": { "type": "string", "enum": ["HOURLY", "DAILY", "WEEKLY"] },
+        "isActive": { "type": "boolean" },
+        "lastCrawledAt": { "type": "string", "format": "date-time" },
+        "lastCrawlStatus": { "type": "string", "enum": ["SUCCESS", "FAILED", "PARTIAL"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "name", "baseUrl", "scrapeTargetUrl", "sourceType", "crawlFrequency", "isActive"]
+    },
+    "job_announcements": {
+      "title": "Job Announcements",
+      "description": "Verified government vacancy announcements scraped and ingested",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "positionCode": { "type": "string" },
+        "agencyId": { "type": "string" },
+        "agencyName": { "type": "string" },
+        "ministry": { "type": "string" },
+        "recruitmentSourceId": { "type": "string" },
+        "salaryMin": { "type": "number" },
+        "salaryMax": { "type": "number" },
+        "vacanciesCount": { "type": "number" },
+        "positionType": { "type": "string" },
+        "ocscLevelRequired": { "type": "string", "enum": ["LEVEL_1", "LEVEL_2", "LEVEL_3", "LEVEL_4", "NONE"] },
+        "degreeRequired": { "type": "array", "items": { "type": "string" } },
+        "description": { "type": "string" },
+        "requirementsText": { "type": "string" },
+        "pdfAnnouncementUrl": { "type": "string" },
+        "applicationUrl": { "type": "string" },
+        "publishDate": { "type": "string", "format": "date-time" },
+        "deadline": { "type": "string", "format": "date-time" },
+        "examDate": { "type": "string", "format": "date-time" },
+        "status": { "type": "string", "enum": ["ACTIVE", "CLOSED", "ARCHIVED"] },
+        "isVerified": { "type": "boolean" },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "title", "agencyName", "salaryMin", "salaryMax", "deadline", "status"]
+    },
+    "crawler_logs": {
+      "title": "Crawler Logs",
+      "description": "Execution records for background recruitment web scrapers",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "sourceId": { "type": "string" },
+        "sourceName": { "type": "string" },
+        "status": { "type": "string", "enum": ["STARTED", "SUCCESS", "FAILED", "PARTIAL"] },
+        "pagesScraped": { "type": "number" },
+        "itemsFound": { "type": "number" },
+        "itemsExtracted": { "type": "number" },
+        "errorMessage": { "type": "string" },
+        "executionTimeMs": { "type": "number" },
+        "startedAt": { "type": "string", "format": "date-time" },
+        "completedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "sourceId", "status", "startedAt"]
+    },
+    "extraction_logs": {
+      "title": "Extraction Logs",
+      "description": "Structured AI and regex parsing logs for ingested PDF/HTML announcements",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "crawlerLogId": { "type": "string" },
+        "rawSourceUrl": { "type": "string" },
+        "announcementId": { "type": "string" },
+        "status": { "type": "string", "enum": ["SUCCESS", "VALIDATION_ERROR", "AI_PARSING_FAILED"] },
+        "aiConfidenceScore": { "type": "number" },
+        "validationErrors": { "type": "array", "items": { "type": "string" } },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "crawlerLogId", "rawSourceUrl", "status", "createdAt"]
+    },
+    "subscriptions": {
+      "title": "Subscriptions",
+      "description": "User tier memberships and platform feature access subscriptions",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "planType": { "type": "string", "enum": ["FREE", "PRO_APPLICANT", "AGENCY_PREMIUM"] },
+        "status": { "type": "string", "enum": ["ACTIVE", "CANCELED", "EXPIRED"] },
+        "startDate": { "type": "string", "format": "date-time" },
+        "endDate": { "type": "string", "format": "date-time" },
+        "autoRenew": { "type": "boolean" },
+        "features": { "type": "array", "items": { "type": "string" } },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "userId", "planType", "status", "startDate", "endDate"]
+    },
+    "notifications": {
+      "title": "Notifications",
+      "description": "In-app and push notification dispatches for candidates",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "message": { "type": "string" },
+        "type": { "type": "string", "enum": ["URGENT", "RECOMMENDATION", "STATUS_CHANGE", "EXAM_REMINDER", "SYSTEM"] },
+        "relatedJobId": { "type": "string" },
+        "relatedApplicationId": { "type": "string" },
+        "isRead": { "type": "boolean" },
+        "readAt": { "type": "string", "format": "date-time" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "userId", "title", "message", "type", "isRead", "createdAt"]
+    },
+    "audit_logs": {
+      "title": "Audit Logs",
+      "description": "Security audit trail tracking system operations and administrative actions",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "actorId": { "type": "string" },
+        "actorEmail": { "type": "string" },
+        "actorRole": { "type": "string", "enum": ["USER", "AGENCY", "ADMIN", "SYSTEM"] },
+        "action": { "type": "string" },
+        "targetResource": { "type": "string" },
+        "ipAddress": { "type": "string" },
+        "userAgent": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "actorId", "actorRole", "action", "targetResource", "timestamp"]
+    },
+    "documents": {
+      "title": "Document Lake Documents",
+      "description": "Immutable raw recruitment documents ingested from government sources",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "sourceId": { "type": "string" },
+        "contentHash": { "type": "string" },
+        "officialUrl": { "type": "string" },
+        "storagePath": { "type": "string" },
+        "mimeType": { "type": "string" },
+        "downloadTimestamp": { "type": "string", "format": "date-time" },
+        "status": { "type": "string", "enum": ["PENDING", "PROCESSING", "PROCESSED", "FAILED"] },
+        "ingestedAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "sourceId", "contentHash", "officialUrl", "storagePath", "mimeType", "downloadTimestamp", "status", "ingestedAt"]
+    },
+    "extraction_tasks": {
+      "title": "Extraction Tasks",
+      "description": "Decoupled asynchronous AI extraction tasks",
+      "type": "object",
+      "properties": {
+        "taskId": { "type": "string" },
+        "documentId": { "type": "string" },
+        "sourceId": { "type": "string" },
+        "status": { "type": "string", "enum": ["PENDING", "PROCESSING", "COMPLETED", "FAILED"] },
+        "modelVersion": { "type": "string" },
+        "promptVersion": { "type": "string" },
+        "validationVersion": { "type": "string" },
+        "confidenceScore": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "processedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["taskId", "documentId", "sourceId", "status", "modelVersion", "promptVersion", "validationVersion", "confidenceScore", "createdAt"]
+    },
+    "jobs": {
+      "title": "Normalized Government Job Announcements",
+      "description": "Official normalized government job intelligence records with lineage reference",
+      "type": "object",
+      "properties": {
+        "jobId": { "type": "string" },
+        "sourceDocumentId": { "type": "string" },
+        "extractionTaskId": { "type": "string" },
+        "sourceId": { "type": "string" },
+        "title": { "type": "string" },
+        "organization": { "type": "string" },
+        "governmentLevel": { "type": "string", "enum": ["CENTRAL", "PROVINCIAL", "LOCAL", "STATE_ENTERPRISE", "OTHER"] },
+        "province": { "type": "string" },
+        "jobCategory": { "type": "string" },
+        "employmentType": { "type": "string" },
+        "positionsAvailable": { "type": "number" },
+        "publishedDate": { "type": "string", "format": "date-time" },
+        "applicationDeadline": { "type": "string" },
+        "officialUrl": { "type": "string" },
+        "status": { "type": "string", "enum": ["ACTIVE", "CLOSED", "EXPIRED", "DRAFT"] },
+        "confidenceScore": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["jobId", "sourceDocumentId", "extractionTaskId", "sourceId", "title", "organization", "governmentLevel", "province", "jobCategory", "employmentType", "positionsAvailable", "publishedDate", "applicationDeadline", "officialUrl", "status", "confidenceScore", "createdAt", "updatedAt", "lineageReference"]
+    },
+    "job_search_index": {
+      "title": "CQRS Job Search Index",
+      "description": "Read-optimized CQRS search index for government job announcements",
+      "type": "object",
+      "properties": {
+        "jobId": { "type": "string" },
+        "title": { "type": "string" },
+        "organization": { "type": "string" },
+        "province": { "type": "string" },
+        "governmentLevel": { "type": "string" },
+        "jobCategory": { "type": "string" },
+        "employmentType": { "type": "string" },
+        "deadline": { "type": "string" },
+        "status": { "type": "string", "enum": ["ACTIVE", "CLOSED", "EXPIRED", "DRAFT"] },
+        "qualityScore": { "type": "number" },
+        "freshnessScore": { "type": "number" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["jobId", "title", "organization", "province", "governmentLevel", "jobCategory", "employmentType", "deadline", "status", "qualityScore", "freshnessScore", "updatedAt"]
+    },
+    "search_analytics": {
+      "title": "Search Analytics Tracking",
+      "description": "Read query tracking and performance metrics",
+      "type": "object",
+      "properties": {
+        "analyticsId": { "type": "string" },
+        "searchKeyword": { "type": "string" },
+        "resultCount": { "type": "number" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "executionTimeMs": { "type": "number" }
+      },
+      "required": ["analyticsId", "resultCount", "timestamp", "executionTimeMs"]
+    },
+    "sources": {
+      "title": "Source Registry Intelligence",
+      "description": "Official government job recruitment source registry tracking 3,000+ sources across 77 provinces",
+      "type": "object",
+      "properties": {
+        "sourceId": { "type": "string" },
+        "officialName": { "type": "string" },
+        "organizationType": { "type": "string" },
+        "governmentLevel": { "type": "string" },
+        "province": { "type": "string" },
+        "officialDomain": { "type": "string" },
+        "crawlFrequency": { "type": "string" },
+        "healthScore": { "type": "number" },
+        "coverageStatus": { "type": "string", "enum": ["ACTIVE", "DEGRADED", "INACTIVE", "FAILED", "DISCOVERING"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["sourceId", "officialName", "organizationType", "governmentLevel", "province", "officialDomain", "crawlFrequency", "healthScore", "coverageStatus", "createdAt", "updatedAt"]
+    },
+    "crawl_tasks": {
+      "title": "Crawl Task Queue",
+      "description": "Automated recruitment source monitoring crawl task queue",
+      "type": "object",
+      "properties": {
+        "taskId": { "type": "string" },
+        "sourceId": { "type": "string" },
+        "scheduledTime": { "type": "string", "format": "date-time" },
+        "status": { "type": "string", "enum": ["PENDING", "RUNNING", "COMPLETED", "FAILED", "RETRYING"] },
+        "retryCount": { "type": "number" },
+        "traceId": { "type": "string" }
+      },
+      "required": ["taskId", "sourceId", "scheduledTime", "status", "retryCount", "traceId"]
+    },
+    "operational_reports": {
+      "title": "Operational Ingestion Reports",
+      "description": "Daily automated scheduler execution and national coverage reporting metrics",
+      "type": "object",
+      "properties": {
+        "reportId": { "type": "string" },
+        "date": { "type": "string" },
+        "scheduleWindow": { "type": "string", "enum": ["09:00", "15:00", "MANUAL"] },
+        "sourcesScanned": { "type": "number" },
+        "tasksEnqueued": { "type": "number" },
+        "documentsDiscovered": { "type": "number" },
+        "jobsCreated": { "type": "number" },
+        "failedSources": { "type": "number" },
+        "nationalCoveragePercentage": { "type": "number" },
+        "executionTimeMs": { "type": "number" },
+        "traceId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["reportId", "date", "scheduleWindow", "sourcesScanned", "tasksEnqueued", "documentsDiscovered", "jobsCreated", "failedSources", "nationalCoveragePercentage", "executionTimeMs", "traceId", "createdAt"]
+    },
+    "source_health_events": {
+      "title": "Source Health Monitoring Events",
+      "description": "Source health monitoring telemetry tracking crawl latency, success rate, and HTTP status codes",
+      "type": "object",
+      "properties": {
+        "eventId": { "type": "string" },
+        "sourceId": { "type": "string" },
+        "taskId": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "successRate": { "type": "number" },
+        "documentsFound": { "type": "number" },
+        "crawlLatencyMs": { "type": "number" },
+        "httpStatusCode": { "type": "number" },
+        "traceId": { "type": "string" }
+      },
+      "required": ["eventId", "sourceId", "taskId", "timestamp", "successRate", "documentsFound", "crawlLatencyMs", "httpStatusCode", "traceId"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "users",
+      "description": "User account documents keyed by Firebase Auth UID"
+    },
+    "/saved_jobs/{savedId}": {
+      "schema": "saved_jobs",
+      "description": "Candidate saved position bookmarks"
+    },
+    "/government_agencies/{agencyId}": {
+      "schema": "government_agencies",
+      "description": "Public directory of Thai government ministries and agencies"
+    },
+    "/recruitment_sources/{sourceId}": {
+      "schema": "recruitment_sources",
+      "description": "Crawler targets and RSS recruitment feeds"
+    },
+    "/job_announcements/{announcementId}": {
+      "schema": "job_announcements",
+      "description": "Verified government job listings"
+    },
+    "/crawler_logs/{logId}": {
+      "schema": "crawler_logs",
+      "description": "Background web crawler execution history"
+    },
+    "/extraction_logs/{extractionId}": {
+      "schema": "extraction_logs",
+      "description": "PDF/HTML text parsing and AI structured extraction logs"
+    },
+    "/subscriptions/{subscriptionId}": {
+      "schema": "subscriptions",
+      "description": "User subscription plans and entitlement records"
+    },
+    "/notifications/{notificationId}": {
+      "schema": "notifications",
+      "description": "User notifications and alert dispatches"
+    },
+    "/audit_logs/{auditId}": {
+      "schema": "audit_logs",
+      "description": "Security and compliance audit trail"
+    },
+    "/documents/{documentId}": {
+      "schema": "documents",
+      "description": "Immutable Document Lake stored raw files metadata and SHA256 hashes"
+    },
+    "/extraction_tasks/{taskId}": {
+      "schema": "extraction_tasks",
+      "description": "Decoupled asynchronous AI extraction task entity"
+    },
+    "/jobs/{jobId}": {
+      "schema": "jobs",
+      "description": "Normalized government job intelligence entity"
+    },
+    "/job_search_index/{jobId}": {
+      "schema": "job_search_index",
+      "description": "CQRS read-optimized search index entity"
+    },
+    "/search_analytics/{analyticsId}": {
+      "schema": "search_analytics",
+      "description": "Search query telemetry and filter metrics"
+    },
+    "/sources/{sourceId}": {
+      "schema": "sources",
+      "description": "National recruitment intelligence source registry entity"
+    },
+    "/crawl_tasks/{taskId}": {
+      "schema": "crawl_tasks",
+      "description": "Automated recruitment monitoring crawl task queue entity"
+    },
+    "/operational_reports/{reportId}": {
+      "schema": "operational_reports",
+      "description": "Daily automated scheduler operational execution report"
+    },
+    "/source_health_events/{eventId}": {
+      "schema": "source_health_events",
+      "description": "Source health monitoring telemetry tracking crawl latency, success rate, and HTTP status codes"
+    }
+  }
+}
