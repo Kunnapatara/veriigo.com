@@ -1,0 +1,51 @@
+{
+  "generationTimestamp": "2026-08-04T08:12:38.763Z",
+  "totalArtifacts": 9,
+  "artifacts": {
+    "evidence-firestore.json": {
+      "sizeBytes": 3047,
+      "sha256": "ce94839687ac17c30b947add282d831cdd639efb58d8904347cb1c45443ded7f",
+      "timestamp": "2026-08-04T08:12:38.763Z"
+    },
+    "evidence-hashes.json": {
+      "sizeBytes": 5697,
+      "sha256": "5df120cb05dece47ff4e207bdc5c148b19afe2134362d3a4032f315c4185f39d",
+      "timestamp": "2026-08-04T08:12:38.763Z"
+    },
+    "evidence-lineage.json": {
+      "sizeBytes": 5167,
+      "sha256": "dc738c05595c64251ad2b0f673febf3b19b5ccfd677db5df425a6129416f08dc",
+      "timestamp": "2026-08-04T08:12:38.763Z"
+    },
+    "evidence-live-source.json": {
+      "sizeBytes": 8747,
+      "sha256": "ce5573ae14aafd6a8620923a5f957852e1c26158cb062590bd94d3976538a5c4",
+      "timestamp": "2026-08-04T08:12:38.763Z"
+    },
+    "evidence-security.json": {
+      "sizeBytes": 839,
+      "sha256": "fba32e5fc37fe4d2cb0e72dd0aa69d6727b81031ec81c38bd752d4555c47e660",
+      "timestamp": "2026-08-04T08:12:38.763Z"
+    },
+    "evidence-change-detection.json": {
+      "sizeBytes": 1289,
+      "sha256": "c0fa71c95169ae655a2638e83cf7128af9e0434aac33c6a8076e203111344022",
+      "timestamp": "2026-08-04T08:12:38.763Z"
+    },
+    "benchmark-performance.csv": {
+      "sizeBytes": 202,
+      "sha256": "8e00fe5d8358b70c2db6bbf6a5b3d642549d8bb86f973edbf6f207ed74d604fb",
+      "timestamp": "2026-08-04T08:12:38.763Z"
+    },
+    "coverage-summary.json": {
+      "sizeBytes": 144,
+      "sha256": "484d628603c0d638377be2ae4de461c744e6b525fd04db657ad1d860d718186a",
+      "timestamp": "2026-08-04T08:12:38.763Z"
+    },
+    "verification.log": {
+      "sizeBytes": 2791,
+      "sha256": "75c87aeb7ed39b052a478086cf409020aa6057d52960aa0a257862f15c664429",
+      "timestamp": "2026-08-04T08:12:38.763Z"
+    }
+  }
+}

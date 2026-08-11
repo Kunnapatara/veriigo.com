@@ -1,0 +1,16 @@
+{
+  "verificationSuite": "VERIIGO V2 External Reproducibility Verification Kit",
+  "version": "3.0.0",
+  "targetEnvironment": {
+    "platform": "Cloud Run Sandbox",
+    "firestoreDatabaseId": "ai-studio-veriigogovernmen-a182c5f8-d603-44c1-999c-8c12c86084b7"
+  },
+  "sampleSizes": {
+    "lineageAuditJobs": 100,
+    "hashValidationSnapshots": 50,
+    "liveSourceValidationJobs": 20,
+    "performanceBenchmarkJobs": [100, 500]
+  },
+  "repeatabilityRuns": 3,
+  "outputDirectory": "verification-kit"
+}

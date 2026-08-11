@@ -24,7 +24,8 @@ import {
   Tag,
   Check,
   RotateCcw,
-  AlertCircle
+  AlertCircle,
+  AlertTriangle
 } from 'lucide-react';
 import { collection, onSnapshot, doc, setDoc } from 'firebase/firestore';
 import { db } from '../../lib/firebase';
@@ -105,6 +106,7 @@ export const JobsExplorerView: React.FC<JobsExplorerViewProps> = ({
 
   // Data state
   const [jobs, setJobs] = useState<JobListing[]>([]);
+  const [apiTotal, setApiTotal] = useState<number>(0);
   const [loading, setLoading] = useState(true);
   const [dataSource, setDataSource] = useState<'EXPRESS_API' | 'REALTIME_FIRESTORE'>('EXPRESS_API');
   const [firestoreSynced, setFirestoreSynced] = useState(false);
@@ -129,6 +131,7 @@ export const JobsExplorerView: React.FC<JobsExplorerViewProps> = ({
 
   // Advanced Filter Drawer Toggle
   const [showAdvancedFilters, setShowAdvancedFilters] = useState<boolean>(false);
+  const [dbError, setDbError] = useState<string | null>(null);
 
   // Selected job modal & AI analysis state
   const [modalJob, setModalJob] = useState<JobListing | null>(selectedJobFromDash || null);
@@ -138,6 +141,7 @@ export const JobsExplorerView: React.FC<JobsExplorerViewProps> = ({
   // 1. Fetch via Express API
   const fetchExpressJobs = async () => {
     setLoading(true);
+    setDbError(null);
     try {
       const queryParams = new URLSearchParams();
       if (searchTerm) queryParams.append('keyword', searchTerm);
@@ -150,14 +154,24 @@ export const JobsExplorerView: React.FC<JobsExplorerViewProps> = ({
       if (minSalaryFilter > 0) queryParams.append('minSalary', String(minSalaryFilter));
       if (closingFilter !== 'ALL') queryParams.append('closingDateRange', closingFilter);
       queryParams.append('sortBy', sortBy);
+      queryParams.append('limit', '10000');
 
       const res = await fetch(`/api/jobs?${queryParams.toString()}`);
-      const data = await res.json();
+      let data: any = {};
+      try {
+        data = await res.json();
+      } catch {
+        data = { success: false, message: 'DATABASE UNAVAILABLE' };
+      }
       if (data.success) {
         setJobs(data.data || []);
+        setApiTotal(data.total || (data.data ? data.data.length : 0));
+      } else {
+        setDbError(data.message || 'DATABASE UNAVAILABLE');
       }
-    } catch (err) {
+    } catch (err: any) {
       console.error('Error fetching jobs via API:', err);
+      setDbError('DATABASE UNAVAILABLE');
     } finally {
       setLoading(false);
     }
@@ -183,13 +197,15 @@ export const JobsExplorerView: React.FC<JobsExplorerViewProps> = ({
             setFirestoreCount(fetchedList.length);
             setLoading(false);
           },
-          (error) => {
+          (error: any) => {
             console.error('Firestore onSnapshot listener error:', error);
+            setDbError(error?.message || 'DATABASE UNAVAILABLE');
             setLoading(false);
           }
         );
-      } catch (err) {
+      } catch (err: any) {
         console.error('Failed to setup Firestore realtime listener:', err);
+        setDbError(err?.message || 'DATABASE UNAVAILABLE');
         setLoading(false);
       }
     } else {
@@ -232,14 +248,14 @@ export const JobsExplorerView: React.FC<JobsExplorerViewProps> = ({
       const q = searchTerm.toLowerCase().trim();
       result = result.filter(
         (j) =>
-          j.title.toLowerCase().includes(q) ||
-          j.agencyName.toLowerCase().includes(q) ||
-          j.ministry.toLowerCase().includes(q) ||
-          j.location.toLowerCase().includes(q) ||
+          (j.title || '').toLowerCase().includes(q) ||
+          (j.agencyName || '').toLowerCase().includes(q) ||
+          (j.ministry || '').toLowerCase().includes(q) ||
+          (j.location || '').toLowerCase().includes(q) ||
           (j.province && j.province.toLowerCase().includes(q)) ||
-          j.requirementsText.toLowerCase().includes(q) ||
-          j.tags.some((t) => t.toLowerCase().includes(q)) ||
-          (j.majorsAllowed && j.majorsAllowed.some((m) => m.toLowerCase().includes(q)))
+          (j.requirementsText || '').toLowerCase().includes(q) ||
+          (Array.isArray(j.tags) && j.tags.some((t) => t.toLowerCase().includes(q))) ||
+          (Array.isArray(j.majorsAllowed) && j.majorsAllowed.some((m) => m.toLowerCase().includes(q)))
       );
     }
 
@@ -249,7 +265,7 @@ export const JobsExplorerView: React.FC<JobsExplorerViewProps> = ({
       result = result.filter(
         (j) =>
           (j.province && j.province.toLowerCase().includes(p)) ||
-          j.location.toLowerCase().includes(p)
+          (j.location || '').toLowerCase().includes(p)
       );
     }
 
@@ -258,8 +274,8 @@ export const JobsExplorerView: React.FC<JobsExplorerViewProps> = ({
       const a = selectedAgency.toLowerCase();
       result = result.filter(
         (j) =>
-          j.agencyName.toLowerCase().includes(a) ||
-          j.ministry.toLowerCase().includes(a)
+          (j.agencyName || '').toLowerCase().includes(a) ||
+          (j.ministry || '').toLowerCase().includes(a)
       );
     }
 
@@ -267,7 +283,7 @@ export const JobsExplorerView: React.FC<JobsExplorerViewProps> = ({
     if (selectedDegree && !selectedDegree.includes('ทุกระดับการศึกษา')) {
       const d = selectedDegree.toLowerCase();
       result = result.filter((j) =>
-        j.degreeRequired.some((deg) => deg.toLowerCase().includes(d))
+        Array.isArray(j.degreeRequired) && j.degreeRequired.some((deg) => deg.toLowerCase().includes(d))
       );
     }
 
@@ -275,7 +291,7 @@ export const JobsExplorerView: React.FC<JobsExplorerViewProps> = ({
     if (selectedMajor && !selectedMajor.includes('ทุกสาขาวิชา')) {
       const m = selectedMajor.toLowerCase();
       result = result.filter((j) =>
-        j.majorsAllowed
+        Array.isArray(j.majorsAllowed)
           ? j.majorsAllowed.some((maj) => maj.toLowerCase().includes(m) || maj === 'ทุกสาขาวิชา')
           : true
       );
@@ -321,19 +337,19 @@ export const JobsExplorerView: React.FC<JobsExplorerViewProps> = ({
     // Sorting
     result.sort((a, b) => {
       if (sortBy === 'deadline_asc') {
-        return new Date(a.deadline).getTime() - new Date(b.deadline).getTime();
+        return new Date(a.deadline || 0).getTime() - new Date(b.deadline || 0).getTime();
       } else if (sortBy === 'deadline_desc') {
-        return new Date(b.deadline).getTime() - new Date(a.deadline).getTime();
+        return new Date(b.deadline || 0).getTime() - new Date(a.deadline || 0).getTime();
       } else if (sortBy === 'salary_desc') {
-        return b.salaryMax - a.salaryMax;
+        return (b.salaryMax || 0) - (a.salaryMax || 0);
       } else if (sortBy === 'salary_asc') {
-        return a.salaryMin - b.salaryMin;
+        return (a.salaryMin || 0) - (b.salaryMin || 0);
       } else if (sortBy === 'created_desc') {
-        return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+        return new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime();
       } else if (sortBy === 'title_asc') {
-        return a.title.localeCompare(b.title, 'th');
+        return (a.title || '').localeCompare(b.title || '', 'th');
       } else if (sortBy === 'vacancies_desc') {
-        return b.vacanciesCount - a.vacanciesCount;
+        return (b.vacanciesCount || 0) - (a.vacanciesCount || 0);
       }
       return 0;
     });
@@ -872,15 +888,35 @@ export const JobsExplorerView: React.FC<JobsExplorerViewProps> = ({
         </div>
       )}
 
+      {/* Database Error / Quota Exceeded Alert Banner */}
+      {dbError && (
+        <div className="bg-amber-950/90 border border-amber-600/70 rounded-xl p-4 text-amber-200 text-xs flex items-center justify-between gap-3 shadow-lg my-2">
+          <div className="flex items-center gap-2">
+            <AlertTriangle className="w-5 h-5 text-amber-400 shrink-0" />
+            <div>
+              <p className="font-bold text-amber-300">ไม่สามารถตรวจสอบข้อมูลล่าสุดได้ ({dbError})</p>
+              <p className="text-amber-300/80 mt-0.5">ขณะนี้ฐานข้อมูล Firestore อยู่ในสถานะ Quota Exceeded / Resource Exhausted ระบบปฏิเสธการใช้ข้อมูลจำลองตามข้อกำหนด Data Truth</p>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Sorting & Result Meta Bar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 veriigo-glass-panel p-4 rounded-xl border border-slate-800 shadow-sm text-xs">
-        <div className="flex items-center gap-2">
-          <span className="font-bold text-slate-200">
-            พบทั้งหมด <strong className="text-blue-400 text-sm font-extrabold">{processedJobs.length}</strong> ประกาศตำแหน่งงาน
+        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+          <span className="font-bold text-slate-200 flex items-center gap-2">
+            {dbError ? (
+              <span className="text-amber-400 font-extrabold text-xs sm:text-sm">ไม่สามารถตรวจสอบจำนวนประกาศล่าสุดได้ (DATABASE UNAVAILABLE)</span>
+            ) : (
+              <>พบทั้งหมด <strong className="text-blue-400 text-sm font-extrabold">{dataSource === 'EXPRESS_API' && activeFiltersCount === 0 ? (apiTotal || processedJobs.length) : processedJobs.length}</strong> ประกาศตำแหน่งงาน</>
+            )}
           </span>
-          <span className="text-slate-600">|</span>
-          <span className="text-slate-400 font-medium">
-            แหล่งข้อมูล: {dataSource === 'REALTIME_FIRESTORE' ? '⚡ Firestore Database (Realtime)' : '🚀 Express Server API'}
+          <span className="hidden sm:inline text-slate-600">|</span>
+          <span className="text-slate-400 font-medium flex items-center gap-2">
+            <span>แหล่งข้อมูล: {dataSource === 'REALTIME_FIRESTORE' ? '⚡ Firestore Database (Realtime)' : '🚀 Express Server API'}</span>
+            <span className={`px-2 py-0.5 rounded text-[10px] font-mono uppercase tracking-wider font-bold ${dbError ? 'bg-amber-950 text-amber-400 border border-amber-800/60' : 'bg-emerald-950 text-emerald-400 border border-emerald-800/60'}`}>
+              Truth Status: {dbError ? 'DATABASE_UNAVAILABLE' : 'VERIFIED_SNAPSHOT'}
+            </span>
           </span>
         </div>
 
@@ -996,31 +1032,33 @@ export const JobsExplorerView: React.FC<JobsExplorerViewProps> = ({
                     <div>
                       <span className="text-slate-400 block font-medium">อัตราเงินเดือน:</span>
                       <strong className="text-emerald-400 font-bold">
-                        {job.salaryMin.toLocaleString()} - {job.salaryMax.toLocaleString()} บ.
+                        {(job.salaryMin ?? 0).toLocaleString()} - {(job.salaryMax ?? 0).toLocaleString()} บ.
                       </strong>
                     </div>
                     <div>
                       <span className="text-slate-400 block font-medium">จำนวนอัตรา:</span>
-                      <strong className="text-slate-100 font-bold">{job.vacanciesCount} อัตรา</strong>
+                      <strong className="text-slate-100 font-bold">{job.vacanciesCount ?? 1} อัตรา</strong>
                     </div>
                     <div>
                       <span className="text-slate-400 block font-medium">ระดับการศึกษา:</span>
-                      <strong className="text-slate-200 font-semibold">{job.degreeRequired.join(', ')}</strong>
+                      <strong className="text-slate-200 font-semibold">
+                        {Array.isArray(job.degreeRequired) ? job.degreeRequired.join(', ') : (job.degreeRequired || 'ปริญญาตรี')}
+                      </strong>
                     </div>
                     <div>
                       <span className="text-slate-400 block font-medium">ประเภทการจ้าง:</span>
-                      <strong className="text-slate-200 font-semibold">{job.positionType}</strong>
+                      <strong className="text-slate-200 font-semibold">{job.positionType || 'ข้าราชการพลเรือนสามัญ'}</strong>
                     </div>
                   </div>
 
                   {/* Tags & Majors Allowed */}
                   <div className="flex items-center gap-1.5 flex-wrap pt-1">
-                    {job.majorsAllowed && job.majorsAllowed.length > 0 && (
+                    {Array.isArray(job.majorsAllowed) && job.majorsAllowed.length > 0 && (
                       <span className="text-[10px] bg-purple-950/80 text-purple-300 border border-purple-800/80 px-2 py-0.5 rounded-md font-bold">
                         🎓 {job.majorsAllowed[0]}
                       </span>
                     )}
-                    {job.tags.slice(0, 2).map((tag) => (
+                    {Array.isArray(job.tags) && job.tags.slice(0, 2).map((tag) => (
                       <span
                         key={tag}
                         className="text-[10px] bg-slate-800 text-slate-300 border border-slate-700 px-2 py-0.5 rounded-md font-medium"
@@ -1033,7 +1071,7 @@ export const JobsExplorerView: React.FC<JobsExplorerViewProps> = ({
 
                 <div className="pt-3 border-t border-slate-800/80 flex items-center justify-between gap-2 mt-2">
                   <span className="text-[11px] font-bold text-rose-400 flex items-center gap-1">
-                    <Calendar className="w-3.5 h-3.5" /> ปิดรับ {new Date(job.deadline).toLocaleDateString('th-TH')}
+                    <Calendar className="w-3.5 h-3.5" /> ปิดรับ {job.deadline ? new Date(job.deadline).toLocaleDateString('th-TH') : 'ไม่ระบุ'}
                   </span>
 
                   <button
@@ -1122,10 +1160,10 @@ export const JobsExplorerView: React.FC<JobsExplorerViewProps> = ({
               </div>
               <div>
                 <span className="text-xs font-bold text-blue-300 bg-blue-900/50 border border-blue-700/60 px-2.5 py-0.5 rounded-full">
-                  {modalJob.ministry}
+                  {modalJob.ministry || 'หน่วยงานภาครัฐ'}
                 </span>
-                <h3 className="text-lg font-extrabold text-slate-100 mt-1">{modalJob.title}</h3>
-                <p className="text-xs font-semibold text-slate-300">{modalJob.agencyName}</p>
+                <h3 className="text-lg font-extrabold text-slate-100 mt-1">{modalJob.title || 'ประกาศรับสมัครงาน'}</h3>
+                <p className="text-xs font-semibold text-slate-300">{modalJob.agencyName || ''}</p>
               </div>
             </div>
 
@@ -1134,21 +1172,21 @@ export const JobsExplorerView: React.FC<JobsExplorerViewProps> = ({
               <div>
                 <span className="text-slate-400 block font-medium">อัตราเงินเดือน</span>
                 <strong className="text-emerald-400 font-bold">
-                  {modalJob.salaryMin.toLocaleString()} - {modalJob.salaryMax.toLocaleString()} บ.
+                  {(modalJob.salaryMin ?? 0).toLocaleString()} - {(modalJob.salaryMax ?? 0).toLocaleString()} บ.
                 </strong>
               </div>
               <div>
                 <span className="text-slate-400 block font-medium">จำนวนรับสมัคร</span>
-                <strong className="text-slate-100 font-bold">{modalJob.vacanciesCount} อัตรา</strong>
+                <strong className="text-slate-100 font-bold">{modalJob.vacanciesCount ?? 1} อัตรา</strong>
               </div>
               <div>
                 <span className="text-slate-400 block font-medium">ประเภทตำแหน่ง</span>
-                <strong className="text-slate-200 font-bold">{modalJob.positionType}</strong>
+                <strong className="text-slate-200 font-bold">{modalJob.positionType || 'ข้าราชการพลเรือนสามัญ'}</strong>
               </div>
               <div>
                 <span className="text-slate-400 block font-medium">ปิดรับสมัคร</span>
                 <strong className="text-rose-400 font-bold">
-                  {new Date(modalJob.deadline).toLocaleDateString('th-TH')}
+                  {modalJob.deadline ? new Date(modalJob.deadline).toLocaleDateString('th-TH') : 'ไม่ระบุ'}
                 </strong>
               </div>
             </div>
@@ -1158,9 +1196,9 @@ export const JobsExplorerView: React.FC<JobsExplorerViewProps> = ({
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-blue-400 shrink-0" />
                 <span className="font-bold text-slate-200">สถานที่ปฏิบัติงาน:</span>
-                <span className="text-slate-300">{modalJob.location}</span>
+                <span className="text-slate-300">{modalJob.province ? `จังหวัด${modalJob.province}` : (modalJob.location || 'กรุงเทพมหานคร')}</span>
               </div>
-              {modalJob.majorsAllowed && modalJob.majorsAllowed.length > 0 && (
+              {Array.isArray(modalJob.majorsAllowed) && modalJob.majorsAllowed.length > 0 && (
                 <div className="flex items-center gap-2">
                   <BookOpen className="w-4 h-4 text-purple-400 shrink-0" />
                   <span className="font-bold text-slate-200">สาขาวิชาเอกที่เปิดรับ:</span>
@@ -1175,7 +1213,7 @@ export const JobsExplorerView: React.FC<JobsExplorerViewProps> = ({
                 คุณสมบัติเฉพาะสำหรับตำแหน่งตามประกาศ ก.พ.
               </h4>
               <p className="text-xs text-slate-200 leading-relaxed bg-slate-950/80 p-3.5 rounded-xl border border-slate-800">
-                {modalJob.requirementsText}
+                {modalJob.requirementsText || 'ไม่มีข้อมูลรายละเอียดเพิ่มเติม'}
               </p>
             </div>
 
@@ -1186,7 +1224,7 @@ export const JobsExplorerView: React.FC<JobsExplorerViewProps> = ({
                   <Sparkles className="w-5 h-5 text-amber-400 animate-pulse" />
                   <h4 className="font-bold text-sm text-slate-100">บทวิเคราะห์ AI Qualification Matcher (VERIIGO)</h4>
                 </div>
-                {aiAnalysis && <AIMatchRing score={aiAnalysis.score} size="sm" showLabel={false} />}
+                {aiAnalysis && <AIMatchRing score={aiAnalysis.score || 80} size="sm" showLabel={false} />}
               </div>
 
               {analyzing ? (
@@ -1206,7 +1244,7 @@ export const JobsExplorerView: React.FC<JobsExplorerViewProps> = ({
                         <CheckCircle2 className="w-3.5 h-3.5" /> จุดเด่นของคุณสมบัติ
                       </span>
                       <ul className="list-disc list-inside text-emerald-200 text-[11px] space-y-0.5">
-                        {aiAnalysis.qualificationHighlights.map((h, idx) => (
+                        {(aiAnalysis.qualificationHighlights || []).map((h, idx) => (
                           <li key={idx}>{h}</li>
                         ))}
                       </ul>
@@ -1217,7 +1255,7 @@ export const JobsExplorerView: React.FC<JobsExplorerViewProps> = ({
                         <AlertCircle className="w-3.5 h-3.5" /> ข้อควรเตรียมตัวเพิ่มเติม
                       </span>
                       <ul className="list-disc list-inside text-amber-200 text-[11px] space-y-0.5">
-                        {aiAnalysis.gapPoints.map((g, idx) => (
+                        {(aiAnalysis.gapPoints || []).map((g, idx) => (
                           <li key={idx}>{g}</li>
                         ))}
                       </ul>
@@ -1237,7 +1275,7 @@ export const JobsExplorerView: React.FC<JobsExplorerViewProps> = ({
             {/* Action Buttons */}
             <div className="flex items-center justify-between gap-3 pt-2">
               <a
-                href={modalJob.applicationUrl}
+                href={modalJob.applicationUrl || '#'}
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center gap-1.5 px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-100 text-xs font-bold rounded-xl border border-slate-700 transition-all"

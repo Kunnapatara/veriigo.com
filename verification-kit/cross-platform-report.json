@@ -1,0 +1,32 @@
+{
+  "certificationStep": "5. Cross-Platform Validation",
+  "timestamp": "2026-08-04T08:12:13.193Z",
+  "status": "VERIFIED",
+  "targetPlatforms": [
+    {
+      "platform": "Linux (POSIX)",
+      "shell": "bash / sh",
+      "scriptFile": "verification-kit/verify.sh",
+      "scriptSHA256": "9439664e71ef56134596b533eddaa06f81c11f16e413444806506916e228e405",
+      "pathSeparator": "/",
+      "lineEnding": "LF",
+      "status": "VERIFIED"
+    },
+    {
+      "platform": "Windows (Win32)",
+      "shell": "PowerShell / cmd",
+      "scriptFile": "verification-kit/verify.ps1",
+      "scriptSHA256": "e8a3b046498e321e3f51c3897a8a40e4144ff670609cf9d0575f124f2cca3320",
+      "pathSeparator": "\\",
+      "lineEnding": "CRLF/Universal",
+      "status": "VERIFIED"
+    }
+  ],
+  "scriptParityValidation": {
+    "shScriptPresent": true,
+    "ps1ScriptPresent": true,
+    "commandParity": true,
+    "pathNormalizationEnforced": true
+  },
+  "executionParitySummary": "Deterministic execution output confirmed across POSIX and Windows environments."
+}

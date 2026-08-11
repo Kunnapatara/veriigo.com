@@ -24,6 +24,12 @@ import { DatabaseOperationalError, IngestionError } from '../lib/errors';
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
 export const db = getFirestore(app, firebaseConfig.firestoreDatabaseId);
 
+const dbName = `projects/${firebaseConfig.projectId}/databases/${firebaseConfig.firestoreDatabaseId}`;
+console.log(`[Firestore Init - DocumentIngestionService.ts]`);
+console.log(`  Project ID: ${firebaseConfig.projectId}`);
+console.log(`  Database ID: ${firebaseConfig.firestoreDatabaseId}`);
+console.log(`  Database Name: ${dbName}`);
+
 const DOCUMENTS_COLLECTION = 'documents';
 
 export interface IngestDocumentInput {
@@ -32,6 +38,7 @@ export interface IngestDocumentInput {
   mimeType: string;
   rawContent: string | Buffer;
   downloadTimestamp?: string;
+  snapshotId?: string;
   traceId?: string;
 }
 
@@ -157,6 +164,7 @@ export class DocumentIngestionService {
     const newDocument: DocumentEntity = {
       documentId,
       sourceId: input.sourceId,
+      snapshotId: input.snapshotId,
       officialUrl: input.officialUrl,
       mimeType: input.mimeType || 'application/pdf',
       contentHash,

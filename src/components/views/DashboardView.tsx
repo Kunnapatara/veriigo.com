@@ -74,12 +74,20 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
         fetch('/api/user/subscription'),
       ]);
 
+      const safeParse = async (res: Response) => {
+        try {
+          return await res.json();
+        } catch {
+          return { success: false, data: [] };
+        }
+      };
+
       const [jobsData, savedData, searchData, notifData, subData] = await Promise.all([
-        jobsRes.json(),
-        savedRes.json(),
-        searchRes.json(),
-        notifRes.json(),
-        subRes.json(),
+        safeParse(jobsRes),
+        safeParse(savedRes),
+        safeParse(searchRes),
+        safeParse(notifRes),
+        safeParse(subRes),
       ]);
 
       if (jobsData.success) setRecommendedJobs(jobsData.data || []);

@@ -1,0 +1,40 @@
+{
+  "total": 7,
+  "records": [
+    {
+      "test": "Missing Source Registry Reference",
+      "expected": "REJECT",
+      "actual": "REJECT"
+    },
+    {
+      "test": "Missing Source Snapshot Reference",
+      "expected": "REJECT",
+      "actual": "REJECT"
+    },
+    {
+      "test": "Tampered Payload SHA256 Hash",
+      "expected": "REJECT",
+      "actual": "REJECT"
+    },
+    {
+      "test": "Non-Existent Document Reference",
+      "expected": "REJECT",
+      "actual": "REJECT"
+    },
+    {
+      "test": "Missing Lineage Reference Object",
+      "expected": "REJECT",
+      "actual": "REJECT"
+    },
+    {
+      "test": "Invalid Application URL Format",
+      "expected": "REJECT",
+      "actual": "REJECT"
+    },
+    {
+      "test": "Invalid Job Status Enum Value",
+      "expected": "REJECT",
+      "actual": "REJECT"
+    }
+  ]
+}

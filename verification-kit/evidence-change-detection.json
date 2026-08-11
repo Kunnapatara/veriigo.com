@@ -1,0 +1,59 @@
+{
+  "total": 9,
+  "records": [
+    {
+      "scenario": "NEW_ANNOUNCEMENT",
+      "expected": "NEW_ANNOUNCEMENT",
+      "detected": "NEW_ANNOUNCEMENT",
+      "passed": true
+    },
+    {
+      "scenario": "UNCHANGED",
+      "expected": "UNCHANGED",
+      "detected": "UNCHANGED",
+      "passed": true
+    },
+    {
+      "scenario": "MODIFIED_DOCUMENT",
+      "expected": "MODIFIED_DOCUMENT",
+      "detected": "MODIFIED_DOCUMENT",
+      "passed": true
+    },
+    {
+      "scenario": "DEADLINE_CHANGED",
+      "expected": "DEADLINE_CHANGED",
+      "detected": "DEADLINE_CHANGED",
+      "passed": true
+    },
+    {
+      "scenario": "POSITION_CHANGED",
+      "expected": "POSITION_CHANGED",
+      "detected": "POSITION_CHANGED",
+      "passed": true
+    },
+    {
+      "scenario": "CANCELLED",
+      "expected": "CANCELLED",
+      "detected": "CANCELLED",
+      "passed": true
+    },
+    {
+      "scenario": "REOPENED",
+      "expected": "REOPENED",
+      "detected": "REOPENED",
+      "passed": true
+    },
+    {
+      "scenario": "DOCUMENT_REMOVED",
+      "expected": "DOCUMENT_REMOVED",
+      "detected": "DOCUMENT_REMOVED",
+      "passed": true
+    },
+    {
+      "scenario": "URL_CHANGED",
+      "expected": "URL_CHANGED",
+      "detected": "URL_CHANGED",
+      "passed": true
+    }
+  ]
+}

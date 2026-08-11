@@ -81,9 +81,13 @@ export const TestRunnerView: React.FC = () => {
         fetch('/api/tests/logs'),
       ]);
 
-      const suitesData = await suitesRes.json();
-      const coverageData = await coverageRes.json();
-      const logsData = await logsRes.json();
+      const safeParse = async (r: Response) => {
+        try { return await r.json(); } catch { return { success: false }; }
+      };
+
+      const suitesData = await safeParse(suitesRes);
+      const coverageData = await safeParse(coverageRes);
+      const logsData = await safeParse(logsRes);
 
       if (suitesData.success) setSuites(suitesData.suites);
       if (coverageData.success) setCoverage(coverageData.data);

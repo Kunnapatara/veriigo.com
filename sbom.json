@@ -1,0 +1,245 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "serialNumber": "urn:uuid:6b18fcc1-9cfc-4ab3-a6f6-8ff82c187c36",
+  "version": 1,
+  "timestamp": "2026-08-04T08:12:13.193Z",
+  "metadata": {
+    "component": {
+      "type": "application",
+      "name": "veriigo-government-job-intelligence",
+      "version": "1.0.0",
+      "description": "VERIIGO V2 - Government Job Intelligence Platform",
+      "hashSHA256": "e219fae0b74d0681771bc077666bec1af0b579fad5d294407307c3dbbb4ce738"
+    },
+    "tools": [
+      {
+        "vendor": "VERIIGO Audit Engine",
+        "name": "Reproducible Build Certifier",
+        "version": "4.0.0"
+      }
+    ]
+  },
+  "components": [
+    {
+      "type": "library",
+      "name": "@google/genai",
+      "version": "2.4.0",
+      "declaredRange": "^2.4.0",
+      "license": "Apache-2.0",
+      "purl": "pkg:npm/@google/genai@2.4.0",
+      "integrityHashSHA256": "719035d37ae1123f55c5489b780307a1078f8e67c9d45187eb34a61952440a9c",
+      "packageManager": "npm/bun"
+    },
+    {
+      "type": "library",
+      "name": "@tailwindcss/vite",
+      "version": "4.1.14",
+      "declaredRange": "^4.1.14",
+      "license": "MIT",
+      "purl": "pkg:npm/@tailwindcss/vite@4.1.14",
+      "integrityHashSHA256": "710240ca11eb1ec700c1cee496ba156ac7b8d25c8929108ddcbfec654016ea87",
+      "packageManager": "npm/bun"
+    },
+    {
+      "type": "library",
+      "name": "@vitejs/plugin-react",
+      "version": "5.0.4",
+      "declaredRange": "^5.0.4",
+      "license": "MIT",
+      "purl": "pkg:npm/@vitejs/plugin-react@5.0.4",
+      "integrityHashSHA256": "1aacf96552c27d79a4c1f5ee705b37c1a96cffdbde3d7e35e836dcf58cb2faf0",
+      "packageManager": "npm/bun"
+    },
+    {
+      "type": "library",
+      "name": "cheerio",
+      "version": "1.2.0",
+      "declaredRange": "^1.2.0",
+      "license": "MIT",
+      "purl": "pkg:npm/cheerio@1.2.0",
+      "integrityHashSHA256": "7690325f4a1a6feadc4750ad6c23417ffe4bd71356230dd24ef25d347c9af55f",
+      "packageManager": "npm/bun"
+    },
+    {
+      "type": "library",
+      "name": "dotenv",
+      "version": "17.2.3",
+      "declaredRange": "^17.2.3",
+      "license": "BSD-2-Clause",
+      "purl": "pkg:npm/dotenv@17.2.3",
+      "integrityHashSHA256": "b41de950ef9ce94d218b716ec9586abf5ee980838adf904f0711b31fa2aef230",
+      "packageManager": "npm/bun"
+    },
+    {
+      "type": "library",
+      "name": "express",
+      "version": "4.21.2",
+      "declaredRange": "^4.21.2",
+      "license": "MIT",
+      "purl": "pkg:npm/express@4.21.2",
+      "integrityHashSHA256": "4d2041a77bd4922bcebeb1bb80240f087b10510d23d4a3142db7206a9feb739a",
+      "packageManager": "npm/bun"
+    },
+    {
+      "type": "library",
+      "name": "firebase",
+      "version": "12.16.0",
+      "declaredRange": "^12.16.0",
+      "license": "Apache-2.0",
+      "purl": "pkg:npm/firebase@12.16.0",
+      "integrityHashSHA256": "0d381ab6182a3f3e0367d8f8c9727930e58873633755fc2e8857d4a40bb6da16",
+      "packageManager": "npm/bun"
+    },
+    {
+      "type": "library",
+      "name": "lucide-react",
+      "version": "0.546.0",
+      "declaredRange": "^0.546.0",
+      "license": "ISC",
+      "purl": "pkg:npm/lucide-react@0.546.0",
+      "integrityHashSHA256": "7c05ad1c8f405826cc260a8a67b8fcc802cc15dc11f54aad3b546a24d27dfd20",
+      "packageManager": "npm/bun"
+    },
+    {
+      "type": "library",
+      "name": "motion",
+      "version": "12.23.24",
+      "declaredRange": "^12.23.24",
+      "license": "MIT",
+      "purl": "pkg:npm/motion@12.23.24",
+      "integrityHashSHA256": "2c7dfdef6bb2bfb38368f4f198f7a3ec893d118ffdf5406e11104755578f5164",
+      "packageManager": "npm/bun"
+    },
+    {
+      "type": "library",
+      "name": "react",
+      "version": "19.0.1",
+      "declaredRange": "^19.0.1",
+      "license": "MIT",
+      "purl": "pkg:npm/react@19.0.1",
+      "integrityHashSHA256": "f623d17f66c685e09cc96e2218c7fde54965ceaaf2c4c65fc6ecb7765ce172f4",
+      "packageManager": "npm/bun"
+    },
+    {
+      "type": "library",
+      "name": "react-dom",
+      "version": "19.0.1",
+      "declaredRange": "^19.0.1",
+      "license": "MIT",
+      "purl": "pkg:npm/react-dom@19.0.1",
+      "integrityHashSHA256": "c521f4b203142ff64c250dfc3ab5b9f7b86f0fd3371d75efc380331778aa03e6",
+      "packageManager": "npm/bun"
+    },
+    {
+      "type": "library",
+      "name": "recharts",
+      "version": "3.10.0",
+      "declaredRange": "^3.10.0",
+      "license": "MIT",
+      "purl": "pkg:npm/recharts@3.10.0",
+      "integrityHashSHA256": "ab745b9d8c0faa1b62aa6a280d41e01dcbf2577bcfb43c8c6a3d693b52949cb8",
+      "packageManager": "npm/bun"
+    },
+    {
+      "type": "library",
+      "name": "vite",
+      "version": "6.2.3",
+      "declaredRange": "^6.2.3",
+      "license": "MIT",
+      "purl": "pkg:npm/vite@6.2.3",
+      "integrityHashSHA256": "13d983bf1249f294e1ce7f725cc95af5d1ba69d06b92a388c013b4878fe14534",
+      "packageManager": "npm/bun"
+    },
+    {
+      "type": "library",
+      "name": "zod",
+      "version": "4.4.3",
+      "declaredRange": "^4.4.3",
+      "license": "MIT",
+      "purl": "pkg:npm/zod@4.4.3",
+      "integrityHashSHA256": "0479f5dfed7fff3d2e25371507c5a0702839e658dfa3cf6844ed0526ea08f381",
+      "packageManager": "npm/bun"
+    },
+    {
+      "type": "library",
+      "name": "@types/express",
+      "version": "4.17.21",
+      "declaredRange": "^4.17.21",
+      "license": "MIT",
+      "purl": "pkg:npm/@types/express@4.17.21",
+      "integrityHashSHA256": "72feb1e3ce204e54634c897af820edc9859def9e5dc4632ccf3c03db4d4932a0",
+      "packageManager": "npm/bun"
+    },
+    {
+      "type": "library",
+      "name": "@types/node",
+      "version": "22.14.0",
+      "declaredRange": "^22.14.0",
+      "license": "MIT",
+      "purl": "pkg:npm/@types/node@22.14.0",
+      "integrityHashSHA256": "69f78e83e1d0acdc75dd0c57f90dfa2bcad01b6f696615d5f081a5f14136d26b",
+      "packageManager": "npm/bun"
+    },
+    {
+      "type": "library",
+      "name": "autoprefixer",
+      "version": "10.4.21",
+      "declaredRange": "^10.4.21",
+      "license": "MIT",
+      "purl": "pkg:npm/autoprefixer@10.4.21",
+      "integrityHashSHA256": "2b18a415c5b49b9d5dfabbd1ff31d15636368971199a3f307f59ef2877672ded",
+      "packageManager": "npm/bun"
+    },
+    {
+      "type": "library",
+      "name": "esbuild",
+      "version": "0.25.0",
+      "declaredRange": "^0.25.0",
+      "license": "MIT",
+      "purl": "pkg:npm/esbuild@0.25.0",
+      "integrityHashSHA256": "aad64cc9feebcadb941ad163894371fa04b88ac10399f0af6125f29652557ebe",
+      "packageManager": "npm/bun"
+    },
+    {
+      "type": "library",
+      "name": "tailwindcss",
+      "version": "4.1.14",
+      "declaredRange": "^4.1.14",
+      "license": "MIT",
+      "purl": "pkg:npm/tailwindcss@4.1.14",
+      "integrityHashSHA256": "a31691e51ececa07932a7895bf6a8bf3553ee5031e7575223f4ca16d0c3c40c1",
+      "packageManager": "npm/bun"
+    },
+    {
+      "type": "library",
+      "name": "tsx",
+      "version": "4.21.0",
+      "declaredRange": "^4.21.0",
+      "license": "MIT",
+      "purl": "pkg:npm/tsx@4.21.0",
+      "integrityHashSHA256": "71109df05e41718c75aefd042105f439811a1207b7a533b3a5659efe3f28ac21",
+      "packageManager": "npm/bun"
+    },
+    {
+      "type": "library",
+      "name": "typescript",
+      "version": "5.8.2",
+      "declaredRange": "~5.8.2",
+      "license": "Apache-2.0",
+      "purl": "pkg:npm/typescript@5.8.2",
+      "integrityHashSHA256": "bddc247ce71616c763010e4cfcfdf1a1fc495eace5b0d5b873ad09b1a5efae7d",
+      "packageManager": "npm/bun"
+    },
+    {
+      "type": "library",
+      "name": "vitest",
+      "version": "4.1.10",
+      "declaredRange": "^4.1.10",
+      "license": "MIT",
+      "purl": "pkg:npm/vitest@4.1.10",
+      "integrityHashSHA256": "36ba52520306283bed14ea5820053d5924df9917523fc23937406c73aedfca21",
+      "packageManager": "npm/bun"
+    }
+  ]
+}

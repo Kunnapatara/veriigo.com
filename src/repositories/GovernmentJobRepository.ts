@@ -15,10 +15,17 @@ import { INITIAL_JOBS_SEED, JobItem } from '../data/initialJobsSeed.js';
 import crypto from 'crypto';
 import { logger, generateTraceId } from '../lib/logger';
 import { DatabaseOperationalError } from '../lib/errors';
+import { ResourceGovernor } from '../services/ResourceGovernor';
 
 // Initialize Firebase App & Firestore
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
 export const db = getFirestore(app, firebaseConfig.firestoreDatabaseId);
+
+const dbName = `projects/${firebaseConfig.projectId}/databases/${firebaseConfig.firestoreDatabaseId}`;
+console.log(`[Firestore Init - GovernmentJobRepository.ts]`);
+console.log(`  Project ID: ${firebaseConfig.projectId}`);
+console.log(`  Database ID: ${firebaseConfig.firestoreDatabaseId}`);
+console.log(`  Database Name: ${dbName}`);
 
 const COLLECTION_NAME = 'job_announcements';
 
@@ -51,6 +58,7 @@ export function calculateJobFingerprint(agencyName: string, title: string, appli
 }
 
 export class GovernmentJobRepository {
+  private static cachedJobs: JobItem[] = [];
   /**
    * Helper: Ensure fingerprint exists on a job item with standardized ISO-8601 timestamps
    */
@@ -62,10 +70,15 @@ export class GovernmentJobRepository {
     const id = job.id || `crawled-${Date.now().toString(36)}-${Math.random().toString(36).substring(2, 6)}`;
     const now = new Date().toISOString();
 
-    // Standardize status: ACTIVE | CLOSED | EXPIRED | DRAFT
+    // Standard status: ACTIVE | CLOSED | EXPIRED | DRAFT
     let validStatus: 'ACTIVE' | 'CLOSED' | 'EXPIRED' | 'DRAFT' = 'ACTIVE';
-    if (job.status === 'CLOSED' || job.status === 'EXPIRED' || job.status === 'DRAFT') {
-      validStatus = job.status;
+    const statusStr = String(job.status || '');
+    if (statusStr === 'CLOSED' || statusStr === 'DRAFT') {
+      validStatus = statusStr as 'CLOSED' | 'DRAFT';
+    } else if (statusStr === 'EXPIRED' || statusStr === 'ARCHIVED') {
+      validStatus = 'EXPIRED';
+    } else {
+      validStatus = 'ACTIVE';
     }
 
     return {
@@ -96,19 +109,28 @@ export class GovernmentJobRepository {
     };
   }
 
-  /**
-   * 1. findByFingerprint: Find an existing job document in Firestore by unique fingerprint
-   */
   static async findByFingerprint(fingerprint: string, traceId?: string): Promise<JobItem | null> {
     const tid = traceId || generateTraceId();
     if (!fingerprint) return null;
+    const gov = ResourceGovernor.getState();
+    if (!gov.dbAvailable) {
+      if (ResourceGovernor.shouldLogAggregated('findByFingerprint_dbUnavailable', 30000)) {
+        console.warn(`[GovernmentJobRepository] Skipping findByFingerprint because database is unavailable/quota exhausted.`);
+      }
+      return null;
+    }
     try {
       const colRef = collection(db, COLLECTION_NAME);
       const q = query(colRef, where('fingerprint', '==', fingerprint), firestoreLimit(1));
+
       const snap = await getDocs(q);
       if (snap.empty) return null;
       return snap.docs[0].data() as JobItem;
-    } catch (error) {
+    } catch (error: any) {
+      const isQuota = error?.message?.includes('Quota limit exceeded') || error?.code === 'resource-exhausted';
+      if (isQuota) {
+        ResourceGovernor.reportFirestoreQuotaError(error);
+      }
       logger.error(
         { traceId: tid, operation: 'GovernmentJobRepository.findByFingerprint', errorCode: 'DB_READ_FAILED' },
         `Failed to find job by fingerprint ${fingerprint}`,
@@ -120,6 +142,36 @@ export class GovernmentJobRepository {
         traceId: tid,
         originalError: error,
       });
+    }
+  }
+
+  /**
+   * 1b. findById: Find job by primary document ID or jobId
+   */
+  static async findById(id: string, traceId?: string): Promise<JobItem | null> {
+    const tid = traceId || generateTraceId();
+    if (!id) return null;
+    try {
+      const docRef = doc(db, COLLECTION_NAME, id);
+      const snap = await getDoc(docRef);
+      if (snap.exists()) {
+        return snap.data() as JobItem;
+      }
+      const colRef = collection(db, COLLECTION_NAME);
+      const q = query(colRef, where('jobId', '==', id), firestoreLimit(1));
+      const snapQ = await getDocs(q);
+      if (!snapQ.empty) {
+        return snapQ.docs[0].data() as JobItem;
+      }
+      const seedMatch = (INITIAL_JOBS_SEED as JobItem[]).find(j => j.id === id || j.fingerprint === id);
+      return seedMatch || null;
+    } catch (error: any) {
+      logger.warn(
+        { traceId: tid, operation: 'GovernmentJobRepository.findById', errorCode: 'DB_READ_FALLBACK', errMessage: error?.message || String(error) },
+        `Firestore query failed in findById for ${id}. Searching baseline initial jobs.`
+      );
+      const seedMatch = (INITIAL_JOBS_SEED as JobItem[]).find(j => j.id === id || j.fingerprint === id);
+      return seedMatch || null;
     }
   }
 
@@ -200,32 +252,56 @@ export class GovernmentJobRepository {
 
     try {
       const colRef = collection(db, COLLECTION_NAME);
-      const limitNum = Math.max(1, Math.min(100, parseInt(String(filters.limit || 100), 10)));
+      const reqLimit = filters.limit !== undefined ? parseInt(String(filters.limit), 10) : 10000;
+      const limitNum = Math.max(1, Math.min(10000, isNaN(reqLimit) ? 10000 : reqLimit));
       const targetStatus = filters.status || 'ACTIVE';
 
       let allJobs: JobItem[] = [];
 
-      try {
-        let q;
-        if (targetStatus !== 'ALL') {
-          q = query(colRef, where('status', '==', targetStatus), firestoreLimit(100));
+      const gov = ResourceGovernor.getState();
+      if (!gov.dbAvailable) {
+        if (GovernmentJobRepository.cachedJobs.length > 0) {
+          if (ResourceGovernor.shouldLogAggregated('findActive_dbUnavailable_usingCache', 30000)) {
+            console.warn(`[GovernmentJobRepository] Firestore unavailable; serving ${GovernmentJobRepository.cachedJobs.length} cached active jobs.`);
+          }
+          allJobs = GovernmentJobRepository.cachedJobs;
         } else {
-          q = query(colRef, firestoreLimit(100));
+          throw new DatabaseOperationalError({
+            operation: 'findActive',
+            message: `DATABASE_UNAVAILABLE: Firestore quota limit exceeded.`,
+            traceId: tid,
+          });
         }
-        const snap = await getDocs(q);
-        allJobs = snap.docs.map(doc => doc.data() as JobItem);
-      } catch (dbErr: any) {
-        logger.error(
-          { traceId: tid, operation: 'GovernmentJobRepository.findActive', errorCode: 'DB_QUERY_FAILED' },
-          'Database query failed in findActive. Throwing operational error (zero silent fallbacks).',
-          dbErr
-        );
-        throw new DatabaseOperationalError({
-          message: `Database query failure during findActive execution: ${dbErr?.message || String(dbErr)}`,
-          operation: 'GovernmentJobRepository.findActive',
-          traceId: tid,
-          originalError: dbErr,
-        });
+      } else {
+        try {
+          let q;
+          if (targetStatus !== 'ALL') {
+            q = query(colRef, where('status', '==', targetStatus), firestoreLimit(10000));
+          } else {
+            q = query(colRef, firestoreLimit(10000));
+          }
+
+          const snap = await getDocs(q);
+          allJobs = snap.docs.map(doc => doc.data() as JobItem);
+          if (allJobs.length > 0) {
+            GovernmentJobRepository.cachedJobs = allJobs;
+          }
+        } catch (dbErr: any) {
+          const isQuota = dbErr?.message?.includes('Quota limit exceeded') || dbErr?.code === 'resource-exhausted';
+          if (isQuota) {
+            ResourceGovernor.reportFirestoreQuotaError(dbErr);
+          }
+          logger.error(
+            { traceId: tid, operation: 'GovernmentJobRepository.findActive', errorCode: 'DATABASE_UNAVAILABLE', errMessage: dbErr?.message || String(dbErr) },
+            'Database query failed in findActive (e.g. quota limit). Raising explicit operational error.'
+          );
+          throw new DatabaseOperationalError({
+            operation: 'findActive',
+            message: `DATABASE_UNAVAILABLE: ${dbErr?.message || String(dbErr)}`,
+            originalError: dbErr,
+            traceId: tid,
+          });
+        }
       }
 
       // Memory filtering over retrieved Firestore dataset

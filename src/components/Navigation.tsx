@@ -49,6 +49,7 @@ export const Navigation: React.FC<NavigationProps> = ({
     { id: 'ai-center', label: 'AI Intelligence Center', icon: Sparkles, badge: 'AI Flagship' },
     { id: 'tracker', label: 'ติดตามการสมัคร (Tracker)', icon: Kanban },
     { id: 'calendar', label: 'ปฏิทินสอบ & กิจกรรม', icon: Calendar },
+    { id: 'truth-sync', label: 'National Truth Sync Engine', icon: ShieldCheck, badge: 'Sprint 17' },
     { id: 'coverage', label: 'National Coverage Engine', icon: Globe, badge: 'Phase 1–6' },
     { id: 'data-governance', label: 'National Data Governance', icon: Building2, badge: 'Gov Architect' },
     { id: 'operations', label: 'SRE Operations & Scheduler', icon: Activity, badge: 'Phase 1-6 SRE' },

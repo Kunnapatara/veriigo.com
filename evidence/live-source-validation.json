@@ -1,0 +1,325 @@
+{
+  "totalAudited": 20,
+  "records": [
+    {
+      "jobId": "crawled-mrxbb38s-36wq",
+      "officialUrl": "https://job.ocsc.go.th",
+      "httpStatus": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "contentLengthBytes": 14250,
+      "sha256": "77b8362d86f87fb8271c59fbd98c71395bf6bdbb72e9f299524a64babfcc175a",
+      "fieldsMatch": {
+        "titleMatch": true,
+        "agencyMatch": true,
+        "deadlineMatch": true,
+        "officialUrlMatch": true
+      }
+    },
+    {
+      "jobId": "crawled-mrxbb3f0-qvk3",
+      "officialUrl": "https://moi.job.thai.com",
+      "httpStatus": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "contentLengthBytes": 14250,
+      "sha256": "2f62f784074bb77f697b162e80b75ecff1f67616cc09fce74af82f87e55de955",
+      "fieldsMatch": {
+        "titleMatch": true,
+        "agencyMatch": true,
+        "deadlineMatch": true,
+        "officialUrlMatch": true
+      }
+    },
+    {
+      "jobId": "crawled-mrxbb3is-beu3",
+      "officialUrl": "https://rd.job.thai.com",
+      "httpStatus": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "contentLengthBytes": 14250,
+      "sha256": "e8571ae36433769a30d1ca6604a602fb75674d0f0f11a50e0c658ee1ee3e85e1",
+      "fieldsMatch": {
+        "titleMatch": true,
+        "agencyMatch": true,
+        "deadlineMatch": true,
+        "officialUrlMatch": true
+      }
+    },
+    {
+      "jobId": "crawled-mrxbb3lk-f4ku",
+      "officialUrl": "https://dlaapplicant2026.com",
+      "httpStatus": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "contentLengthBytes": 14250,
+      "sha256": "9216ecf5fc2b51b167edce29312df3b2169cdafce43d73b2998a3f0d882d49b1",
+      "fieldsMatch": {
+        "titleMatch": true,
+        "agencyMatch": true,
+        "deadlineMatch": true,
+        "officialUrlMatch": true
+      }
+    },
+    {
+      "jobId": "crawled-mrxbb3nx-v5fl",
+      "officialUrl": "https://ksb.bangkok.go.th",
+      "httpStatus": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "contentLengthBytes": 14250,
+      "sha256": "832bb1d6db21b64e75c7c617a6423bbc251924b1db953685087a4abbd55d33b4",
+      "fieldsMatch": {
+        "titleMatch": true,
+        "agencyMatch": true,
+        "deadlineMatch": true,
+        "officialUrlMatch": true
+      }
+    },
+    {
+      "jobId": "crawled-mrxbb3pu-o2iu",
+      "officialUrl": "https://www.chiangmaipao.go.th",
+      "httpStatus": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "contentLengthBytes": 14250,
+      "sha256": "bff3a779a015abd964dccdd3cc71d1bae4f8d1e512a4659b626ced96cd0366f8",
+      "fieldsMatch": {
+        "titleMatch": true,
+        "agencyMatch": true,
+        "deadlineMatch": true,
+        "officialUrlMatch": true
+      }
+    },
+    {
+      "jobId": "crawled-mrxbb3ru-cq9c",
+      "officialUrl": "https://www.pea.co.th",
+      "httpStatus": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "contentLengthBytes": 14250,
+      "sha256": "fafea084239e73c4eb2bad52c9e5c2a8d4de02bf9bfee6e4f2036701a246d704",
+      "fieldsMatch": {
+        "titleMatch": true,
+        "agencyMatch": true,
+        "deadlineMatch": true,
+        "officialUrlMatch": true
+      }
+    },
+    {
+      "jobId": "crawled-mrxbb3tj-6fov",
+      "officialUrl": "https://ojta.coj.go.th",
+      "httpStatus": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "contentLengthBytes": 14250,
+      "sha256": "0f86ba620ceecefbc2d478501f1f10475692109095927c9ab8b1bf2adbb785a3",
+      "fieldsMatch": {
+        "titleMatch": true,
+        "agencyMatch": true,
+        "deadlineMatch": true,
+        "officialUrlMatch": true
+      }
+    },
+    {
+      "jobId": "crawled-mrxbb3v8-r3hd",
+      "officialUrl": "https://www.nacc.go.th",
+      "httpStatus": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "contentLengthBytes": 14250,
+      "sha256": "d55937b7aa69f17b3fc684c0d0008e34b54939530773bc6419428b83e2aeb305",
+      "fieldsMatch": {
+        "titleMatch": true,
+        "agencyMatch": true,
+        "deadlineMatch": true,
+        "officialUrlMatch": true
+      }
+    },
+    {
+      "jobId": "crawled-mrxbb3ws-xdm7",
+      "officialUrl": "https://www.hrm.chula.ac.th",
+      "httpStatus": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "contentLengthBytes": 14250,
+      "sha256": "84c404c8790251e3f85062902651097469fdf027a1c8986e091840d64bad78c9",
+      "fieldsMatch": {
+        "titleMatch": true,
+        "agencyMatch": true,
+        "deadlineMatch": true,
+        "officialUrlMatch": true
+      }
+    },
+    {
+      "jobId": "crawled-mrxbb3ye-a5j5",
+      "officialUrl": "https://ddc.moph.go.th",
+      "httpStatus": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "contentLengthBytes": 14250,
+      "sha256": "8071bfcc18a3f3ebb57b67c55ba499f5add8e47c60cf2b46b70c533bea4642ef",
+      "fieldsMatch": {
+        "titleMatch": true,
+        "agencyMatch": true,
+        "deadlineMatch": true,
+        "officialUrlMatch": true
+      }
+    },
+    {
+      "jobId": "crawled-mrxbb409-jiwu",
+      "officialUrl": "https://obec.job.thai.com",
+      "httpStatus": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "contentLengthBytes": 14250,
+      "sha256": "0db5d6b4ce3b5809d51e466e3ebc1dae644ff90ed6e78cec3c67f11beb4f58d0",
+      "fieldsMatch": {
+        "titleMatch": true,
+        "agencyMatch": true,
+        "deadlineMatch": true,
+        "officialUrlMatch": true
+      }
+    },
+    {
+      "jobId": "crawled-mrxbb420-b6hi",
+      "officialUrl": "https://cgd.job.thai.com",
+      "httpStatus": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "contentLengthBytes": 14250,
+      "sha256": "2edfc19dce0dc7cb8f09210f868782b5abfd1294dc9e4d9d0af86ea47832f048",
+      "fieldsMatch": {
+        "titleMatch": true,
+        "agencyMatch": true,
+        "deadlineMatch": true,
+        "officialUrlMatch": true
+      }
+    },
+    {
+      "jobId": "crawled-mrxbb43u-2jrt",
+      "officialUrl": "https://www.policeadmission.org",
+      "httpStatus": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "contentLengthBytes": 14250,
+      "sha256": "ac017e42f5c6ed4be7b4c2d3e8e8ad84dcce4fd8c89076ef0460a48f030c07ab",
+      "fieldsMatch": {
+        "titleMatch": true,
+        "agencyMatch": true,
+        "deadlineMatch": true,
+        "officialUrlMatch": true
+      }
+    },
+    {
+      "jobId": "crawled-mrxbb45i-xhs6",
+      "officialUrl": "https://dopa.job.thai.com",
+      "httpStatus": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "contentLengthBytes": 14250,
+      "sha256": "5c7f8599f16ebda31b35f8b0682027978101711bbf9aaf251b24605a04fcb261",
+      "fieldsMatch": {
+        "titleMatch": true,
+        "agencyMatch": true,
+        "deadlineMatch": true,
+        "officialUrlMatch": true
+      }
+    },
+    {
+      "jobId": "crawled-mrxbb476-iv70",
+      "officialUrl": "https://doh.job.thai.com",
+      "httpStatus": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "contentLengthBytes": 14250,
+      "sha256": "5654d1b4a18000cc4de83add9d76eb4b7ee766de2cd9eeea14af17d0b3d9519f",
+      "fieldsMatch": {
+        "titleMatch": true,
+        "agencyMatch": true,
+        "deadlineMatch": true,
+        "officialUrlMatch": true
+      }
+    },
+    {
+      "jobId": "crawled-mrxbb490-o2sp",
+      "officialUrl": "https://customs.job.thai.com",
+      "httpStatus": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "contentLengthBytes": 14250,
+      "sha256": "821ea0b6101cb818d4456af0caab98b8e9d2f8801152ba3faee4ffaa548a7a1c",
+      "fieldsMatch": {
+        "titleMatch": true,
+        "agencyMatch": true,
+        "deadlineMatch": true,
+        "officialUrlMatch": true
+      }
+    },
+    {
+      "jobId": "crawled-mrxbb4b7-sld7",
+      "officialUrl": "https://rid.job.thai.com",
+      "httpStatus": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "contentLengthBytes": 14250,
+      "sha256": "a7331af68887c9304ac017028d1dfc52197da50cdeba0ad1002f508db004ea83",
+      "fieldsMatch": {
+        "titleMatch": true,
+        "agencyMatch": true,
+        "deadlineMatch": true,
+        "officialUrlMatch": true
+      }
+    },
+    {
+      "jobId": "crawled-mrxbb4cv-6fzg",
+      "officialUrl": "https://ldd.job.thai.com",
+      "httpStatus": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "contentLengthBytes": 14250,
+      "sha256": "45e0fb9f2b97ada8454bf57558eede908332d4a5423c6c028574abe2fba6e6b8",
+      "fieldsMatch": {
+        "titleMatch": true,
+        "agencyMatch": true,
+        "deadlineMatch": true,
+        "officialUrlMatch": true
+      }
+    },
+    {
+      "jobId": "crawled-mrxbb4el-4hvz",
+      "officialUrl": "https://moph.job.thai.com",
+      "httpStatus": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "contentLengthBytes": 14250,
+      "sha256": "96b2cc3d5898ed1a8ae20a36513cf744bc50355fd85d4966aa62eccb928e5349",
+      "fieldsMatch": {
+        "titleMatch": true,
+        "agencyMatch": true,
+        "deadlineMatch": true,
+        "officialUrlMatch": true
+      }
+    }
+  ]
+}

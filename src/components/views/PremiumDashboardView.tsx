@@ -78,7 +78,12 @@ export const PremiumDashboardView: React.FC = () => {
       setIsLoading(true);
       try {
         const res = await fetch('/api/jobs');
-        const json = await res.json();
+        let json: any = {};
+        try {
+          json = await res.json();
+        } catch {
+          json = { success: false, jobs: [] };
+        }
         if (json.success && json.jobs) {
           setJobs(json.jobs);
           if (json.jobs.length > 0) {
@@ -423,7 +428,7 @@ export const PremiumDashboardView: React.FC = () => {
                 {/* Card Actions */}
                 <div className="flex items-center justify-between pt-2">
                   <span className="text-xs text-slate-400 font-mono">
-                    เงินเดือน {job.salaryMin.toLocaleString()} - {job.salaryMax.toLocaleString()} บาท
+                    เงินเดือน {(job.salaryMin ?? 0).toLocaleString()} - {(job.salaryMax ?? 0).toLocaleString()} บาท
                   </span>
                   <button
                     onClick={() => openMatchDetail(job, match, opp)}

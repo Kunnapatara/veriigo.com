@@ -11,6 +11,12 @@ export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
 
 // Initialize Firestore using the designated databaseId from config
-export const db = getFirestore(app, firebaseConfig.firestoreDatabaseId || '(default)');
+export const db = getFirestore(app, firebaseConfig.firestoreDatabaseId);
+
+const dbName = `projects/${firebaseConfig.projectId}/databases/${firebaseConfig.firestoreDatabaseId}`;
+console.log(`[Firestore Init - src/lib/firebase.ts]`);
+console.log(`  Project ID: ${firebaseConfig.projectId}`);
+console.log(`  Database ID: ${firebaseConfig.firestoreDatabaseId}`);
+console.log(`  Database Name: ${dbName}`);
 
 export default app;

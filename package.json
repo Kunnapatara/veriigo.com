@@ -9,7 +9,9 @@
     "start": "node dist/server.cjs",
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "verify": "tsx verification-kit/verify.ts",
+    "certify": "tsx scripts/execute-sprint4-certification.ts"
   },
   "dependencies": {
     "@google/genai": "^2.4.0",

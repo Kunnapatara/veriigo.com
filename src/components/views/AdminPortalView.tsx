@@ -973,15 +973,17 @@ export const AdminPortalView: React.FC = () => {
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs bg-white p-3 rounded-xl border border-slate-200/80">
                     <div>
                       <span className="text-slate-400 font-semibold block">อัตราเงินเดือน</span>
-                      <span className="font-bold text-slate-800">{item.salaryMin.toLocaleString()} - {item.salaryMax.toLocaleString()} บาท</span>
+                      <span className="font-bold text-slate-800">{(item.salaryMin ?? 0).toLocaleString()} - {(item.salaryMax ?? 0).toLocaleString()} บาท</span>
                     </div>
                     <div>
                       <span className="text-slate-400 font-semibold block">จำนวนอัตรา</span>
-                      <span className="font-bold text-slate-800">{item.vacanciesCount} อัตรา</span>
+                      <span className="font-bold text-slate-800">{item.vacanciesCount ?? 1} อัตรา</span>
                     </div>
                     <div>
                       <span className="text-slate-400 font-semibold block">วุฒิที่ต้องการ</span>
-                      <span className="font-bold text-slate-800">{item.degreeRequired.join(', ')}</span>
+                      <span className="font-bold text-slate-800">
+                        {Array.isArray(item.degreeRequired) ? item.degreeRequired.join(', ') : (item.degreeRequired || 'ปริญญาตรี')}
+                      </span>
                     </div>
                     <div>
                       <span className="text-slate-400 font-semibold block">ปิดรับสมัคร</span>

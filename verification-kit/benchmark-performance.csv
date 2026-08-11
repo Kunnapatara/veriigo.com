@@ -1,0 +1,5 @@
+Metric,ExecutionTimeMs,ThroughputDocsPerSec,MemoryHeapUsedMB,MemoryRssMB
+Cold Start,310,N/A,32,201
+Warm Start,42,N/A,32,201
+100 Job Records Batch,869,115.1,32,201
+500 Job Records Batch,3563,140.3,32,201

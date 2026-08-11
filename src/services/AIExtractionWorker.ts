@@ -38,6 +38,12 @@ import { GeminiExtractionPipeline } from '../server/extractor/gemini-pipeline';
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
 export const db = getFirestore(app, firebaseConfig.firestoreDatabaseId);
 
+const dbName = `projects/${firebaseConfig.projectId}/databases/${firebaseConfig.firestoreDatabaseId}`;
+console.log(`[Firestore Init - AIExtractionWorker.ts]`);
+console.log(`  Project ID: ${firebaseConfig.projectId}`);
+console.log(`  Database ID: ${firebaseConfig.firestoreDatabaseId}`);
+console.log(`  Database Name: ${dbName}`);
+
 const EXTRACTION_TASKS_COLLECTION = 'extraction_tasks';
 const DOCUMENTS_COLLECTION = 'documents';
 

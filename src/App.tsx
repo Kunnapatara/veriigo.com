@@ -30,6 +30,7 @@ import { OperationsDashboardView } from './components/views/OperationsDashboardV
 import { Phase7OperationsDashboardView } from './components/views/Phase7OperationsDashboardView';
 import { ProductionHardeningView } from './components/views/ProductionHardeningView';
 import { PremiumDashboardView } from './components/views/PremiumDashboardView';
+import { NationalTruthSyncView } from './components/views/NationalTruthSyncView';
 import { JobListing } from './types';
 
 export default function App() {
@@ -97,6 +98,7 @@ export default function App() {
                 )}
                 {activeTab === 'tracker' && <TrackerView />}
                 {activeTab === 'calendar' && <CalendarView />}
+                {activeTab === 'truth-sync' && <NationalTruthSyncView />}
                 {activeTab === 'coverage' && <CoverageDashboardView />}
                 {activeTab === 'data-governance' && <DataGovernanceView />}
                 {activeTab === 'operations' && <ProductionHardeningView />}

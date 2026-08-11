@@ -441,6 +441,10 @@
     "/source_health_events/{eventId}": {
       "schema": "source_health_events",
       "description": "Source health monitoring telemetry tracking crawl latency, success rate, and HTTP status codes"
+    },
+    "/source_snapshots/{snapshotId}": {
+      "schema": "source_snapshots",
+      "description": "Immutable raw HTTP payload source snapshot and SHA256 evidence record"
     }
   }
 }

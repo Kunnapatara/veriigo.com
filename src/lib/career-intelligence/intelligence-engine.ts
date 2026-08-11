@@ -168,12 +168,15 @@ export function calculateJobMatchScore(
   // 6. Salary Component (Max 10)
   let salScore = 10;
   let salPassed = true;
-  let salExp = `อัตราเงินเดือน (${job.salaryMin.toLocaleString()} - ${job.salaryMax.toLocaleString()} บาท) ตรงตามคาดหวังขั้นต่ำ (${profile.preferences.minSalary.toLocaleString()} บาท)`;
+  const sMin = job.salaryMin ?? 0;
+  const sMax = job.salaryMax ?? 0;
+  const pMin = profile.preferences?.minSalary ?? 0;
+  let salExp = `อัตราเงินเดือน (${sMin.toLocaleString()} - ${sMax.toLocaleString()} บาท) ตรงตามคาดหวังขั้นต่ำ (${pMin.toLocaleString()} บาท)`;
 
-  if (job.salaryMax > 0 && job.salaryMax < profile.preferences.minSalary) {
+  if (sMax > 0 && sMax < pMin) {
     salScore = 5;
     salPassed = false;
-    salExp = `อัตราเงินเดือนสูงสุด (${job.salaryMax.toLocaleString()} บาท) ต่ำกว่าเกณฑ์ขั้นต่ำที่ต้องการ (${profile.preferences.minSalary.toLocaleString()} บาท)`;
+    salExp = `อัตราเงินเดือนสูงสุด (${sMax.toLocaleString()} บาท) ต่ำกว่าเกณฑ์ขั้นต่ำที่ต้องการ (${pMin.toLocaleString()} บาท)`;
   }
 
   const overallMatchScore = Math.min(100, eduScore + majorScore + locScore + expScore + eligScore + salScore);

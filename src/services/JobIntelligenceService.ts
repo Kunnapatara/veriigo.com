@@ -30,6 +30,12 @@ import { DatabaseOperationalError, OperationalError } from '../lib/errors';
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
 export const db = getFirestore(app, firebaseConfig.firestoreDatabaseId);
 
+const dbName = `projects/${firebaseConfig.projectId}/databases/${firebaseConfig.firestoreDatabaseId}`;
+console.log(`[Firestore Init - JobIntelligenceService.ts]`);
+console.log(`  Project ID: ${firebaseConfig.projectId}`);
+console.log(`  Database ID: ${firebaseConfig.firestoreDatabaseId}`);
+console.log(`  Database Name: ${dbName}`);
+
 const JOBS_COLLECTION = 'jobs';
 const AUDIT_LOGS_COLLECTION = 'audit_logs';
 

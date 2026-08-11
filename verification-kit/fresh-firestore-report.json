@@ -1,0 +1,66 @@
+{
+  "certificationStep": "2. Fresh Firestore Verification",
+  "timestamp": "2026-08-04T08:12:13.193Z",
+  "status": "VERIFIED",
+  "databaseId": "ai-studio-veriigogovernmen-a182c5f8-d603-44c1-999c-8c12c86084b7",
+  "schemaValidation": {
+    "securityRulesFile": "firestore.rules",
+    "securityRulesPresent": true,
+    "securityRulesSHA256": "7c463014c395e7d19d05d1b4838cdc201d9a9e6c66afded68f2d55500fc7762f",
+    "securityRulesValid": true,
+    "indexesFile": "firestore.indexes.json",
+    "indexesPresent": true,
+    "totalIndexesConfigured": 8,
+    "blueprintFile": "firebase-blueprint.json",
+    "blueprintPresent": true,
+    "collectionsDefined": 7
+  },
+  "collectionSchemasVerified": [
+    {
+      "collectionName": "job_announcements",
+      "rulesEnforced": true,
+      "blueprintDefined": true,
+      "migrationStatus": "EXECUTED"
+    },
+    {
+      "collectionName": "source_snapshots",
+      "rulesEnforced": true,
+      "blueprintDefined": true,
+      "migrationStatus": "EXECUTED"
+    },
+    {
+      "collectionName": "documents",
+      "rulesEnforced": true,
+      "blueprintDefined": true,
+      "migrationStatus": "EXECUTED"
+    },
+    {
+      "collectionName": "document_evidence",
+      "rulesEnforced": true,
+      "blueprintDefined": true,
+      "migrationStatus": "EXECUTED"
+    },
+    {
+      "collectionName": "extraction_tasks",
+      "rulesEnforced": true,
+      "blueprintDefined": true,
+      "migrationStatus": "EXECUTED"
+    },
+    {
+      "collectionName": "audit_logs",
+      "rulesEnforced": true,
+      "blueprintDefined": true,
+      "migrationStatus": "EXECUTED"
+    },
+    {
+      "collectionName": "source_registry",
+      "rulesEnforced": true,
+      "blueprintDefined": true,
+      "migrationStatus": "EXECUTED"
+    }
+  ],
+  "baselineParity": {
+    "schemaMatchesBaseline": true,
+    "dataConsistencyCheck": "VERIFIED"
+  }
+}

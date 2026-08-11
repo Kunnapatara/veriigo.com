@@ -1,0 +1,96 @@
+{
+  "certificationStep": "6. Independent Reproducibility Verification",
+  "timestamp": "2026-08-04T08:12:13.193Z",
+  "status": "VERIFIED",
+  "environmentPass1": {
+    "name": "Environment Alpha (Cloud Run Sandbox Pass 1)",
+    "executedAt": "2026-08-04T08:12:13.193Z",
+    "status": "VERIFIED"
+  },
+  "environmentPass2": {
+    "name": "Environment Beta (Cloud Run Sandbox Pass 2)",
+    "executedAt": "2026-08-04T08:12:38.794Z",
+    "status": "VERIFIED"
+  },
+  "reproducibilityMetrics": {
+    "totalArtifactsCompared": 9,
+    "deterministicDatasetArtifactsCount": 7,
+    "deterministicHashMatches": 7,
+    "hashMismatches": 0,
+    "reproducibilityPercentage": 100
+  },
+  "artifactHashComparisons": [
+    {
+      "artifact": "evidence-firestore.json",
+      "isDeterministicDataset": true,
+      "pass1SHA256": "ce94839687ac17c30b947add282d831cdd639efb58d8904347cb1c45443ded7f",
+      "pass2SHA256": "ce94839687ac17c30b947add282d831cdd639efb58d8904347cb1c45443ded7f",
+      "match": true,
+      "parityType": "STRICT_SHA256_HASH_IDENTITY"
+    },
+    {
+      "artifact": "evidence-hashes.json",
+      "isDeterministicDataset": true,
+      "pass1SHA256": "5df120cb05dece47ff4e207bdc5c148b19afe2134362d3a4032f315c4185f39d",
+      "pass2SHA256": "5df120cb05dece47ff4e207bdc5c148b19afe2134362d3a4032f315c4185f39d",
+      "match": true,
+      "parityType": "STRICT_SHA256_HASH_IDENTITY"
+    },
+    {
+      "artifact": "evidence-lineage.json",
+      "isDeterministicDataset": true,
+      "pass1SHA256": "dc738c05595c64251ad2b0f673febf3b19b5ccfd677db5df425a6129416f08dc",
+      "pass2SHA256": "dc738c05595c64251ad2b0f673febf3b19b5ccfd677db5df425a6129416f08dc",
+      "match": true,
+      "parityType": "STRICT_SHA256_HASH_IDENTITY"
+    },
+    {
+      "artifact": "evidence-live-source.json",
+      "isDeterministicDataset": true,
+      "pass1SHA256": "ce5573ae14aafd6a8620923a5f957852e1c26158cb062590bd94d3976538a5c4",
+      "pass2SHA256": "ce5573ae14aafd6a8620923a5f957852e1c26158cb062590bd94d3976538a5c4",
+      "match": true,
+      "parityType": "STRICT_SHA256_HASH_IDENTITY"
+    },
+    {
+      "artifact": "evidence-security.json",
+      "isDeterministicDataset": true,
+      "pass1SHA256": "fba32e5fc37fe4d2cb0e72dd0aa69d6727b81031ec81c38bd752d4555c47e660",
+      "pass2SHA256": "fba32e5fc37fe4d2cb0e72dd0aa69d6727b81031ec81c38bd752d4555c47e660",
+      "match": true,
+      "parityType": "STRICT_SHA256_HASH_IDENTITY"
+    },
+    {
+      "artifact": "evidence-change-detection.json",
+      "isDeterministicDataset": true,
+      "pass1SHA256": "c0fa71c95169ae655a2638e83cf7128af9e0434aac33c6a8076e203111344022",
+      "pass2SHA256": "c0fa71c95169ae655a2638e83cf7128af9e0434aac33c6a8076e203111344022",
+      "match": true,
+      "parityType": "STRICT_SHA256_HASH_IDENTITY"
+    },
+    {
+      "artifact": "benchmark-performance.csv",
+      "isDeterministicDataset": false,
+      "pass1SHA256": "6b407d1eba575691e9f09f685a96f9394b371025a522fba621d5307dbcf72574",
+      "pass2SHA256": "8e00fe5d8358b70c2db6bbf6a5b3d642549d8bb86f973edbf6f207ed74d604fb",
+      "match": true,
+      "parityType": "SCHEMA_STRUCTURAL_PARITY"
+    },
+    {
+      "artifact": "coverage-summary.json",
+      "isDeterministicDataset": true,
+      "pass1SHA256": "484d628603c0d638377be2ae4de461c744e6b525fd04db657ad1d860d718186a",
+      "pass2SHA256": "484d628603c0d638377be2ae4de461c744e6b525fd04db657ad1d860d718186a",
+      "match": true,
+      "parityType": "STRICT_SHA256_HASH_IDENTITY"
+    },
+    {
+      "artifact": "verification.log",
+      "isDeterministicDataset": false,
+      "pass1SHA256": "8a74b297bd74a4484d208a24ad7f7e16d8abe73ef967d44f02fd65c221b45050",
+      "pass2SHA256": "75c87aeb7ed39b052a478086cf409020aa6057d52960aa0a257862f15c664429",
+      "match": true,
+      "parityType": "SCHEMA_STRUCTURAL_PARITY"
+    }
+  ]
+}

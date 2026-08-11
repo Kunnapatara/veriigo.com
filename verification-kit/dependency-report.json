@@ -1,0 +1,175 @@
+{
+  "certificationStep": "3. Dependency Verification",
+  "timestamp": "2026-08-04T08:12:13.193Z",
+  "status": "VERIFIED",
+  "manifestFile": "package.json",
+  "lockfileFile": "bun.lock",
+  "lockfileSHA256": "c66098b249eeadb0ab04ec002e15b92037f0cf5d4890cff8b1b763ba3092e3f1",
+  "dependencyCounts": {
+    "directDependencies": 14,
+    "devDependencies": 9,
+    "totalDeclared": 23
+  },
+  "integrityValidation": {
+    "lockfilePresent": true,
+    "lockfileIntegrityPass": true,
+    "floatingVersionCheck": "FLOATING_RANGES_RESOLVED_BY_LOCKFILE",
+    "unvettedExternalDependenciesCount": 0
+  },
+  "packages": [
+    {
+      "package": "@google/genai",
+      "declaredVersion": "^2.4.0",
+      "isFloatingRange": true,
+      "foundInLockfile": true,
+      "pinStatus": "LOCKED"
+    },
+    {
+      "package": "@tailwindcss/vite",
+      "declaredVersion": "^4.1.14",
+      "isFloatingRange": true,
+      "foundInLockfile": true,
+      "pinStatus": "LOCKED"
+    },
+    {
+      "package": "@vitejs/plugin-react",
+      "declaredVersion": "^5.0.4",
+      "isFloatingRange": true,
+      "foundInLockfile": true,
+      "pinStatus": "LOCKED"
+    },
+    {
+      "package": "cheerio",
+      "declaredVersion": "^1.2.0",
+      "isFloatingRange": true,
+      "foundInLockfile": true,
+      "pinStatus": "LOCKED"
+    },
+    {
+      "package": "dotenv",
+      "declaredVersion": "^17.2.3",
+      "isFloatingRange": true,
+      "foundInLockfile": true,
+      "pinStatus": "LOCKED"
+    },
+    {
+      "package": "express",
+      "declaredVersion": "^4.21.2",
+      "isFloatingRange": true,
+      "foundInLockfile": true,
+      "pinStatus": "LOCKED"
+    },
+    {
+      "package": "firebase",
+      "declaredVersion": "^12.16.0",
+      "isFloatingRange": true,
+      "foundInLockfile": true,
+      "pinStatus": "LOCKED"
+    },
+    {
+      "package": "lucide-react",
+      "declaredVersion": "^0.546.0",
+      "isFloatingRange": true,
+      "foundInLockfile": true,
+      "pinStatus": "LOCKED"
+    },
+    {
+      "package": "motion",
+      "declaredVersion": "^12.23.24",
+      "isFloatingRange": true,
+      "foundInLockfile": true,
+      "pinStatus": "LOCKED"
+    },
+    {
+      "package": "react",
+      "declaredVersion": "^19.0.1",
+      "isFloatingRange": true,
+      "foundInLockfile": true,
+      "pinStatus": "LOCKED"
+    },
+    {
+      "package": "react-dom",
+      "declaredVersion": "^19.0.1",
+      "isFloatingRange": true,
+      "foundInLockfile": true,
+      "pinStatus": "LOCKED"
+    },
+    {
+      "package": "recharts",
+      "declaredVersion": "^3.10.0",
+      "isFloatingRange": true,
+      "foundInLockfile": true,
+      "pinStatus": "LOCKED"
+    },
+    {
+      "package": "vite",
+      "declaredVersion": "^6.2.3",
+      "isFloatingRange": true,
+      "foundInLockfile": true,
+      "pinStatus": "LOCKED"
+    },
+    {
+      "package": "zod",
+      "declaredVersion": "^4.4.3",
+      "isFloatingRange": true,
+      "foundInLockfile": true,
+      "pinStatus": "LOCKED"
+    },
+    {
+      "package": "@types/express",
+      "declaredVersion": "^4.17.21",
+      "isFloatingRange": true,
+      "foundInLockfile": true,
+      "pinStatus": "LOCKED"
+    },
+    {
+      "package": "@types/node",
+      "declaredVersion": "^22.14.0",
+      "isFloatingRange": true,
+      "foundInLockfile": true,
+      "pinStatus": "LOCKED"
+    },
+    {
+      "package": "autoprefixer",
+      "declaredVersion": "^10.4.21",
+      "isFloatingRange": true,
+      "foundInLockfile": true,
+      "pinStatus": "LOCKED"
+    },
+    {
+      "package": "esbuild",
+      "declaredVersion": "^0.25.0",
+      "isFloatingRange": true,
+      "foundInLockfile": true,
+      "pinStatus": "LOCKED"
+    },
+    {
+      "package": "tailwindcss",
+      "declaredVersion": "^4.1.14",
+      "isFloatingRange": true,
+      "foundInLockfile": true,
+      "pinStatus": "LOCKED"
+    },
+    {
+      "package": "tsx",
+      "declaredVersion": "^4.21.0",
+      "isFloatingRange": true,
+      "foundInLockfile": true,
+      "pinStatus": "LOCKED"
+    },
+    {
+      "package": "typescript",
+      "declaredVersion": "~5.8.2",
+      "isFloatingRange": true,
+      "foundInLockfile": true,
+      "pinStatus": "LOCKED"
+    },
+    {
+      "package": "vitest",
+      "declaredVersion": "^4.1.10",
+      "isFloatingRange": true,
+      "foundInLockfile": true,
+      "pinStatus": "LOCKED"
+    }
+  ]
+}

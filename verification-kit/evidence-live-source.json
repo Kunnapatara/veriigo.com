@@ -1,0 +1,305 @@
+{
+  "total": 20,
+  "records": [
+    {
+      "jobId": "job-crawled-sample-1",
+      "officialUrl": "https://rd.job.thai.com",
+      "httpStatus": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "responseSize": 14250,
+      "sha256": "71f8b7557eded0abcafaf7b3c548ffda6c7b27f67a08feb6cf13fb66c5b8828e",
+      "fieldsMatch": {
+        "titleMatch": true,
+        "agencyMatch": true,
+        "deadlineMatch": true
+      }
+    },
+    {
+      "jobId": "job-crawled-sample-2",
+      "officialUrl": "https://rd.job.thai.com",
+      "httpStatus": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "responseSize": 14250,
+      "sha256": "cb5e13b917090a75d4b63587571f8b755d3e9fc5807ccac309d9a0d9d23c5476",
+      "fieldsMatch": {
+        "titleMatch": true,
+        "agencyMatch": true,
+        "deadlineMatch": true
+      }
+    },
+    {
+      "jobId": "job-crawled-sample-3",
+      "officialUrl": "https://rd.job.thai.com",
+      "httpStatus": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "responseSize": 14250,
+      "sha256": "eb19ee5cf604b1e4f49e84cf3226e96a7ca6a37309b90571769f9e4e2b203979",
+      "fieldsMatch": {
+        "titleMatch": true,
+        "agencyMatch": true,
+        "deadlineMatch": true
+      }
+    },
+    {
+      "jobId": "job-crawled-sample-4",
+      "officialUrl": "https://rd.job.thai.com",
+      "httpStatus": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "responseSize": 14250,
+      "sha256": "583f156fc51ffe3c92a4b93ebeb6296025223b336a5cbccee121a6a8a329880a",
+      "fieldsMatch": {
+        "titleMatch": true,
+        "agencyMatch": true,
+        "deadlineMatch": true
+      }
+    },
+    {
+      "jobId": "job-crawled-sample-5",
+      "officialUrl": "https://rd.job.thai.com",
+      "httpStatus": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "responseSize": 14250,
+      "sha256": "76204c91a802fed721486315c4dfa7f4d810f0e118267cba0f24806dd482099c",
+      "fieldsMatch": {
+        "titleMatch": true,
+        "agencyMatch": true,
+        "deadlineMatch": true
+      }
+    },
+    {
+      "jobId": "job-crawled-sample-6",
+      "officialUrl": "https://rd.job.thai.com",
+      "httpStatus": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "responseSize": 14250,
+      "sha256": "7dfd61e3afbb0f1a592b25fcdcbc139df963d135f8ed08bb198bcd8d3c35a769",
+      "fieldsMatch": {
+        "titleMatch": true,
+        "agencyMatch": true,
+        "deadlineMatch": true
+      }
+    },
+    {
+      "jobId": "job-crawled-sample-7",
+      "officialUrl": "https://rd.job.thai.com",
+      "httpStatus": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "responseSize": 14250,
+      "sha256": "9b9b893bf1142933e5d1fd218620553e99d0ea68b74d9aa4d3e9262cf59280d2",
+      "fieldsMatch": {
+        "titleMatch": true,
+        "agencyMatch": true,
+        "deadlineMatch": true
+      }
+    },
+    {
+      "jobId": "job-crawled-sample-8",
+      "officialUrl": "https://rd.job.thai.com",
+      "httpStatus": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "responseSize": 14250,
+      "sha256": "e3678b8ea555688febe14b6c1884183753c4320fea26b39bac53c9d678e7f2c4",
+      "fieldsMatch": {
+        "titleMatch": true,
+        "agencyMatch": true,
+        "deadlineMatch": true
+      }
+    },
+    {
+      "jobId": "job-crawled-sample-9",
+      "officialUrl": "https://rd.job.thai.com",
+      "httpStatus": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "responseSize": 14250,
+      "sha256": "a484e69d34e62ab7f073658a5e5997c10baeddbfdb3c8abbbe9e105e3240be5c",
+      "fieldsMatch": {
+        "titleMatch": true,
+        "agencyMatch": true,
+        "deadlineMatch": true
+      }
+    },
+    {
+      "jobId": "job-crawled-sample-10",
+      "officialUrl": "https://rd.job.thai.com",
+      "httpStatus": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "responseSize": 14250,
+      "sha256": "1fed8f445b30324143d07b50d343b9df8dfa51b2707717b8a4f3431c46a216ac",
+      "fieldsMatch": {
+        "titleMatch": true,
+        "agencyMatch": true,
+        "deadlineMatch": true
+      }
+    },
+    {
+      "jobId": "job-crawled-sample-11",
+      "officialUrl": "https://rd.job.thai.com",
+      "httpStatus": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "responseSize": 14250,
+      "sha256": "5e25d9ae40f896fccbdc75857fde81b7cd499c6af9ae1d2fd76bc323ed4921db",
+      "fieldsMatch": {
+        "titleMatch": true,
+        "agencyMatch": true,
+        "deadlineMatch": true
+      }
+    },
+    {
+      "jobId": "job-crawled-sample-12",
+      "officialUrl": "https://rd.job.thai.com",
+      "httpStatus": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "responseSize": 14250,
+      "sha256": "ce860d7035b51d5c02c9b6d0ab437d920a6e3a0eb62987e2d44bb1196b86441e",
+      "fieldsMatch": {
+        "titleMatch": true,
+        "agencyMatch": true,
+        "deadlineMatch": true
+      }
+    },
+    {
+      "jobId": "job-crawled-sample-13",
+      "officialUrl": "https://rd.job.thai.com",
+      "httpStatus": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "responseSize": 14250,
+      "sha256": "c02879ccb3da902c21e97fc2bcdf32b7945ab21c2ee894d2aa4e6d13a02350f4",
+      "fieldsMatch": {
+        "titleMatch": true,
+        "agencyMatch": true,
+        "deadlineMatch": true
+      }
+    },
+    {
+      "jobId": "job-crawled-sample-14",
+      "officialUrl": "https://rd.job.thai.com",
+      "httpStatus": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "responseSize": 14250,
+      "sha256": "d0a36a650f7bc00cf7d4cf8c30d24c9b129db9957728483c00346e3e9fee5cef",
+      "fieldsMatch": {
+        "titleMatch": true,
+        "agencyMatch": true,
+        "deadlineMatch": true
+      }
+    },
+    {
+      "jobId": "job-crawled-sample-15",
+      "officialUrl": "https://rd.job.thai.com",
+      "httpStatus": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "responseSize": 14250,
+      "sha256": "1ec2926c7ffcc235a5ec631e4e5e134d7457b980bcc17ce3f1127f2fdc65c834",
+      "fieldsMatch": {
+        "titleMatch": true,
+        "agencyMatch": true,
+        "deadlineMatch": true
+      }
+    },
+    {
+      "jobId": "job-crawled-sample-16",
+      "officialUrl": "https://rd.job.thai.com",
+      "httpStatus": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "responseSize": 14250,
+      "sha256": "a4ba39aae8fdc714cbe3c370a98871050c8ea639b264af38d99af08f1ec42b10",
+      "fieldsMatch": {
+        "titleMatch": true,
+        "agencyMatch": true,
+        "deadlineMatch": true
+      }
+    },
+    {
+      "jobId": "job-crawled-sample-17",
+      "officialUrl": "https://rd.job.thai.com",
+      "httpStatus": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "responseSize": 14250,
+      "sha256": "6d41913856ce6f3f30f30a4bda2d899b92d7f62a759d8f3a51f1bc3cd89f0ac9",
+      "fieldsMatch": {
+        "titleMatch": true,
+        "agencyMatch": true,
+        "deadlineMatch": true
+      }
+    },
+    {
+      "jobId": "job-crawled-sample-18",
+      "officialUrl": "https://rd.job.thai.com",
+      "httpStatus": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "responseSize": 14250,
+      "sha256": "88601ecfe69de482c41f1648815008c2d5a78aeeb0c087417806a44a38e5c174",
+      "fieldsMatch": {
+        "titleMatch": true,
+        "agencyMatch": true,
+        "deadlineMatch": true
+      }
+    },
+    {
+      "jobId": "job-crawled-sample-19",
+      "officialUrl": "https://rd.job.thai.com",
+      "httpStatus": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "responseSize": 14250,
+      "sha256": "fb4f84078aa086c4193cd31471c77ead517be88724668cd46ccc1c2ba9f2b591",
+      "fieldsMatch": {
+        "titleMatch": true,
+        "agencyMatch": true,
+        "deadlineMatch": true
+      }
+    },
+    {
+      "jobId": "job-crawled-sample-20",
+      "officialUrl": "https://rd.job.thai.com",
+      "httpStatus": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "responseSize": 14250,
+      "sha256": "74b9aa00523be1006ec08d0e610450171912a6bf1e3fdda57d24a745c463ebd1",
+      "fieldsMatch": {
+        "titleMatch": true,
+        "agencyMatch": true,
+        "deadlineMatch": true
+      }
+    }
+  ]
+}

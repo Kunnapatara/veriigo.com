@@ -33,6 +33,12 @@ import { CrawlFetchingWorker } from './CrawlFetchingWorker';
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
 export const db = getFirestore(app, firebaseConfig.firestoreDatabaseId);
 
+const dbName = `projects/${firebaseConfig.projectId}/databases/${firebaseConfig.firestoreDatabaseId}`;
+console.log(`[Firestore Init - NationalSchedulerEngine.ts]`);
+console.log(`  Project ID: ${firebaseConfig.projectId}`);
+console.log(`  Database ID: ${firebaseConfig.firestoreDatabaseId}`);
+console.log(`  Database Name: ${dbName}`);
+
 const SOURCES_COLLECTION = 'sources';
 const CRAWL_TASKS_COLLECTION = 'crawl_tasks';
 const OPERATIONAL_REPORTS_COLLECTION = 'operational_reports';

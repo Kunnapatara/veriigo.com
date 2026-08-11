@@ -18,7 +18,39 @@ import { Timestamp } from 'firebase/firestore';
 export type UserRole = 'USER' | 'AGENCY' | 'ADMIN';
 export type OCSCLevel = 'LEVEL_1' | 'LEVEL_2' | 'LEVEL_3' | 'LEVEL_4';
 export type PositionType = 'ข้าราชการพลเรือนสามัญ' | 'พนักงานราชการ' | 'ลูกจ้างประจำ' | 'พนักงานจ้างเหมา';
-export type JobStatus = 'ACTIVE' | 'CLOSED' | 'EXPIRED' | 'DRAFT';
+export type JobStatus = 'ACTIVE' | 'EXPIRING_SOON' | 'EXPIRED' | 'ARCHIVED' | 'CLOSED' | 'DRAFT';
+
+/**
+ * Sprint 1 Evidence Trust Layer: Immutable Source Snapshot
+ * Collection: source_snapshots/{snapshotId}
+ */
+export interface SourceSnapshotEntity {
+  snapshotId: string;
+  sourceId: string;
+  officialUrl: string;
+  fetchTimestamp: string; // UTC ISO-8601
+  httpStatus: number;
+  httpHeaders?: Record<string, string>;
+  rawPayloadHashSHA256: string; // SHA-256 hash of raw HTTP response body
+  contentLength: number;
+  mimeType: string;
+  storagePath?: string;
+  extractionVersion: string;
+  createdAt: string; // UTC ISO-8601
+}
+
+/**
+ * Sprint 1 Evidence Trust Layer: Combined Confidence Breakdown
+ * Combines deterministic schema/field rules + AI extraction scores
+ */
+export interface ConfidenceScoreBreakdown {
+  overallConfidenceScore: number; // 0.0 - 1.0
+  deterministicScore: number; // 0.0 - 1.0
+  aiExtractionScore: number; // 0.0 - 1.0
+  confidenceVersion: string; // e.g. 'confidence-v1.0.0'
+  deterministicPass: boolean;
+  fieldRuleResults?: Array<{ ruleCode: string; passed: boolean; message: string }>;
+}
 
 /**
  * Phase 1: DocumentEntity Model (Immutable Document Lake)
@@ -27,6 +59,7 @@ export type JobStatus = 'ACTIVE' | 'CLOSED' | 'EXPIRED' | 'DRAFT';
 export interface DocumentEntity {
   documentId: string;
   sourceId: string;
+  snapshotId?: string; // Linked Immutable Snapshot ID
   officialUrl: string;
   mimeType: string;
   contentHash: string; // SHA-256
@@ -108,7 +141,10 @@ export interface SalaryInfo {
 }
 
 export interface LineageReference {
+  sourceRegistryId?: string;
+  snapshotId?: string;
   sourceDocumentId: string;
+  documentEvidenceId?: string;
   extractionTaskId: string;
   modelVersion: string;
   promptVersion: string;
@@ -119,6 +155,8 @@ export interface LineageReference {
 export interface JobAnnouncementEntity {
   jobId: string;
   sourceDocumentId: string;
+  snapshotId?: string;
+  documentEvidenceId?: string;
   extractionTaskId: string;
   sourceId: string;
   title: string;
@@ -134,6 +172,7 @@ export interface JobAnnouncementEntity {
   officialUrl: string;
   status: JobStatus;
   confidenceScore: number;
+  confidenceBreakdown?: ConfidenceScoreBreakdown;
   createdAt: string; // UTC ISO-8601
   updatedAt: string; // UTC ISO-8601
   lineageReference: LineageReference;

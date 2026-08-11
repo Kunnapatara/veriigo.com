@@ -44,8 +44,12 @@ export const OperationsDashboardView: React.FC = () => {
         fetch('/api/scheduler/logs'),
       ]);
 
-      const statusJson = await statusRes.json();
-      const logsJson = await logsRes.json();
+      const safeParse = async (r: Response) => {
+        try { return await r.json(); } catch { return { success: false }; }
+      };
+
+      const statusJson = await safeParse(statusRes);
+      const logsJson = await safeParse(logsRes);
 
       if (statusJson.success) {
         setStatusData(statusJson.schedulerStatus);

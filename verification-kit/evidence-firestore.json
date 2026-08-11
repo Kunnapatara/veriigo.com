@@ -1,0 +1,116 @@
+{
+  "source_registry": {
+    "count": 5,
+    "sampleIds": [
+      "source_registry-sample-1",
+      "source_registry-sample-2",
+      "source_registry-sample-3",
+      "source_registry-sample-4",
+      "source_registry-sample-5"
+    ],
+    "sampleDocument": {
+      "id": "source_registry-sample-1",
+      "name": "Sample Record 1"
+    }
+  },
+  "source_snapshots": {
+    "count": 15,
+    "sampleIds": [
+      "snap-1",
+      "snap-10",
+      "snap-11",
+      "snap-12",
+      "snap-13"
+    ],
+    "sampleDocument": {
+      "id": "snap-1",
+      "snapshotId": "snap-1",
+      "rawPayload": "OFFICIAL_GOV_PAYLOAD_1",
+      "rawPayloadHashSHA256": "f88c3c59469400bb114f7b045109280b1e4faffa2ac7da8c863e25656e8d1e63",
+      "officialUrl": "https://rd.job.thai.com"
+    }
+  },
+  "documents": {
+    "count": 15,
+    "sampleIds": [
+      "doc-1",
+      "doc-10",
+      "doc-11",
+      "doc-12",
+      "doc-13"
+    ],
+    "sampleDocument": {
+      "id": "doc-1",
+      "snapshotId": "snap-1",
+      "contentHash": "f88c3c59469400bb114f7b045109280b1e4faffa2ac7da8c863e25656e8d1e63",
+      "rawPayloadHashSHA256": "f88c3c59469400bb114f7b045109280b1e4faffa2ac7da8c863e25656e8d1e63"
+    }
+  },
+  "document_evidence": {
+    "count": 5,
+    "sampleIds": [
+      "document_evidence-sample-1",
+      "document_evidence-sample-2",
+      "document_evidence-sample-3",
+      "document_evidence-sample-4",
+      "document_evidence-sample-5"
+    ],
+    "sampleDocument": {
+      "id": "document_evidence-sample-1",
+      "name": "Sample Record 1"
+    }
+  },
+  "extraction_tasks": {
+    "count": 5,
+    "sampleIds": [
+      "extraction_tasks-sample-1",
+      "extraction_tasks-sample-2",
+      "extraction_tasks-sample-3",
+      "extraction_tasks-sample-4",
+      "extraction_tasks-sample-5"
+    ],
+    "sampleDocument": {
+      "id": "extraction_tasks-sample-1",
+      "name": "Sample Record 1"
+    }
+  },
+  "job_announcements": {
+    "count": 20,
+    "sampleIds": [
+      "job-crawled-sample-1",
+      "job-crawled-sample-10",
+      "job-crawled-sample-11",
+      "job-crawled-sample-12",
+      "job-crawled-sample-13"
+    ],
+    "sampleDocument": {
+      "id": "job-crawled-sample-1",
+      "title": "นักวิชาการตรวจสอบภายในปฏิบัติการ 1",
+      "agencyName": "กรมสรรพากร",
+      "officialUrl": "https://rd.job.thai.com",
+      "deadline": "2026-10-15T23:59:59.000Z",
+      "fingerprint": "71f8b7557eded0abcafaf7b3c548ffda6c7b27f67a08feb6cf13fb66c5b8828e",
+      "lineageReference": {
+        "sourceId": "src-ocsc-001",
+        "snapshotId": "snap-1",
+        "documentId": "doc-1",
+        "documentEvidenceId": "evid-1",
+        "extractionTaskId": "ext-1"
+      }
+    }
+  },
+  "audit_logs": {
+    "count": 5,
+    "sampleIds": [
+      "audit_logs-sample-1",
+      "audit_logs-sample-2",
+      "audit_logs-sample-3",
+      "audit_logs-sample-4",
+      "audit_logs-sample-5"
+    ],
+    "sampleDocument": {
+      "id": "audit_logs-sample-1",
+      "name": "Sample Record 1"
+    }
+  }
+}

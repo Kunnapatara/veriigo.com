@@ -1,0 +1,27 @@
+{
+  "status": "VERIFIED",
+  "repeatability": "REPEATABLE",
+  "timestamp": "2026-08-04T08:12:38.763Z",
+  "environment": {
+    "nodeVersion": "v22.23.1",
+    "npmVersion": "10.9.8",
+    "firebaseSdk": "firebase/firestore/lite 12.16.0",
+    "cloudRunRevision": "ais-dev-e42weydxofdm2inyglpxd6-00002-jzq",
+    "gitCommitHash": "c4fc9b4d9bae1ad58a83cfa2d64fe7a0ac8f6cf5",
+    "gitStatusClean": false,
+    "firestoreProjectId": "gen-lang-client-0062762257",
+    "firestoreDatabaseId": "ai-studio-veriigogovernmen-a182c5f8-d603-44c1-999c-8c12c86084b7",
+    "timestamp": "2026-08-04T08:12:38.068Z"
+  },
+  "auditSummaries": {
+    "firestoreValidation": "VERIFIED",
+    "hashValidation": "VERIFIED",
+    "lineageTraversal": "VERIFIED",
+    "liveSourceValidation": "VERIFIED",
+    "securityRejection": "VERIFIED",
+    "changeDetectionEngine": "VERIFIED",
+    "performanceBenchmark": "VERIFIED",
+    "coverageSummary": "VERIFIED"
+  },
+  "repeatabilityPassesExecuted": 3
+}

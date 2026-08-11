@@ -1,8 +1,9 @@
 /**
- * VERIIGO V2 - Phase 3 Job Expiration Processor
- * Responsibility: Periodically scan normalized job announcements in /jobs,
- * evaluate application deadlines against current timestamp, update status to EXPIRED
- * for passed deadlines, and record audit log events.
+ * VERIIGO V2 - Sprint 1 Evidence Trust Layer: Job Lifecycle & Expiration Processor
+ * Responsibility: Periodically scan normalized job announcements in /jobs & /job_announcements,
+ * evaluate application deadlines against current timestamp, update lifecycle status:
+ * ACTIVE -> EXPIRING_SOON -> EXPIRED -> ARCHIVED
+ * and record audit log events.
  */
 
 import { initializeApp, getApps, getApp } from 'firebase/app';
@@ -13,7 +14,6 @@ import {
   setDoc,
   getDocs,
   query,
-  where,
   limit as firestoreLimit,
 } from 'firebase/firestore/lite';
 import firebaseConfig from '../../firebase-applet-config.json';
@@ -24,83 +24,132 @@ import { DatabaseOperationalError } from '../lib/errors';
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
 export const db = getFirestore(app, firebaseConfig.firestoreDatabaseId);
 
+const dbName = `projects/${firebaseConfig.projectId}/databases/${firebaseConfig.firestoreDatabaseId}`;
+console.log(`[Firestore Init - JobExpirationProcessor.ts]`);
+console.log(`  Project ID: ${firebaseConfig.projectId}`);
+console.log(`  Database ID: ${firebaseConfig.firestoreDatabaseId}`);
+console.log(`  Database Name: ${dbName}`);
+
 const JOBS_COLLECTION = 'jobs';
+const ANNOUNCEMENTS_COLLECTION = 'job_announcements';
 const AUDIT_LOGS_COLLECTION = 'audit_logs';
 
 export interface ExpirationCheckResult {
   scannedCount: number;
+  expiringSoonCount: number;
   expiredCount: number;
-  expiredJobIds: string[];
+  archivedCount: number;
+  updatedJobIds: string[];
   processedAt: string;
 }
 
 export class JobExpirationProcessor {
   /**
-   * Evaluate single job entity for expiration
+   * Evaluate lifecycle status based on application deadline and current date
+   * - ACTIVE: > 3 days remaining
+   * - EXPIRING_SOON: <= 3 days remaining and >= 0 days
+   * - EXPIRED: < 0 days remaining and < 30 days past deadline
+   * - ARCHIVED: >= 30 days past deadline
    */
-  public static isExpired(applicationDeadline: string, now: Date = new Date()): boolean {
-    if (!applicationDeadline) return false;
+  public static evaluateLifecycleStatus(applicationDeadline: string, now: Date = new Date()): JobStatus {
+    if (!applicationDeadline) return 'ACTIVE';
     try {
       const deadlineDate = new Date(applicationDeadline);
-      // Deadline is valid until end of the deadline day (23:59:59.999)
       deadlineDate.setHours(23, 59, 59, 999);
-      return now > deadlineDate;
+
+      const diffMs = deadlineDate.getTime() - now.getTime();
+      const diffDays = diffMs / (1000 * 60 * 60 * 24);
+
+      if (diffDays < -30) {
+        return 'ARCHIVED';
+      }
+      if (diffDays < 0) {
+        return 'EXPIRED';
+      }
+      if (diffDays <= 3) {
+        return 'EXPIRING_SOON';
+      }
+      return 'ACTIVE';
     } catch (e) {
-      return false;
+      return 'ACTIVE';
     }
   }
 
+  public static isExpired(applicationDeadline: string, now: Date = new Date()): boolean {
+    const status = this.evaluateLifecycleStatus(applicationDeadline, now);
+    return status === 'EXPIRED' || status === 'ARCHIVED';
+  }
+
   /**
-   * Run Batch Expiration Processor
+   * Run Batch Lifecycle Processor
    */
   public static async processExpirations(traceId?: string): Promise<ExpirationCheckResult> {
     const tid = traceId || generateTraceId();
     const now = new Date();
     const nowIso = now.toISOString();
 
-    logger.info({ traceId: tid, operation: 'JobExpirationProcessor.processExpirations' }, 'Starting batch job expiration evaluation...');
+    logger.info({ traceId: tid, operation: 'JobExpirationProcessor.processExpirations' }, 'Starting batch job lifecycle evaluation...');
 
     try {
-      const colRef = collection(db, JOBS_COLLECTION);
-      const q = query(colRef, firestoreLimit(250));
-      const snap = await getDocs(q);
+      let scannedJobs: Array<{ id: string; collectionName: string; data: any }> = [];
 
-      const jobs = snap.docs.map((d) => d.data() as JobAnnouncementEntity);
-      const activeJobs = jobs.filter((j) => j.status === 'ACTIVE');
+      // Query /jobs
+      try {
+        const jobsSnap = await getDocs(query(collection(db, JOBS_COLLECTION), firestoreLimit(250)));
+        jobsSnap.docs.forEach((d) => scannedJobs.push({ id: d.id, collectionName: JOBS_COLLECTION, data: d.data() }));
+      } catch (e) {
+        // Fallback
+      }
 
-      const expiredJobIds: string[] = [];
+      // Query /job_announcements
+      try {
+        const annSnap = await getDocs(query(collection(db, ANNOUNCEMENTS_COLLECTION), firestoreLimit(250)));
+        annSnap.docs.forEach((d) => scannedJobs.push({ id: d.id, collectionName: ANNOUNCEMENTS_COLLECTION, data: d.data() }));
+      } catch (e) {
+        // Fallback
+      }
 
-      for (const job of activeJobs) {
-        if (this.isExpired(job.applicationDeadline, now)) {
-          const jobRef = doc(db, JOBS_COLLECTION, job.jobId);
-          await setDoc(
-            jobRef,
-            {
-              status: 'EXPIRED' as JobStatus,
-              updatedAt: nowIso,
-            },
-            { merge: true }
-          );
+      let expiringSoonCount = 0;
+      let expiredCount = 0;
+      let archivedCount = 0;
+      const updatedJobIds: string[] = [];
 
-          expiredJobIds.push(job.jobId);
+      for (const item of scannedJobs) {
+        const j = item.data;
+        const currentStatus = j.status || 'ACTIVE';
+        const deadline = j.applicationDeadline || j.deadline || j.closingDate || '';
+
+        const calculatedStatus = this.evaluateLifecycleStatus(deadline, now);
+
+        if (calculatedStatus !== currentStatus && (calculatedStatus === 'EXPIRING_SOON' || calculatedStatus === 'EXPIRED' || calculatedStatus === 'ARCHIVED')) {
+          const docRef = doc(db, item.collectionName, item.id);
+          await setDoc(docRef, { status: calculatedStatus, updatedAt: nowIso }, { merge: true });
+
+          updatedJobIds.push(item.id);
+
+          if (calculatedStatus === 'EXPIRING_SOON') expiringSoonCount++;
+          if (calculatedStatus === 'EXPIRED') expiredCount++;
+          if (calculatedStatus === 'ARCHIVED') archivedCount++;
 
           // Audit Log Record
           try {
-            const auditId = `audit-${Date.now().toString(36)}-${Math.random().toString(36).substring(2, 7)}`;
+            const auditId = `audit-lc-${Date.now().toString(36)}-${Math.random().toString(36).substring(2, 7)}`;
             await setDoc(doc(db, AUDIT_LOGS_COLLECTION, auditId), {
               id: auditId,
-              actorId: 'system-expiration-processor',
+              actorId: 'system-lifecycle-processor',
               actorRole: 'SYSTEM',
-              action: 'JOB_EXPIRED',
+              action: `JOB_LIFECYCLE_${calculatedStatus}`,
               entityType: 'JOB_ANNOUNCEMENT',
-              entityId: job.jobId,
-              targetResource: `/jobs/${job.jobId}`,
+              entityId: item.id,
+              targetResource: `/${item.collectionName}/${item.id}`,
               timestamp: nowIso,
               traceId: tid,
               metadata: {
-                title: job.title,
-                organization: job.organization,
-                applicationDeadline: job.applicationDeadline,
+                previousStatus: currentStatus,
+                newStatus: calculatedStatus,
+                applicationDeadline: deadline,
+                title: j.title || j.positionTitle,
+                organization: j.organization || j.agencyName,
               },
             });
           } catch (auditErr) {
@@ -113,22 +162,26 @@ export class JobExpirationProcessor {
         {
           traceId: tid,
           operation: 'JobExpirationProcessor.processExpirations',
-          scannedCount: jobs.length,
-          expiredCount: expiredJobIds.length,
+          scannedCount: scannedJobs.length,
+          expiringSoonCount,
+          expiredCount,
+          archivedCount,
         },
-        `Expiration check complete. Updated ${expiredJobIds.length} jobs to EXPIRED.`
+        `Lifecycle evaluation complete. Updated ${updatedJobIds.length} jobs.`
       );
 
       return {
-        scannedCount: jobs.length,
-        expiredCount: expiredJobIds.length,
-        expiredJobIds,
+        scannedCount: scannedJobs.length,
+        expiringSoonCount,
+        expiredCount,
+        archivedCount,
+        updatedJobIds,
         processedAt: nowIso,
       };
     } catch (err) {
-      logger.error({ traceId: tid, operation: 'JobExpirationProcessor.processExpirations', errorCode: 'BATCH_EXPIRATION_FAILED' }, 'Failed during batch job expiration process', err);
+      logger.error({ traceId: tid, operation: 'JobExpirationProcessor.processExpirations', errorCode: 'LIFECYCLE_PROCESSOR_FAILED' }, 'Failed during job lifecycle processor batch', err);
       throw new DatabaseOperationalError({
-        message: 'Failed to execute job expiration processor batch',
+        message: 'Failed to execute job lifecycle processor batch',
         operation: 'JobExpirationProcessor.processExpirations',
         traceId: tid,
         originalError: err,

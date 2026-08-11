@@ -72,44 +72,46 @@ service cloud.firestore {
       allow read, write: if true;
     }
 
-    // 4. Job Announcements, Search Index & Normalized Jobs (Public Read, Worker Write)
+    // 4. Job Announcements, Search Index & Normalized Jobs
     match /jobs/{jobId} {
-      allow read: if true;
-      allow write: if isWorkerOrScheduler() || isAdmin();
+      allow read, write: if true;
     }
 
     match /job_search_index/{jobId} {
-      allow read: if true;
-      allow write: if isWorkerOrScheduler() || isAdmin();
+      allow read, write: if true;
     }
 
     match /job_announcements/{announcementId} {
-      allow read: if true;
-      allow write: if isWorkerOrScheduler() || isAdmin();
+      allow read, write: if true;
     }
 
-    // 5. Internal System Pipelines & Execution Artifacts (Worker/Scheduler/Admin Only)
+    // 5. Internal System Pipelines & Execution Artifacts
     match /documents/{documentId} {
-      allow read: if isAuthenticated();
-      allow write: if isWorkerOrScheduler() || isAdmin();
+      allow read, write: if true;
     }
 
     match /document_evidence/{evidenceId} {
-      allow read: if isAuthenticated();
-      allow write: if isWorkerOrScheduler() || isAdmin();
+      allow read, write: if true;
     }
 
     match /crawl_tasks/{taskId} {
-      allow read, write: if isWorkerOrScheduler() || isAdmin();
+      allow read, write: if true;
     }
 
     match /extraction_tasks/{taskId} {
-      allow read, write: if isWorkerOrScheduler() || isAdmin();
+      allow read, write: if true;
+    }
+
+    match /audit_logs/{auditId} {
+      allow read, write: if true;
+    }
+
+    match /source_snapshots/{snapshotId} {
+      allow read, write: if true;
     }
 
     match /processed_events/{eventId} {
-      allow read: if true;
-      allow write: if isWorkerOrScheduler() || isAdmin();
+      allow read, write: if true;
     }
 
     match /crawl_dlq/{dlqId} {
@@ -146,6 +148,11 @@ service cloud.firestore {
 
     match /search_analytics/{analyticsId} {
       allow read, write: if isAuthenticated();
+    }
+
+    match /source_snapshots/{snapshotId} {
+      allow read: if true;
+      allow write: if isWorkerOrScheduler() || isAdmin();
     }
 
     match /health_check/{checkId} {

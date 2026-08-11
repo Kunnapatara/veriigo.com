@@ -1,0 +1,56 @@
+{
+  "generationTimestamp": "2026-08-04T07:55:20.169Z",
+  "totalFiles": 10,
+  "files": {
+    "command-transcript.json": {
+      "sizeBytes": 797,
+      "sha256": "adb8f52c12dc47fca6dd0d305df39fa7b6d588fb574a3dbeb0468c128e63892c",
+      "createdAt": "2026-08-04T07:55:20.168Z"
+    },
+    "firestore-export.json": {
+      "sizeBytes": 22041,
+      "sha256": "adc4b15afdd347890e805decea2885e4603c448bb7bd6c2d9fd617258b9049e9",
+      "createdAt": "2026-08-04T07:55:20.168Z"
+    },
+    "hash-validation.json": {
+      "sizeBytes": 20543,
+      "sha256": "42d093947bf52c4dc4becb23b98dc51565a637b264a462fc28277bd1a82f3a80",
+      "createdAt": "2026-08-04T07:55:20.168Z"
+    },
+    "lineage-validation.json": {
+      "sizeBytes": 27444,
+      "sha256": "e3d56e76b39918b439b2fb6a9813d569140f0d0e64790e92bb1348455f8ab496",
+      "createdAt": "2026-08-04T07:55:20.168Z"
+    },
+    "live-source-validation.json": {
+      "sizeBytes": 9599,
+      "sha256": "0deea1ee2bbdcdde0988ef882a8e2bd2989e77f80192dca5dfe0cecea9144470",
+      "createdAt": "2026-08-04T07:55:20.168Z"
+    },
+    "security-tests.json": {
+      "sizeBytes": 942,
+      "sha256": "5d315b6b597627232380bebb109a79fd12e30b2d1c97ac766ab4668aae60496d",
+      "createdAt": "2026-08-04T07:55:20.168Z"
+    },
+    "change-detection.json": {
+      "sizeBytes": 1298,
+      "sha256": "3df6e7c9fc151880629e66ffc1a53627ead2df8849f8767b47fe0480accd905a",
+      "createdAt": "2026-08-04T07:55:20.168Z"
+    },
+    "performance.json": {
+      "sizeBytes": 301,
+      "sha256": "87fed3d299bf397c9da9eea5624a52fbe7ebbd99b1df12c8776cff1e3d57a420",
+      "createdAt": "2026-08-04T07:55:20.168Z"
+    },
+    "coverage-summary.json": {
+      "sizeBytes": 439,
+      "sha256": "08d2844f86a6369c22247ba0b6e51460ef392749ecdae7f1657d9be93642c01d",
+      "createdAt": "2026-08-04T07:55:20.168Z"
+    },
+    "execution-log.txt": {
+      "sizeBytes": 1338,
+      "sha256": "6d205b7b7d13b0d38eaaf4ff4ff17d137399f0468ba07deb2e4f83b64bd6f4dc",
+      "createdAt": "2026-08-04T07:55:20.169Z"
+    }
+  }
+}

@@ -128,24 +128,16 @@ export const SourceRegistryView: React.FC = () => {
   const loadSources = async () => {
     setLoading(true);
     try {
-      const repoSources = await RecruitmentSourceRepository.getAll();
-      if (repoSources && repoSources.length > 0) {
-        setSources(repoSources);
+      const res = await fetch('/api/sources');
+      const json = await res.json();
+      if (json.success && json.data) {
+        setSources(json.data);
       } else {
-        // REST Fallback from server initialization
-        const res = await fetch('/api/sources');
-        const json = await res.json();
-        if (json.success && json.data) {
-          setSources(json.data);
-          // Seed to Firestore
-          for (const s of json.data) {
-            await RecruitmentSourceRepository.upsert(s).catch(() => {});
-          }
-        }
+        showNotice('DATABASE UNAVAILABLE: ไม่สามารถเชื่อมต่อฐานข้อมูลได้', 'error');
       }
     } catch (err) {
       console.error('Failed loading sources:', err);
-      showNotice('ไม่สามารถโหลดข้อมูลแหล่งที่มาได้', 'error');
+      showNotice('DATABASE UNAVAILABLE: ไม่สามารถเชื่อมต่อฐานข้อมูลได้', 'error');
     } finally {
       setLoading(false);
     }

@@ -872,10 +872,10 @@ export const NotificationServiceView: React.FC = () => {
                 </div>
 
                 <div className="space-y-1 text-xs text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-100 font-medium">
-                  <p>🔑 <strong>คำค้น:</strong> "{rule.keywords}"</p>
-                  <p>💰 <strong>เงินเดือนขั้นต่ำ:</strong> {rule.minSalary.toLocaleString()} บาท</p>
-                  <p>🎓 <strong>วุฒิการศึกษา:</strong> {rule.degreeRequired}</p>
-                  <p>📡 <strong>ช่องทาง:</strong> {rule.channels.join(', ')}</p>
+                  <p>🔑 <strong>คำค้น:</strong> "{rule.keywords || 'ทั้งหมด'}"</p>
+                  <p>💰 <strong>เงินเดือนขั้นต่ำ:</strong> {(rule.minSalary ?? 0).toLocaleString()} บาท</p>
+                  <p>🎓 <strong>วุฒิการศึกษา:</strong> {rule.degreeRequired || 'ทุกวุฒิ'}</p>
+                  <p>📡 <strong>ช่องทาง:</strong> {Array.isArray(rule.channels) ? rule.channels.join(', ') : 'EMAIL'}</p>
                 </div>
 
                 <div className="flex items-center justify-between pt-2 border-t border-slate-100 text-[11px]">

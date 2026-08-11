@@ -3,6 +3,8 @@
  * Safely parses process.env and import.meta.env with fallback defaults
  */
 
+import firebaseConfig from '../../firebase-applet-config.json';
+
 export interface AppConfig {
   env: 'development' | 'production' | 'test';
   port: number;
@@ -17,6 +19,7 @@ export interface AppConfig {
     storageBucket: string;
     messagingSenderId: string;
     appId: string;
+    firestoreDatabaseId: string;
   };
   apiPrefix: string;
   maxUploadSizeBytes: number;
@@ -48,13 +51,14 @@ export const config: AppConfig = {
   isProd: getEnvVar('NODE_ENV', 'development') === 'production',
   geminiApiKey: getEnvVar('GEMINI_API_KEY', ''),
   firebase: {
-    projectId: getEnvVar('VITE_FIREBASE_PROJECT_ID', 'ai-studio-veriigogovernmen-a182c5f8-d603-44c1-999c-8c12c86084b7'),
-    apiKey: getEnvVar('VITE_FIREBASE_API_KEY', ''),
-    authDomain: getEnvVar('VITE_FIREBASE_AUTH_DOMAIN', ''),
-    databaseURL: getEnvVar('VITE_FIREBASE_DATABASE_URL', ''),
-    storageBucket: getEnvVar('VITE_FIREBASE_STORAGE_BUCKET', ''),
-    messagingSenderId: getEnvVar('VITE_FIREBASE_MESSAGING_SENDER_ID', ''),
-    appId: getEnvVar('VITE_FIREBASE_APP_ID', ''),
+    projectId: firebaseConfig.projectId,
+    apiKey: firebaseConfig.apiKey,
+    authDomain: firebaseConfig.authDomain,
+    databaseURL: `https://${firebaseConfig.firestoreDatabaseId}.firebaseio.com`,
+    storageBucket: firebaseConfig.storageBucket,
+    messagingSenderId: firebaseConfig.messagingSenderId,
+    appId: firebaseConfig.appId,
+    firestoreDatabaseId: firebaseConfig.firestoreDatabaseId,
   },
   apiPrefix: '/api',
   maxUploadSizeBytes: 10 * 1024 * 1024, // 10MB

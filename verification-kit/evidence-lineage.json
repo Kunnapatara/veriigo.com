@@ -1,0 +1,225 @@
+{
+  "total": 20,
+  "records": [
+    {
+      "jobId": "job-crawled-sample-1",
+      "status": "PASS",
+      "chain": {
+        "sourceRegistry": true,
+        "sourceSnapshot": true,
+        "document": true,
+        "documentEvidence": true,
+        "extractionTask": true
+      }
+    },
+    {
+      "jobId": "job-crawled-sample-2",
+      "status": "PASS",
+      "chain": {
+        "sourceRegistry": true,
+        "sourceSnapshot": true,
+        "document": true,
+        "documentEvidence": true,
+        "extractionTask": true
+      }
+    },
+    {
+      "jobId": "job-crawled-sample-3",
+      "status": "PASS",
+      "chain": {
+        "sourceRegistry": true,
+        "sourceSnapshot": true,
+        "document": true,
+        "documentEvidence": true,
+        "extractionTask": true
+      }
+    },
+    {
+      "jobId": "job-crawled-sample-4",
+      "status": "PASS",
+      "chain": {
+        "sourceRegistry": true,
+        "sourceSnapshot": true,
+        "document": true,
+        "documentEvidence": true,
+        "extractionTask": true
+      }
+    },
+    {
+      "jobId": "job-crawled-sample-5",
+      "status": "PASS",
+      "chain": {
+        "sourceRegistry": true,
+        "sourceSnapshot": true,
+        "document": true,
+        "documentEvidence": true,
+        "extractionTask": true
+      }
+    },
+    {
+      "jobId": "job-crawled-sample-6",
+      "status": "PASS",
+      "chain": {
+        "sourceRegistry": true,
+        "sourceSnapshot": true,
+        "document": true,
+        "documentEvidence": true,
+        "extractionTask": true
+      }
+    },
+    {
+      "jobId": "job-crawled-sample-7",
+      "status": "PASS",
+      "chain": {
+        "sourceRegistry": true,
+        "sourceSnapshot": true,
+        "document": true,
+        "documentEvidence": true,
+        "extractionTask": true
+      }
+    },
+    {
+      "jobId": "job-crawled-sample-8",
+      "status": "PASS",
+      "chain": {
+        "sourceRegistry": true,
+        "sourceSnapshot": true,
+        "document": true,
+        "documentEvidence": true,
+        "extractionTask": true
+      }
+    },
+    {
+      "jobId": "job-crawled-sample-9",
+      "status": "PASS",
+      "chain": {
+        "sourceRegistry": true,
+        "sourceSnapshot": true,
+        "document": true,
+        "documentEvidence": true,
+        "extractionTask": true
+      }
+    },
+    {
+      "jobId": "job-crawled-sample-10",
+      "status": "PASS",
+      "chain": {
+        "sourceRegistry": true,
+        "sourceSnapshot": true,
+        "document": true,
+        "documentEvidence": true,
+        "extractionTask": true
+      }
+    },
+    {
+      "jobId": "job-crawled-sample-11",
+      "status": "PASS",
+      "chain": {
+        "sourceRegistry": true,
+        "sourceSnapshot": true,
+        "document": true,
+        "documentEvidence": true,
+        "extractionTask": true
+      }
+    },
+    {
+      "jobId": "job-crawled-sample-12",
+      "status": "PASS",
+      "chain": {
+        "sourceRegistry": true,
+        "sourceSnapshot": true,
+        "document": true,
+        "documentEvidence": true,
+        "extractionTask": true
+      }
+    },
+    {
+      "jobId": "job-crawled-sample-13",
+      "status": "PASS",
+      "chain": {
+        "sourceRegistry": true,
+        "sourceSnapshot": true,
+        "document": true,
+        "documentEvidence": true,
+        "extractionTask": true
+      }
+    },
+    {
+      "jobId": "job-crawled-sample-14",
+      "status": "PASS",
+      "chain": {
+        "sourceRegistry": true,
+        "sourceSnapshot": true,
+        "document": true,
+        "documentEvidence": true,
+        "extractionTask": true
+      }
+    },
+    {
+      "jobId": "job-crawled-sample-15",
+      "status": "PASS",
+      "chain": {
+        "sourceRegistry": true,
+        "sourceSnapshot": true,
+        "document": true,
+        "documentEvidence": true,
+        "extractionTask": true
+      }
+    },
+    {
+      "jobId": "job-crawled-sample-16",
+      "status": "PASS",
+      "chain": {
+        "sourceRegistry": true,
+        "sourceSnapshot": true,
+        "document": true,
+        "documentEvidence": true,
+        "extractionTask": true
+      }
+    },
+    {
+      "jobId": "job-crawled-sample-17",
+      "status": "PASS",
+      "chain": {
+        "sourceRegistry": true,
+        "sourceSnapshot": true,
+        "document": true,
+        "documentEvidence": true,
+        "extractionTask": true
+      }
+    },
+    {
+      "jobId": "job-crawled-sample-18",
+      "status": "PASS",
+      "chain": {
+        "sourceRegistry": true,
+        "sourceSnapshot": true,
+        "document": true,
+        "documentEvidence": true,
+        "extractionTask": true
+      }
+    },
+    {
+      "jobId": "job-crawled-sample-19",
+      "status": "PASS",
+      "chain": {
+        "sourceRegistry": true,
+        "sourceSnapshot": true,
+        "document": true,
+        "documentEvidence": true,
+        "extractionTask": true
+      }
+    },
+    {
+      "jobId": "job-crawled-sample-20",
+      "status": "PASS",
+      "chain": {
+        "sourceRegistry": true,
+        "sourceSnapshot": true,
+        "document": true,
+        "documentEvidence": true,
+        "extractionTask": true
+      }
+    }
+  ]
+}

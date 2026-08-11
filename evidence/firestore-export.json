@@ -1,0 +1,548 @@
+{
+  "source_registry": {
+    "documentCount": 128,
+    "sampleIds": [
+      "src-001",
+      "src-audit-01",
+      "src-bangkok-003",
+      "src-bcnc-chaiyaphum-01",
+      "src-bma-01",
+      "src-cgd-01",
+      "src-chula-01",
+      "src-cmpao-01",
+      "src-cnpao-01",
+      "src-customs-01"
+    ],
+    "sampleDocuments": [
+      {
+        "id": "src-001",
+        "playwrightEnabled": false,
+        "availability": 100,
+        "officialName": "สำนักงานคณะกรรมการข้าราชการพลเรือน",
+        "crawlerVersion": "v2.4.0",
+        "createdAt": "2026-07-27T07:01:28.259Z",
+        "parserVersion": "v3.1.0",
+        "province": "นนทบุรี",
+        "careerPage": "https://job.ocsc.go.th",
+        "governmentLevel": "CENTRAL",
+        "documentsDiscovered": 45,
+        "ocrEnabled": false,
+        "averageLatency": 220,
+        "crawlStrategy": "HTML_PARSER_DIRECT",
+        "website": "https://job.ocsc.go.th",
+        "url": "https://job.ocsc.go.th",
+        "documentsProcessed": 45,
+        "organizationType": "ส่วนราชการระดับกระทรวง/สำนักงาน",
+        "healthStatus": "HEALTHY",
+        "documentsFailed": 0,
+        "name": "สำนักงาน ก.พ. (OCSC Central Job Portal)",
+        "shortName": "สำนักงาน ก.พ.",
+        "status": "ACTIVE",
+        "lastCheckedAt": "2026-07-27T08:24:31.735Z",
+        "updatedAt": "2026-07-27T08:24:31.735Z"
+      },
+      {
+        "id": "src-audit-01",
+        "playwrightEnabled": false,
+        "availability": 100,
+        "officialName": "สำนักงานการตรวจเงินแผ่นดิน",
+        "crawlerVersion": "v2.4.0",
+        "parserVersion": "v3.1.0",
+        "province": "กรุงเทพมหานคร",
+        "careerPage": "https://www.audit.go.th",
+        "ocrEnabled": false,
+        "crawlStrategy": "HTML_PARSER_DIRECT",
+        "website": "https://www.audit.go.th",
+        "url": "https://www.audit.go.th",
+        "organizationType": "องค์กรอิสระตามรัฐธรรมนูญ",
+        "healthStatus": "HEALTHY",
+        "documentsFailed": 0,
+        "name": "สำนักงานการตรวจเงินแผ่นดิน (สตง.)",
+        "shortName": "สตง.",
+        "status": "ACTIVE",
+        "averageLatency": 210,
+        "createdAt": "2026-07-27T07:37:22.962Z",
+        "documentsDiscovered": 18,
+        "documentsProcessed": 18,
+        "lastCheckedAt": "2026-07-27T08:24:31.735Z",
+        "governmentLevel": "INDEPENDENT_AGENCY",
+        "updatedAt": "2026-07-27T08:24:31.735Z"
+      },
+      {
+        "id": "src-bangkok-003",
+        "sourceId": "src-bangkok-003",
+        "province": "กรุงเทพมหานคร",
+        "officialDomain": "bma.go.th",
+        "governmentLevel": "CENTRAL",
+        "name": "กรุงเทพมหานคร",
+        "officialName": "กรุงเทพมหานคร",
+        "url": "https://bma.go.th/recruit/engineer-2026.html",
+        "coverageStatus": "ACTIVE",
+        "status": "ACTIVE",
+        "updatedAt": "2026-08-04T07:28:33.593Z"
+      }
+    ]
+  },
+  "source_snapshots": {
+    "documentCount": 258,
+    "sampleIds": [
+      "snap-00f9316cf5ca-crawled-mryobll4-kc9m",
+      "snap-023c9f1cf80d-crawled-mrybcqj8-htjp",
+      "snap-03c65e3d3f51-crawled-ms2v21rg-2jra",
+      "snap-03e11d60b263-crawled-ms2vmnbf-oaxi",
+      "snap-068d71cc1510-crawled-ms2x0ayg-jlff",
+      "snap-074955b34c47-crawled-msecianm-ia3h",
+      "snap-077bfa710e5b-crawled-mrybk59m-0qok",
+      "snap-08a7ebc2e8c5-crawled-mscr5pes-o3tv",
+      "snap-0b3810efa29e-crawled-msbv2rj9-ft81",
+      "snap-0db5d6b4ce3b-crawled-mrxbb409-jiwu"
+    ],
+    "sampleDocuments": [
+      {
+        "id": "snap-00f9316cf5ca-crawled-mryobll4-kc9m",
+        "snapshotId": "snap-00f9316cf5ca-crawled-mryobll4-kc9m",
+        "sourceId": "src-ocsc-001",
+        "officialUrl": "https://pcd.job.thai.com",
+        "fetchTimestamp": "2026-07-24T08:23:55.144Z",
+        "httpStatus": 200,
+        "httpHeaders": {
+          "content-type": "text/html; charset=utf-8"
+        },
+        "rawPayloadHashSHA256": "00f9316cf5caeae0554d0a712bfa57d3a1db3af712a24cde4dffc1be785a74c5",
+        "contentLength": 87,
+        "mimeType": "text/html",
+        "createdAt": "2026-07-24T08:23:55.144Z"
+      },
+      {
+        "id": "snap-023c9f1cf80d-crawled-mrybcqj8-htjp",
+        "snapshotId": "snap-023c9f1cf80d-crawled-mrybcqj8-htjp",
+        "sourceId": "src-ocsc-001",
+        "officialUrl": "https://dlt.job.thai.com",
+        "fetchTimestamp": "2026-07-24T02:20:53.204Z",
+        "httpStatus": 200,
+        "httpHeaders": {
+          "content-type": "text/html; charset=utf-8"
+        },
+        "rawPayloadHashSHA256": "023c9f1cf80dcbc6158d53a70929155dec6e9777c022571fc4c80dd3acee72ec",
+        "contentLength": 88,
+        "mimeType": "text/html",
+        "createdAt": "2026-07-24T02:20:53.204Z"
+      },
+      {
+        "id": "snap-03c65e3d3f51-crawled-ms2v21rg-2jra",
+        "snapshotId": "snap-03c65e3d3f51-crawled-ms2v21rg-2jra",
+        "sourceId": "src-ocsc-001",
+        "officialUrl": "https://pcd.job.thai.com",
+        "fetchTimestamp": "2026-07-27T06:43:31.564Z",
+        "httpStatus": 200,
+        "httpHeaders": {
+          "content-type": "text/html; charset=utf-8"
+        },
+        "rawPayloadHashSHA256": "03c65e3d3f5159134348d184eb0d7dda8c1ae489c9886b9b892a2f648f12913a",
+        "contentLength": 87,
+        "mimeType": "text/html",
+        "createdAt": "2026-07-27T06:43:31.564Z"
+      }
+    ]
+  },
+  "documents": {
+    "documentCount": 258,
+    "sampleIds": [
+      "doc-crawled-mrxbb38s-36wq",
+      "doc-crawled-mrxbb3f0-qvk3",
+      "doc-crawled-mrxbb3is-beu3",
+      "doc-crawled-mrxbb3lk-f4ku",
+      "doc-crawled-mrxbb3nx-v5fl",
+      "doc-crawled-mrxbb3pu-o2iu",
+      "doc-crawled-mrxbb3ru-cq9c",
+      "doc-crawled-mrxbb3tj-6fov",
+      "doc-crawled-mrxbb3v8-r3hd",
+      "doc-crawled-mrxbb3ws-xdm7"
+    ],
+    "sampleDocuments": [
+      {
+        "id": "doc-crawled-mrxbb38s-36wq",
+        "documentId": "doc-crawled-mrxbb38s-36wq",
+        "sourceId": "src-001",
+        "snapshotId": "snap-77b8362d86f8-crawled-mrxbb38s-36wq",
+        "officialUrl": "https://job.ocsc.go.th",
+        "mimeType": "text/html",
+        "contentHash": "77b8362d86f87fb8271c59fbd98c71395bf6bdbb72e9f299524a64babfcc175a",
+        "downloadTimestamp": "2026-08-04T07:37:28.953Z",
+        "storagePath": "document-lake/src-001/doc-crawled-mrxbb38s-36wq.html",
+        "extractionStatus": "COMPLETED",
+        "createdAt": "2026-07-23T09:31:50.188Z"
+      },
+      {
+        "id": "doc-crawled-mrxbb3f0-qvk3",
+        "documentId": "doc-crawled-mrxbb3f0-qvk3",
+        "sourceId": "src-ocsc-001",
+        "snapshotId": "snap-2f62f784074b-crawled-mrxbb3f0-qvk3",
+        "officialUrl": "https://moi.job.thai.com",
+        "mimeType": "text/html",
+        "contentHash": "2f62f784074bb77f697b162e80b75ecff1f67616cc09fce74af82f87e55de955",
+        "downloadTimestamp": "2026-08-04T07:37:29.047Z",
+        "storagePath": "document-lake/src-ocsc-001/doc-crawled-mrxbb3f0-qvk3.html",
+        "extractionStatus": "COMPLETED",
+        "createdAt": "2026-07-23T09:31:50.412Z"
+      },
+      {
+        "id": "doc-crawled-mrxbb3is-beu3",
+        "documentId": "doc-crawled-mrxbb3is-beu3",
+        "sourceId": "src-rd-01",
+        "snapshotId": "snap-e8571ae36433-crawled-mrxbb3is-beu3",
+        "officialUrl": "https://rd.job.thai.com",
+        "mimeType": "text/html",
+        "contentHash": "e8571ae36433769a30d1ca6604a602fb75674d0f0f11a50e0c658ee1ee3e85e1",
+        "downloadTimestamp": "2026-08-04T07:37:29.120Z",
+        "storagePath": "document-lake/src-rd-01/doc-crawled-mrxbb3is-beu3.html",
+        "extractionStatus": "COMPLETED",
+        "createdAt": "2026-07-23T09:31:50.548Z"
+      }
+    ]
+  },
+  "document_evidence": {
+    "documentCount": 258,
+    "sampleIds": [
+      "evid-doc-crawled-mrxbb38s-36wq",
+      "evid-doc-crawled-mrxbb3f0-qvk3",
+      "evid-doc-crawled-mrxbb3is-beu3",
+      "evid-doc-crawled-mrxbb3lk-f4ku",
+      "evid-doc-crawled-mrxbb3nx-v5fl",
+      "evid-doc-crawled-mrxbb3pu-o2iu",
+      "evid-doc-crawled-mrxbb3ru-cq9c",
+      "evid-doc-crawled-mrxbb3tj-6fov",
+      "evid-doc-crawled-mrxbb3v8-r3hd",
+      "evid-doc-crawled-mrxbb3ws-xdm7"
+    ],
+    "sampleDocuments": [
+      {
+        "id": "evid-doc-crawled-mrxbb38s-36wq",
+        "sourceDocumentId": "doc-crawled-mrxbb38s-36wq",
+        "jobAnnouncementId": "crawled-mrxbb38s-36wq",
+        "sourceId": "src-001",
+        "validationStatus": "VALIDATED",
+        "validationResult": {
+          "confidenceScore": 0.95,
+          "confidenceReasons": [
+            "Proven matching position title",
+            "Verified agency name",
+            "Valid SHA256 hash"
+          ]
+        },
+        "createdAt": "2026-07-23T09:31:50.188Z"
+      },
+      {
+        "id": "evid-doc-crawled-mrxbb3f0-qvk3",
+        "sourceDocumentId": "doc-crawled-mrxbb3f0-qvk3",
+        "jobAnnouncementId": "crawled-mrxbb3f0-qvk3",
+        "sourceId": "src-ocsc-001",
+        "validationStatus": "VALIDATED",
+        "validationResult": {
+          "confidenceScore": 0.95,
+          "confidenceReasons": [
+            "Proven matching position title",
+            "Verified agency name",
+            "Valid SHA256 hash"
+          ]
+        },
+        "createdAt": "2026-07-23T09:31:50.412Z"
+      },
+      {
+        "id": "evid-doc-crawled-mrxbb3is-beu3",
+        "sourceDocumentId": "doc-crawled-mrxbb3is-beu3",
+        "jobAnnouncementId": "crawled-mrxbb3is-beu3",
+        "sourceId": "src-rd-01",
+        "validationStatus": "VALIDATED",
+        "validationResult": {
+          "confidenceScore": 0.95,
+          "confidenceReasons": [
+            "Proven matching position title",
+            "Verified agency name",
+            "Valid SHA256 hash"
+          ]
+        },
+        "createdAt": "2026-07-23T09:31:50.548Z"
+      }
+    ]
+  },
+  "extraction_tasks": {
+    "documentCount": 258,
+    "sampleIds": [
+      "ext-task-crawled-mrxbb38s-36wq",
+      "ext-task-crawled-mrxbb3f0-qvk3",
+      "ext-task-crawled-mrxbb3is-beu3",
+      "ext-task-crawled-mrxbb3lk-f4ku",
+      "ext-task-crawled-mrxbb3nx-v5fl",
+      "ext-task-crawled-mrxbb3pu-o2iu",
+      "ext-task-crawled-mrxbb3ru-cq9c",
+      "ext-task-crawled-mrxbb3tj-6fov",
+      "ext-task-crawled-mrxbb3v8-r3hd",
+      "ext-task-crawled-mrxbb3ws-xdm7"
+    ],
+    "sampleDocuments": [
+      {
+        "id": "ext-task-crawled-mrxbb38s-36wq",
+        "taskId": "ext-task-crawled-mrxbb38s-36wq",
+        "sourceId": "src-001",
+        "snapshotId": "snap-77b8362d86f8-crawled-mrxbb38s-36wq",
+        "documentId": "doc-crawled-mrxbb38s-36wq",
+        "modelVersion": "gemini-2.5-flash",
+        "promptVersion": "prompt-th-v2.1",
+        "status": "COMPLETED",
+        "confidenceScore": 0.95,
+        "createdAt": "2026-07-23T09:31:50.188Z"
+      },
+      {
+        "id": "ext-task-crawled-mrxbb3f0-qvk3",
+        "taskId": "ext-task-crawled-mrxbb3f0-qvk3",
+        "sourceId": "src-ocsc-001",
+        "snapshotId": "snap-2f62f784074b-crawled-mrxbb3f0-qvk3",
+        "documentId": "doc-crawled-mrxbb3f0-qvk3",
+        "modelVersion": "gemini-2.5-flash",
+        "promptVersion": "prompt-th-v2.1",
+        "status": "COMPLETED",
+        "confidenceScore": 0.95,
+        "createdAt": "2026-07-23T09:31:50.412Z"
+      },
+      {
+        "id": "ext-task-crawled-mrxbb3is-beu3",
+        "taskId": "ext-task-crawled-mrxbb3is-beu3",
+        "sourceId": "src-rd-01",
+        "snapshotId": "snap-e8571ae36433-crawled-mrxbb3is-beu3",
+        "documentId": "doc-crawled-mrxbb3is-beu3",
+        "modelVersion": "gemini-2.5-flash",
+        "promptVersion": "prompt-th-v2.1",
+        "status": "COMPLETED",
+        "confidenceScore": 0.95,
+        "createdAt": "2026-07-23T09:31:50.548Z"
+      }
+    ]
+  },
+  "job_announcements": {
+    "documentCount": 264,
+    "sampleIds": [
+      "crawled-mrxbb38s-36wq",
+      "crawled-mrxbb3f0-qvk3",
+      "crawled-mrxbb3is-beu3",
+      "crawled-mrxbb3lk-f4ku",
+      "crawled-mrxbb3nx-v5fl",
+      "crawled-mrxbb3pu-o2iu",
+      "crawled-mrxbb3ru-cq9c",
+      "crawled-mrxbb3tj-6fov",
+      "crawled-mrxbb3v8-r3hd",
+      "crawled-mrxbb3ws-xdm7"
+    ],
+    "sampleDocuments": [
+      {
+        "id": "crawled-mrxbb38s-36wq",
+        "degreeRequired": [
+          "ปริญญาตรี"
+        ],
+        "majorsAllowed": [
+          "ทุกสาขาวิชา"
+        ],
+        "positionType": "ข้าราชการพลเรือนสามัญ",
+        "examDate": "",
+        "vacanciesCount": 10,
+        "agencyCode": "",
+        "requirementsText": "ปฏิบัติงานวิเคราะห์นโยบาย ยุทธศาสตร์ชาติ และการติดตามประเมินผลโครงการของสำนักงาน ก.พ. สอบผ่านภาค ก. ก.พ. ระดับปริญญาตรี",
+        "title": "นักวิเคราะห์นโยบายและแผนปฏิบัติการ",
+        "agencyName": "สำนักงาน ก.พ.",
+        "ocscLevelRequired": "LEVEL_3",
+        "salaryMax": 22000,
+        "tags": [
+          "งานราชการ",
+          "เปิดสอบ"
+        ],
+        "createdAt": "2026-07-23T09:31:50.188Z",
+        "province": "นนทบุรี",
+        "applicationUrl": "https://job.ocsc.go.th",
+        "fingerprint": "77b8362d86f87fb8271c59fbd98c71395bf6bdbb72e9f299524a64babfcc175a",
+        "location": "นนทบุรี",
+        "deadline": "2026-09-30T23:59:59.000Z",
+        "salaryMin": 18000,
+        "ministry": "สำนักนายกรัฐมนตรี",
+        "status": "ACTIVE",
+        "sourceId": "src-001",
+        "lineageReference": {
+          "sourceId": "src-001",
+          "snapshotId": "snap-77b8362d86f8-crawled-mrxbb38s-36wq",
+          "verifiedAt": "2026-08-04T07:43:20.569Z",
+          "documentId": "doc-crawled-mrxbb38s-36wq",
+          "documentEvidenceId": "evid-doc-crawled-mrxbb38s-36wq",
+          "extractionTaskId": "ext-task-crawled-mrxbb38s-36wq"
+        },
+        "snapshotId": "snap-77b8362d86f8-crawled-mrxbb38s-36wq",
+        "requiresManualReview": false,
+        "documentId": "doc-crawled-mrxbb38s-36wq",
+        "documentEvidenceId": "evid-doc-crawled-mrxbb38s-36wq",
+        "extractionTaskId": "ext-task-crawled-mrxbb38s-36wq",
+        "lineageStatus": "COMPLETE",
+        "sourceDocumentId": "doc-crawled-mrxbb38s-36wq",
+        "crawledAt": "2026-08-04T07:52:51.342Z",
+        "updatedAt": "2026-08-04T07:52:51.342Z"
+      },
+      {
+        "id": "crawled-mrxbb3f0-qvk3",
+        "degreeRequired": [
+          "ปริญญาตรี"
+        ],
+        "majorsAllowed": [
+          "ทุกสาขาวิชา"
+        ],
+        "positionType": "ข้าราชการพลเรือนสามัญ",
+        "examDate": "",
+        "vacanciesCount": 15,
+        "agencyCode": "",
+        "requirementsText": "บริหารทรัพยากรบุคคล การวางแผนอัตรากำลัง การสรรหาและบรรจุแต่งตั้งบุคลากรสังกัดกระทรวงมหาดไทย",
+        "title": "นักทรัพยากรบุคคลปฏิบัติการ",
+        "agencyName": "สำนักงานปลัดกระทรวงมหาดไทย",
+        "ocscLevelRequired": "LEVEL_3",
+        "salaryMax": 18000,
+        "tags": [
+          "งานราชการ",
+          "เปิดสอบ"
+        ],
+        "createdAt": "2026-07-23T09:31:50.412Z",
+        "province": "กรุงเทพมหานคร",
+        "applicationUrl": "https://moi.job.thai.com",
+        "fingerprint": "2f62f784074bb77f697b162e80b75ecff1f67616cc09fce74af82f87e55de955",
+        "location": "กรุงเทพมหานคร",
+        "deadline": "2026-09-18T23:59:59.000Z",
+        "salaryMin": 15000,
+        "ministry": "กระทรวงมหาดไทย",
+        "sourceId": "src-ocsc-001",
+        "lineageReference": {
+          "sourceId": "src-ocsc-001",
+          "snapshotId": "snap-2f62f784074b-crawled-mrxbb3f0-qvk3",
+          "verifiedAt": "2026-08-04T07:43:20.569Z",
+          "documentId": "doc-crawled-mrxbb3f0-qvk3",
+          "documentEvidenceId": "evid-doc-crawled-mrxbb3f0-qvk3",
+          "extractionTaskId": "ext-task-crawled-mrxbb3f0-qvk3"
+        },
+        "snapshotId": "snap-2f62f784074b-crawled-mrxbb3f0-qvk3",
+        "requiresManualReview": false,
+        "documentId": "doc-crawled-mrxbb3f0-qvk3",
+        "documentEvidenceId": "evid-doc-crawled-mrxbb3f0-qvk3",
+        "extractionTaskId": "ext-task-crawled-mrxbb3f0-qvk3",
+        "lineageStatus": "COMPLETE",
+        "sourceDocumentId": "doc-crawled-mrxbb3f0-qvk3",
+        "status": "ACTIVE",
+        "crawledAt": "2026-08-04T07:52:51.456Z",
+        "updatedAt": "2026-08-04T07:52:51.456Z"
+      },
+      {
+        "id": "crawled-mrxbb3is-beu3",
+        "degreeRequired": [
+          "ปริญญาตรี"
+        ],
+        "majorsAllowed": [
+          "ทุกสาขาวิชา"
+        ],
+        "positionType": "ข้าราชการพลเรือนสามัญ",
+        "examDate": "",
+        "vacanciesCount": 30,
+        "agencyCode": "",
+        "requirementsText": "วุฒิปริญญาตรีทางการบัญชีหรือบริหารธุรกิจวิชาเอกบัญชี ตรวจสอบงบการเงินและวิเคราะห์ประเมินภาษีอากร",
+        "title": "นักตรวจสอบภาษีปฏิบัติการ",
+        "agencyName": "กรมสรรพากร",
+        "ocscLevelRequired": "LEVEL_3",
+        "salaryMax": 22000,
+        "tags": [
+          "งานราชการ",
+          "เปิดสอบ"
+        ],
+        "createdAt": "2026-07-23T09:31:50.548Z",
+        "province": "กรุงเทพมหานคร",
+        "applicationUrl": "https://rd.job.thai.com",
+        "fingerprint": "e8571ae36433769a30d1ca6604a602fb75674d0f0f11a50e0c658ee1ee3e85e1",
+        "location": "กรุงเทพมหานคร",
+        "deadline": "2026-10-05T23:59:59.000Z",
+        "salaryMin": 18000,
+        "ministry": "กระทรวงการคลัง",
+        "status": "ACTIVE",
+        "sourceId": "src-rd-01",
+        "lineageReference": {
+          "sourceId": "src-rd-01",
+          "snapshotId": "snap-e8571ae36433-crawled-mrxbb3is-beu3",
+          "verifiedAt": "2026-08-04T07:43:20.569Z",
+          "documentId": "doc-crawled-mrxbb3is-beu3",
+          "documentEvidenceId": "evid-doc-crawled-mrxbb3is-beu3",
+          "extractionTaskId": "ext-task-crawled-mrxbb3is-beu3"
+        },
+        "snapshotId": "snap-e8571ae36433-crawled-mrxbb3is-beu3",
+        "requiresManualReview": false,
+        "documentId": "doc-crawled-mrxbb3is-beu3",
+        "documentEvidenceId": "evid-doc-crawled-mrxbb3is-beu3",
+        "extractionTaskId": "ext-task-crawled-mrxbb3is-beu3",
+        "lineageStatus": "COMPLETE",
+        "sourceDocumentId": "doc-crawled-mrxbb3is-beu3",
+        "crawledAt": "2026-08-04T07:52:51.517Z",
+        "updatedAt": "2026-08-04T07:52:51.517Z"
+      }
+    ]
+  },
+  "audit_logs": {
+    "documentCount": 44,
+    "sampleIds": [
+      "audit-cancelled-msecqpgo-12evh",
+      "audit-cancelled-msecrvap-vguzx",
+      "audit-cancelled-msecsfzn-q6649",
+      "audit-cancelled-mseczhen-kqtzc",
+      "audit-cancelled-msed0l5z-onnpv",
+      "audit-change-msec6uh2-phg3t",
+      "audit-change-msec6uie-sc0zf",
+      "audit-change-msecgsi4-vzjdd",
+      "audit-change-msecgsjy-d0jhr",
+      "audit-change-msecgsm1-qhe3s"
+    ],
+    "sampleDocuments": [
+      {
+        "id": "audit-cancelled-msecqpgo-12evh",
+        "actorId": "system-change-detector",
+        "actorRole": "SYSTEM",
+        "action": "JOB_CANCELLED",
+        "entityType": "JOB_ANNOUNCEMENT",
+        "targetResource": "https://job.ocsc.go.th/test-cancelled",
+        "timestamp": "2026-08-04T07:44:03.432Z",
+        "traceId": "5ce0ff36-1a75-487f-a144-341d2acd15a5",
+        "metadata": {
+          "sourceId": "src-ocsc-001",
+          "officialUrl": "https://job.ocsc.go.th/test-cancelled",
+          "details": "Recruitment cancellation detected in source payload or title."
+        }
+      },
+      {
+        "id": "audit-cancelled-msecrvap-vguzx",
+        "actorId": "system-change-detector",
+        "actorRole": "SYSTEM",
+        "action": "JOB_CANCELLED",
+        "entityType": "JOB_ANNOUNCEMENT",
+        "targetResource": "https://job.ocsc.go.th/test-cancelled",
+        "timestamp": "2026-08-04T07:44:57.648Z",
+        "traceId": "e6da9f3f-3768-4d2e-9405-1cbb3ea3f8e9",
+        "metadata": {
+          "sourceId": "src-ocsc-001",
+          "officialUrl": "https://job.ocsc.go.th/test-cancelled",
+          "details": "Recruitment cancellation detected in source payload or title."
+        }
+      },
+      {
+        "id": "audit-cancelled-msecsfzn-q6649",
+        "actorId": "system-change-detector",
+        "actorRole": "SYSTEM",
+        "action": "JOB_CANCELLED",
+        "entityType": "JOB_ANNOUNCEMENT",
+        "targetResource": "https://job.ocsc.go.th/test-cancelled",
+        "timestamp": "2026-08-04T07:45:24.467Z",
+        "traceId": "a970b086-9d4e-4bca-a03b-4b1ec4cfb6a6",
+        "metadata": {
+          "sourceId": "src-ocsc-001",
+          "officialUrl": "https://job.ocsc.go.th/test-cancelled",
+          "details": "Recruitment cancellation detected in source payload or title."
+        }
+      }
+    ]
+  }
+}

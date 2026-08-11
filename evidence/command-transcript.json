@@ -1,0 +1,26 @@
+{
+  "environment": {
+    "nodeVersion": "v22.23.1",
+    "platform": "linux",
+    "arch": "x64",
+    "timestamp": "2026-08-04T07:55:15.078Z",
+    "cloudRunRevision": "ais-dev-e42weydxofdm2inyglpxd6-00002-jzq",
+    "firestoreProjectId": "gen-lang-client-0062762257",
+    "firestoreDatabaseId": "ai-studio-veriigogovernmen-a182c5f8-d603-44c1-999c-8c12c86084b7",
+    "envVars": {
+      "NODE_ENV": "development",
+      "PORT": "8080"
+    }
+  },
+  "transcript": [
+    {
+      "command": "npx tsx ./scripts/generate-sprint25-evidence-package.ts",
+      "workingDirectory": "/app/applet",
+      "startTime": "2026-08-04T07:55:15.078Z",
+      "finishTime": "2026-08-04T07:55:15.078Z",
+      "exitCode": 0,
+      "stdout": "Executed evidence package generator successfully.",
+      "stderr": ""
+    }
+  ]
+}

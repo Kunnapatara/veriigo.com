@@ -1,0 +1,88 @@
+{
+  "certificationStep": "7. Artifact Signing",
+  "timestamp": "2026-08-04T08:12:13.193Z",
+  "status": "VERIFIED",
+  "signingKeyIdentifier": "VERIIGO-PROD-SIGNING-KEY-2026",
+  "signatureAlgorithm": "HMAC-SHA256",
+  "hmacSignature": "6f7d8c49bc08114b6a8a08aafcb1da268bfd29fa5d025f926a68fb9d447bef52",
+  "signedPayloadSHA256": "9a4381f616a3b543f13d7d60d5a9c4ecad9e86c41121c164a2d4b6fb4adaded9",
+  "totalArtifactsSigned": 15,
+  "artifacts": {
+    "verification-report.json": {
+      "sizeBytes": 959,
+      "sha256": "06bdaa44125c4b8a426ca8661dc66dc22dbb386648ba8bb12c79a4d875d2c774",
+      "path": "/verification-kit/verification-report.json"
+    },
+    "coverage-summary.json": {
+      "sizeBytes": 144,
+      "sha256": "484d628603c0d638377be2ae4de461c744e6b525fd04db657ad1d860d718186a",
+      "path": "/verification-kit/coverage-summary.json"
+    },
+    "benchmark-performance.csv": {
+      "sizeBytes": 202,
+      "sha256": "8e00fe5d8358b70c2db6bbf6a5b3d642549d8bb86f973edbf6f207ed74d604fb",
+      "path": "/verification-kit/benchmark-performance.csv"
+    },
+    "evidence-firestore.json": {
+      "sizeBytes": 3047,
+      "sha256": "ce94839687ac17c30b947add282d831cdd639efb58d8904347cb1c45443ded7f",
+      "path": "/verification-kit/evidence-firestore.json"
+    },
+    "evidence-lineage.json": {
+      "sizeBytes": 5167,
+      "sha256": "dc738c05595c64251ad2b0f673febf3b19b5ccfd677db5df425a6129416f08dc",
+      "path": "/verification-kit/evidence-lineage.json"
+    },
+    "evidence-hashes.json": {
+      "sizeBytes": 5697,
+      "sha256": "5df120cb05dece47ff4e207bdc5c148b19afe2134362d3a4032f315c4185f39d",
+      "path": "/verification-kit/evidence-hashes.json"
+    },
+    "evidence-live-source.json": {
+      "sizeBytes": 8747,
+      "sha256": "ce5573ae14aafd6a8620923a5f957852e1c26158cb062590bd94d3976538a5c4",
+      "path": "/verification-kit/evidence-live-source.json"
+    },
+    "evidence-security.json": {
+      "sizeBytes": 839,
+      "sha256": "fba32e5fc37fe4d2cb0e72dd0aa69d6727b81031ec81c38bd752d4555c47e660",
+      "path": "/verification-kit/evidence-security.json"
+    },
+    "evidence-change-detection.json": {
+      "sizeBytes": 1289,
+      "sha256": "c0fa71c95169ae655a2638e83cf7128af9e0434aac33c6a8076e203111344022",
+      "path": "/verification-kit/evidence-change-detection.json"
+    },
+    "clean-room-report.json": {
+      "sizeBytes": 1007,
+      "sha256": "318fe82f959884a115c9ddf894beaf91dd028f9ffff8d122ccb6b994e8c3fb39",
+      "path": "/verification-kit/clean-room-report.json"
+    },
+    "fresh-firestore-report.json": {
+      "sizeBytes": 1860,
+      "sha256": "b769667c2b23a1209a518297ba1fee1f171d518359c5ed140f2487b7bdca4300",
+      "path": "/verification-kit/fresh-firestore-report.json"
+    },
+    "dependency-report.json": {
+      "sizeBytes": 4330,
+      "sha256": "1a88630a3076738fe354f3f0295cc38719795b85855c63b8e73fbcfe28e17d53",
+      "path": "/verification-kit/dependency-report.json"
+    },
+    "sbom.json": {
+      "sizeBytes": 7813,
+      "sha256": "795fe680ad0efe43150181cf73396ec8bf428a6605336880c9f99ca9a5cb584e",
+      "path": "/verification-kit/sbom.json"
+    },
+    "cross-platform-report.json": {
+      "sizeBytes": 1038,
+      "sha256": "2155682d295c487dfbdb98364e3896a05749f5171dbc883302a9326f740ea790",
+      "path": "/verification-kit/cross-platform-report.json"
+    },
+    "independent-verification-report.json": {
+      "sizeBytes": 3800,
+      "sha256": "abcf0183659b1765c969ead39b96f299071c1ac8880d18235ca270bcf9ca581c",
+      "path": "/verification-kit/independent-verification-report.json"
+    }
+  },
+  "verificationProcedure": "Recompute HMAC-SHA256 over canonical JSON keys of artifacts using secret key to verify non-repudiation."
+}

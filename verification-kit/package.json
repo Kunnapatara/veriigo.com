@@ -1,0 +1,10 @@
+{
+  "name": "veriigo-verification-kit",
+  "version": "3.0.0",
+  "private": true,
+  "description": "VERIIGO V2 Independent External Reproducibility Verification Kit",
+  "type": "module",
+  "scripts": {
+    "verify": "tsx verify.ts"
+  }
+}

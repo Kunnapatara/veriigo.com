@@ -1,0 +1,40 @@
+{
+  "totalTests": 7,
+  "results": [
+    {
+      "test": "Missing Source Registry Reference",
+      "expectedAction": "REJECT",
+      "actualResult": "REJECTED"
+    },
+    {
+      "test": "Missing Source Snapshot Reference",
+      "expectedAction": "REJECT",
+      "actualResult": "REJECTED"
+    },
+    {
+      "test": "Tampered Payload SHA256 Hash",
+      "expectedAction": "REJECT",
+      "actualResult": "REJECTED"
+    },
+    {
+      "test": "Non-Existent Document Reference",
+      "expectedAction": "REJECT",
+      "actualResult": "REJECTED"
+    },
+    {
+      "test": "Missing Lineage Reference Object",
+      "expectedAction": "REJECT",
+      "actualResult": "REJECTED"
+    },
+    {
+      "test": "Invalid Application URL Format",
+      "expectedAction": "REJECT",
+      "actualResult": "REJECTED"
+    },
+    {
+      "test": "Invalid Job Status Enum Value",
+      "expectedAction": "REJECT",
+      "actualResult": "REJECTED"
+    }
+  ]
+}

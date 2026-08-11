@@ -1,0 +1,15 @@
+{
+  "benchmark100JobsDurationMs": 1578,
+  "benchmark500JobsEstimatedMs": 7890,
+  "firestoreReadsExecuted": 512,
+  "firestoreWritesExecuted": 2,
+  "memoryUsageMB": {
+    "rss": 233,
+    "heapTotal": 62,
+    "heapUsed": 30
+  },
+  "cpuUsageMicroseconds": {
+    "user": 2070000,
+    "system": 290000
+  }
+}
