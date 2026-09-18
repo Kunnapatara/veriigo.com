@@ -74,20 +74,12 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
         fetch('/api/user/subscription'),
       ]);
 
-      const safeParse = async (res: Response) => {
-        try {
-          return await res.json();
-        } catch {
-          return { success: false, data: [] };
-        }
-      };
-
       const [jobsData, savedData, searchData, notifData, subData] = await Promise.all([
-        safeParse(jobsRes),
-        safeParse(savedRes),
-        safeParse(searchRes),
-        safeParse(notifRes),
-        safeParse(subRes),
+        jobsRes.json(),
+        savedRes.json(),
+        searchRes.json(),
+        notifRes.json(),
+        subRes.json(),
       ]);
 
       if (jobsData.success) setRecommendedJobs(jobsData.data || []);
@@ -165,9 +157,9 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
     }
   };
 
-  const unreadCount = notifications.filter((n) => !n.isRead).length;
+  const unreadCount = (notifications || []).filter((n) => !n.isRead).length;
   const readinessScore = profile?.careerReadinessScore || 85;
-  const filteredNotifs = notifications.filter((n) => (notifFilter === 'UNREAD' ? !n.isRead : true));
+  const filteredNotifs = (notifications || []).filter((n) => (notifFilter === 'UNREAD' ? !n.isRead : true));
 
   if (loading) {
     return <DashboardSkeleton />;
@@ -194,7 +186,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
             </h1>
 
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
-              ภาพรวมแดชบอร์ดส่วนบุคคล: ติดตามตำแหน่งงานที่บันทึกไว้ (<AnimatedCounter value={savedJobs.length} />), 
+              ภาพรวมแดชบอร์ดส่วนบุคคล: ติดตามตำแหน่งงานที่บันทึกไว้ (<AnimatedCounter value={(savedJobs || []).length} />), 
               การวิเคราะห์ความพร้อม AI, ประกาศวันสอบ และสิทธิ์ใช้งานระดับ{' '}
               <strong className="text-amber-300 font-bold">{subscription?.planName || 'SaaS Pro Candidate'}</strong>
             </p>
@@ -285,7 +277,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
           </div>
           <div className="space-y-1">
             <h3 className="text-2xl sm:text-3xl font-black text-slate-100">
-              <AnimatedCounter value={savedJobs.length} suffix=" ตำแหน่ง" />
+              <AnimatedCounter value={(savedJobs || []).length} suffix=" ตำแหน่ง" />
             </h3>
             <p className="text-[11px] text-slate-400">บันทึกไว้สำหรับยื่นสมัคร</p>
           </div>
@@ -381,7 +373,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                   <Bookmark className="w-4 h-4" />
                 </div>
                 <h2 className="font-extrabold text-base text-slate-100">
-                  ตำแหน่งงานที่บันทึกไว้ (Saved Jobs) ({savedJobs.length})
+                  ตำแหน่งงานที่บันทึกไว้ (Saved Jobs) ({(savedJobs || []).length})
                 </h2>
               </div>
               <button
@@ -392,7 +384,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               </button>
             </div>
 
-            {savedJobs.length === 0 ? (
+            {(savedJobs || []).length === 0 ? (
               <div className="text-center py-10 space-y-3 bg-white/[0.03] rounded-2xl border border-dashed border-white/10 p-6">
                 <Bookmark className="w-10 h-10 text-slate-500 mx-auto" />
                 <p className="text-xs text-slate-400 font-medium">ยังไม่มีตำแหน่งงานที่บันทึกไว้</p>
@@ -544,7 +536,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                 </div>
                 <h3 className="font-bold text-sm text-slate-100">ประวัติการค้นหาล่าสุด</h3>
               </div>
-              {recentSearches.length > 0 && (
+              {(recentSearches || []).length > 0 && (
                 <button
                   onClick={handleClearSearches}
                   className="text-[11px] text-rose-400 hover:underline font-bold cursor-pointer"
@@ -554,11 +546,11 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               )}
             </div>
 
-            {recentSearches.length === 0 ? (
+            {(recentSearches || []).length === 0 ? (
               <p className="text-xs text-slate-500 py-4 text-center">ยังไม่มีประวัติการค้นหา</p>
             ) : (
               <div className="space-y-2">
-                {recentSearches.map((item) => (
+                {(recentSearches || []).map((item) => (
                   <div
                     key={item.id}
                     onClick={() => onNavigate('jobs', { keyword: item.queryText })}

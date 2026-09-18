@@ -169,17 +169,17 @@ export const CoverageDashboardView: React.FC = () => {
             <div className="bg-slate-800/80 rounded-xl p-4 border border-slate-700/60">
               <div className="text-xs text-slate-400 font-medium">หน่วยงานลงทะเบียนแล้ว</div>
               <div className="text-2xl font-bold text-emerald-400 mt-1">
-                {report.totalRegisteredSources.toLocaleString()} แห่ง
+                {(report.totalRegisteredSources ?? report.totalSources ?? 0).toLocaleString()} แห่ง
               </div>
               <div className="text-xs text-emerald-400/80 mt-1">
-                เปิดใช้งานปกติ {report.totalActiveSources} แห่ง
+                เปิดใช้งานปกติ {report.totalActiveSources ?? report.activeSources ?? 0} แห่ง
               </div>
             </div>
 
             <div className="bg-slate-800/80 rounded-xl p-4 border border-slate-700/60">
               <div className="text-xs text-slate-400 font-medium">ประมาณการหน่วยงานเป้าหมาย</div>
               <div className="text-2xl font-bold text-slate-200 mt-1">
-                {report.totalExpectedSources.toLocaleString()} แห่ง
+                {(report.totalExpectedSources ?? report.totalSources ?? 124).toLocaleString()} แห่ง
               </div>
               <div className="text-xs text-slate-400 mt-1">เป้าหมายครอบคลุมทั้งประเทศ</div>
             </div>
@@ -215,7 +215,7 @@ export const CoverageDashboardView: React.FC = () => {
             }`}
           >
             <Globe className="w-4 h-4" />
-            77 จังหวัดทั่วไทย ({report?.provinces.length || 77})
+            77 จังหวัดทั่วไทย ({report?.provinces?.length || 77})
           </button>
 
           <button
@@ -252,9 +252,9 @@ export const CoverageDashboardView: React.FC = () => {
           >
             <Sparkles className="w-4 h-4 text-cyan-600" />
             AI Discovery Queue
-            {discoveryQueue.filter((q) => q.status === 'PENDING').length > 0 && (
+            {(discoveryQueue || []).filter((q) => q?.status === 'PENDING').length > 0 && (
               <span className="ml-1 px-2 py-0.5 bg-cyan-100 text-cyan-800 text-xs font-bold rounded-full">
-                {discoveryQueue.filter((q) => q.status === 'PENDING').length}
+                {(discoveryQueue || []).filter((q) => q?.status === 'PENDING').length}
               </span>
             )}
           </button>
@@ -276,7 +276,7 @@ export const CoverageDashboardView: React.FC = () => {
               />
             </div>
             <div className="text-xs text-slate-500">
-              แสดงผล {filteredProvinces.length} จาก 77 จังหวัดทั่วประเทศ
+              แสดงผล {filteredProvinces?.length || 0} จาก 77 จังหวัดทั่วประเทศ
             </div>
           </div>
 
@@ -506,16 +506,16 @@ export const CoverageDashboardView: React.FC = () => {
 
           <div className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
             <div className="p-4 bg-slate-50 border-b border-slate-200 font-bold text-slate-800 text-sm">
-              รายการแหล่งข้อมูลเสนอแนะรอยืนยัน ({discoveryQueue.length} รายการ)
+              รายการแหล่งข้อมูลเสนอแนะรอยืนยัน ({(discoveryQueue || []).length} รายการ)
             </div>
 
             <div className="divide-y divide-slate-100">
-              {discoveryQueue.length === 0 ? (
+              {(discoveryQueue || []).length === 0 ? (
                 <div className="p-8 text-center text-slate-500 text-sm">
                   ไม่มีรายการค้างใน Discovery Queue ในขณะนี้
                 </div>
               ) : (
-                discoveryQueue.map((item) => (
+                (discoveryQueue || []).map((item) => (
                   <div key={item.id} className="p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-slate-50 transition">
                     <div className="space-y-1 max-w-2xl">
                       <div className="flex items-center gap-2">

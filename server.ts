@@ -3046,13 +3046,7 @@ app.get('/api/jobs', async (req, res) => {
     });
   } catch (err: any) {
     log('ERROR', 'Error fetching jobs from Firestore:', { error: String(err) });
-    res.status(503).json({
-      success: false,
-      code: 'DATABASE_UNAVAILABLE',
-      truthStatus: 'DATABASE_UNAVAILABLE',
-      message: 'ไม่สามารถตรวจสอบจำนวนประกาศล่าสุดได้ (DATABASE UNAVAILABLE)',
-      error: err?.message || String(err)
-    });
+    res.status(500).json({ success: false, message: 'DATABASE UNAVAILABLE', error: err?.message || String(err) });
   }
 });
 
@@ -6857,6 +6851,27 @@ app.get('/api/production/docs/checklists', (req, res) => {
   const goLive = ProductionDocumentationRegistry.getGoLiveChecklist();
   const rollback = ProductionDocumentationRegistry.getRollbackChecklist();
   res.json([...readiness, ...goLive, ...rollback]);
+});
+
+// Global API Error Handler (prevents unhandled route crashes and connection drop)
+app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
+  log('ERROR', 'Unhandled Express Route Error', {
+    url: req.originalUrl,
+    method: req.method,
+    error: err?.message || String(err),
+    stack: err?.stack,
+  });
+
+  if (res.headersSent) {
+    return next(err);
+  }
+
+  res.status(err.status || 500).json({
+    success: false,
+    error: err.name || 'InternalServerError',
+    message: err.message || 'เกิดข้อผิดพลาดในการประมวลผลคำขอ',
+    timestamp: new Date().toISOString(),
+  });
 });
 
 // Vite Middleware integration for development / Static Serving for Production

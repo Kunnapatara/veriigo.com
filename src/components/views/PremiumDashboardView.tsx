@@ -78,12 +78,7 @@ export const PremiumDashboardView: React.FC = () => {
       setIsLoading(true);
       try {
         const res = await fetch('/api/jobs');
-        let json: any = {};
-        try {
-          json = await res.json();
-        } catch {
-          json = { success: false, jobs: [] };
-        }
+        const json = await res.json();
         if (json.success && json.jobs) {
           setJobs(json.jobs);
           if (json.jobs.length > 0) {

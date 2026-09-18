@@ -184,11 +184,10 @@ export const CrawlerEngineView: React.FC = () => {
   // Load Data
   const fetchEngineData = async () => {
     try {
-      const safeParse = (r: Response) => r.json().catch(() => ({ success: false }));
       const [statsRes, queueRes, logsRes] = await Promise.all([
-        fetch('/api/crawler/stats').then(safeParse),
-        fetch('/api/crawler/queue').then(safeParse),
-        fetch(`/api/crawler/logs?level=${logLevelFilter}&limit=150`).then(safeParse),
+        fetch('/api/crawler/stats').then((r) => r.json()),
+        fetch('/api/crawler/queue').then((r) => r.json()),
+        fetch(`/api/crawler/logs?level=${logLevelFilter}&limit=150`).then((r) => r.json()),
       ]);
 
       if (statsRes.success) setStats(statsRes.data);

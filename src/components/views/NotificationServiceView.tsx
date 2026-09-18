@@ -415,13 +415,13 @@ export const NotificationServiceView: React.FC = () => {
   };
 
   // Filtered In-App items
-  const filteredInApp = inAppNotifications.filter((item) => {
+  const filteredInApp = (inAppNotifications || []).filter((item) => {
     if (inAppFilter === 'UNREAD') return !item.isRead;
     return true;
   });
 
-  const unreadCount = inAppNotifications.filter((i) => !i.isRead).length;
-  const failedLogs = logs.filter((l) => l.status === 'FAILED');
+  const unreadCount = (inAppNotifications || []).filter((i) => !i.isRead).length;
+  const failedLogs = (logs || []).filter((l) => l.status === 'FAILED');
 
   return (
     <div className="space-y-6 pb-12">
@@ -479,10 +479,10 @@ export const NotificationServiceView: React.FC = () => {
           {[
             { id: 'in-app', label: 'In-App Notifications', icon: Bell, badge: unreadCount, badgeColor: 'bg-blue-500' },
             { id: 'preferences', label: 'Channels & Settings', icon: Sliders, badge: null },
-            { id: 'saved-alerts', label: 'Saved Search Alerts', icon: Search, badge: searchAlerts.length },
-            { id: 'deadlines', label: 'Deadline Reminders', icon: Clock, badge: upcomingDeadlines.length },
-            { id: 'retry-strategy', label: 'Retry Strategy', icon: AlertTriangle, badge: failedLogs.length, badgeColor: 'bg-rose-500' },
-            { id: 'logs', label: 'Audit Logs', icon: Activity, badge: logStats?.totalDispatched || logs.length },
+            { id: 'saved-alerts', label: 'Saved Search Alerts', icon: Search, badge: (searchAlerts || []).length },
+            { id: 'deadlines', label: 'Deadline Reminders', icon: Clock, badge: (upcomingDeadlines || []).length },
+            { id: 'retry-strategy', label: 'Retry Strategy', icon: AlertTriangle, badge: (failedLogs || []).length, badgeColor: 'bg-rose-500' },
+            { id: 'logs', label: 'Audit Logs', icon: Activity, badge: logStats?.totalDispatched || (logs || []).length },
             { id: 'sandbox', label: 'Test Dispatch Sandbox', icon: Send, badge: 'Live' },
           ].map((tab) => {
             const Icon = tab.icon;

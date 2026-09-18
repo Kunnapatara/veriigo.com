@@ -32,6 +32,7 @@ import { ProductionHardeningView } from './components/views/ProductionHardeningV
 import { PremiumDashboardView } from './components/views/PremiumDashboardView';
 import { NationalTruthSyncView } from './components/views/NationalTruthSyncView';
 import { JobListing } from './types';
+import { ErrorBoundary } from './components/common/ErrorBoundary';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<string>('dashboard');
@@ -71,57 +72,59 @@ export default function App() {
 
           {/* Dynamic Views Viewport with Framer Motion Page Transition */}
           <main className="flex-1 p-3 sm:p-4 lg:p-8 max-w-7xl w-full mx-auto pb-24 lg:pb-8">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeTab}
-                initial={{ opacity: 0, y: 12, filter: 'blur(4px)' }}
-                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                exit={{ opacity: 0, y: -12, filter: 'blur(4px)' }}
-                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              >
-                {activeTab === 'dashboard' && (
-                  <DashboardView
-                    onNavigate={setActiveTab}
-                    onSelectJob={setSelectedJob}
-                  />
-                )}
-                {activeTab === 'career-intelligence' && <PremiumDashboardView />}
-                {activeTab === 'jobs' && (
-                  <JobsExplorerView
-                    selectedJobFromDash={selectedJob}
-                    onNavigateToAI={handleNavigateToAI}
-                  />
-                )}
-                {activeTab === 'checker' && <QualificationChecker />}
-                {activeTab === 'ai-center' && (
-                  <AICenterView initialJob={selectedJob} />
-                )}
-                {activeTab === 'tracker' && <TrackerView />}
-                {activeTab === 'calendar' && <CalendarView />}
-                {activeTab === 'truth-sync' && <NationalTruthSyncView />}
-                {activeTab === 'coverage' && <CoverageDashboardView />}
-                {activeTab === 'data-governance' && <DataGovernanceView />}
-                {activeTab === 'operations' && <ProductionHardeningView />}
-                {activeTab === 'phase7-operations' && <ProductionHardeningView />}
-                {activeTab === 'production-hardening' && <ProductionHardeningView />}
-                {activeTab === 'audit' && <AuditReportView />}
-                {activeTab === 'sources' && <SourceRegistryView />}
-                {activeTab === 'crawler' && <CrawlerEngineView />}
-                {activeTab === 'downloader' && <DocumentDownloaderView />}
-                {activeTab === 'extractor' && <GeminiExtractorView />}
-                {activeTab === 'validator' && <JobValidationView />}
-                {activeTab === 'profile' && <ProfileView />}
-                {activeTab === 'notifications' && <NotificationServiceView />}
-                {activeTab === 'subscription' && <SubscriptionView />}
-                {activeTab === 'tests' && <TestRunnerView />}
-                {activeTab === 'deployment' && <DeploymentView />}
-                {activeTab === 'admin-portal' && (
-                  <AgencyRoute>
-                    <AdminPortalView />
-                  </AgencyRoute>
-                )}
-              </motion.div>
-            </AnimatePresence>
+            <ErrorBoundary key={activeTab}>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeTab}
+                  initial={{ opacity: 0, y: 12, filter: 'blur(4px)' }}
+                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                  exit={{ opacity: 0, y: -12, filter: 'blur(4px)' }}
+                  transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  {activeTab === 'dashboard' && (
+                    <DashboardView
+                      onNavigate={setActiveTab}
+                      onSelectJob={setSelectedJob}
+                    />
+                  )}
+                  {activeTab === 'career-intelligence' && <PremiumDashboardView />}
+                  {activeTab === 'jobs' && (
+                    <JobsExplorerView
+                      selectedJobFromDash={selectedJob}
+                      onNavigateToAI={handleNavigateToAI}
+                    />
+                  )}
+                  {activeTab === 'checker' && <QualificationChecker />}
+                  {activeTab === 'ai-center' && (
+                    <AICenterView initialJob={selectedJob} />
+                  )}
+                  {activeTab === 'tracker' && <TrackerView />}
+                  {activeTab === 'calendar' && <CalendarView />}
+                  {activeTab === 'truth-sync' && <NationalTruthSyncView />}
+                  {activeTab === 'coverage' && <CoverageDashboardView />}
+                  {activeTab === 'data-governance' && <DataGovernanceView />}
+                  {activeTab === 'operations' && <ProductionHardeningView />}
+                  {activeTab === 'phase7-operations' && <ProductionHardeningView />}
+                  {activeTab === 'production-hardening' && <ProductionHardeningView />}
+                  {activeTab === 'audit' && <AuditReportView />}
+                  {activeTab === 'sources' && <SourceRegistryView />}
+                  {activeTab === 'crawler' && <CrawlerEngineView />}
+                  {activeTab === 'downloader' && <DocumentDownloaderView />}
+                  {activeTab === 'extractor' && <GeminiExtractorView />}
+                  {activeTab === 'validator' && <JobValidationView />}
+                  {activeTab === 'profile' && <ProfileView />}
+                  {activeTab === 'notifications' && <NotificationServiceView />}
+                  {activeTab === 'subscription' && <SubscriptionView />}
+                  {activeTab === 'tests' && <TestRunnerView />}
+                  {activeTab === 'deployment' && <DeploymentView />}
+                  {activeTab === 'admin-portal' && (
+                    <AgencyRoute>
+                      <AdminPortalView />
+                    </AgencyRoute>
+                  )}
+                </motion.div>
+              </AnimatePresence>
+            </ErrorBoundary>
           </main>
         </div>
 

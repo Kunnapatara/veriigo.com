@@ -157,12 +157,7 @@ export const JobsExplorerView: React.FC<JobsExplorerViewProps> = ({
       queryParams.append('limit', '10000');
 
       const res = await fetch(`/api/jobs?${queryParams.toString()}`);
-      let data: any = {};
-      try {
-        data = await res.json();
-      } catch {
-        data = { success: false, message: 'DATABASE UNAVAILABLE' };
-      }
+      const data = await res.json();
       if (data.success) {
         setJobs(data.data || []);
         setApiTotal(data.total || (data.data ? data.data.length : 0));
@@ -197,15 +192,13 @@ export const JobsExplorerView: React.FC<JobsExplorerViewProps> = ({
             setFirestoreCount(fetchedList.length);
             setLoading(false);
           },
-          (error: any) => {
+          (error) => {
             console.error('Firestore onSnapshot listener error:', error);
-            setDbError(error?.message || 'DATABASE UNAVAILABLE');
             setLoading(false);
           }
         );
-      } catch (err: any) {
+      } catch (err) {
         console.error('Failed to setup Firestore realtime listener:', err);
-        setDbError(err?.message || 'DATABASE UNAVAILABLE');
         setLoading(false);
       }
     } else {
@@ -903,20 +896,17 @@ export const JobsExplorerView: React.FC<JobsExplorerViewProps> = ({
 
       {/* Sorting & Result Meta Bar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 veriigo-glass-panel p-4 rounded-xl border border-slate-800 shadow-sm text-xs">
-        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
-          <span className="font-bold text-slate-200 flex items-center gap-2">
+        <div className="flex items-center gap-2">
+          <span className="font-bold text-slate-200">
             {dbError ? (
               <span className="text-amber-400 font-extrabold text-xs sm:text-sm">ไม่สามารถตรวจสอบจำนวนประกาศล่าสุดได้ (DATABASE UNAVAILABLE)</span>
             ) : (
               <>พบทั้งหมด <strong className="text-blue-400 text-sm font-extrabold">{dataSource === 'EXPRESS_API' && activeFiltersCount === 0 ? (apiTotal || processedJobs.length) : processedJobs.length}</strong> ประกาศตำแหน่งงาน</>
             )}
           </span>
-          <span className="hidden sm:inline text-slate-600">|</span>
-          <span className="text-slate-400 font-medium flex items-center gap-2">
-            <span>แหล่งข้อมูล: {dataSource === 'REALTIME_FIRESTORE' ? '⚡ Firestore Database (Realtime)' : '🚀 Express Server API'}</span>
-            <span className={`px-2 py-0.5 rounded text-[10px] font-mono uppercase tracking-wider font-bold ${dbError ? 'bg-amber-950 text-amber-400 border border-amber-800/60' : 'bg-emerald-950 text-emerald-400 border border-emerald-800/60'}`}>
-              Truth Status: {dbError ? 'DATABASE_UNAVAILABLE' : 'VERIFIED_SNAPSHOT'}
-            </span>
+          <span className="text-slate-600">|</span>
+          <span className="text-slate-400 font-medium">
+            แหล่งข้อมูล: {dataSource === 'REALTIME_FIRESTORE' ? '⚡ Firestore Database (Realtime)' : '🚀 Express Server API'}
           </span>
         </div>
 

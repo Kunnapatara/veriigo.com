@@ -21,6 +21,30 @@ interface TraceabilityViewProps {
   onBack?: () => void;
 }
 
+const formatEvidenceDate = (val: any): string => {
+  if (!val) return 'ไม่ระบุ';
+  try {
+    if (typeof val === 'object' && typeof val.toDate === 'function') {
+      return val.toDate().toLocaleDateString('th-TH');
+    }
+    return new Date(val).toLocaleDateString('th-TH');
+  } catch {
+    return 'ไม่ระบุ';
+  }
+};
+
+const formatEvidenceDateTime = (val: any): string => {
+  if (!val) return 'ไม่ระบุ';
+  try {
+    if (typeof val === 'object' && typeof val.toDate === 'function') {
+      return val.toDate().toLocaleString('th-TH');
+    }
+    return new Date(val).toLocaleString('th-TH');
+  } catch {
+    return 'ไม่ระบุ';
+  }
+};
+
 export const TraceabilityView: React.FC<TraceabilityViewProps> = ({ jobId, onBack }) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [evidence, setEvidence] = useState<DocumentEvidenceDoc | null>(null);
@@ -142,8 +166,8 @@ export const TraceabilityView: React.FC<TraceabilityViewProps> = ({ jobId, onBac
               <div>
                 <div className="text-xs text-slate-500">วันที่ประกาศ / วันที่ดักจับได้</div>
                 <div className="font-semibold text-slate-800 text-sm">
-                  {evidence.publishedDate ? new Date(evidence.publishedDate).toLocaleDateString('th-TH') : 'ไม่ระบุ'}{' '}
-                  (ดักจับเมื่อ: {new Date(evidence.retrievedDate).toLocaleString('th-TH')})
+                  {formatEvidenceDate(evidence.publishedDate)}{' '}
+                  (ดักจับเมื่อ: {formatEvidenceDateTime(evidence.retrievedDate)})
                 </div>
               </div>
             </div>

@@ -211,11 +211,10 @@ export const JobValidationView: React.FC = () => {
   // Fetch Validator Engine Data
   const fetchValidatorData = async () => {
     try {
-      const safeParse = (r: Response) => r.json().catch(() => ({ success: false }));
       const [repsRes, statsRes, logsRes] = await Promise.all([
-        fetch('/api/validator/reports').then(safeParse),
-        fetch('/api/validator/stats').then(safeParse),
-        fetch('/api/validator/logs?limit=100').then(safeParse),
+        fetch('/api/validator/reports').then((r) => r.json()),
+        fetch('/api/validator/stats').then((r) => r.json()),
+        fetch('/api/validator/logs?limit=100').then((r) => r.json()),
       ]);
 
       if (repsRes.success) {
